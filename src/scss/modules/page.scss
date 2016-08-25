@@ -1,0 +1,29 @@
+.page {
+
+  padding: 60px 0;
+
+  h1 {
+    margin-bottom: 112px;
+    font-size: 4rem;
+    &:before {
+      content: "";
+      display: block;
+      width: 27px;
+      height: 4px;
+      background: $color-black;
+      margin-bottom: 10px;
+    }
+  }
+
+  p {
+    > img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  @include sp {
+    padding: 60px 30px 30px;
+  }
+
+}

@@ -1,0 +1,30 @@
+.l-content {
+  width: calc(100% - #{$width-side});
+  height: 100%;
+  position: absolute;
+  top:0;
+  left:0;
+  z-index: 100;
+
+  @include tb {
+    width: calc(100% - #{$width-side-s});
+  }
+
+  @include sp {
+    position: relative;
+    margin: auto;
+    width: 100%;
+  }
+}
+
+.l-content-inner {
+  width: $width-main;
+  margin: auto;
+
+  @include sp {
+    width: calc(100% - #{$width-gutter});
+    max-width: $width-main-s;
+    background: #FFF;
+    margin-top: 250px;
+  }
+}

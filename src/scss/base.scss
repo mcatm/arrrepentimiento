@@ -1,9 +1,45 @@
+@import 'https://fonts.googleapis.com/css?family=Buenard';
+
+* {
+  // -webkit-appearance: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
 body {
-  padding: 60px;
+  font-family: 'Buenard', serif;
+  line-height: 1.8;
+  font-size: 20px;
+  color: $color-black;
+}
+
+a {
+  color: $color-red;
+  &:hover { color: $color-blue; }
+  &:visited { color: $color-orange; }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin:0;
+}
+
+h1 { font-size: 4rem; }
+h2 { font-size: 3.2rem; }
+h3 { font-size: 2.8rem; }
+h4 { font-size: 2.2rem; }
+h5 { font-size: 1.8rem; }
+h6 { font-size: 1.2rem; }
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 li {
   list-style: none;
-  padding: 30px 0;
-  border-bottom: 1px solid #999;
 }
