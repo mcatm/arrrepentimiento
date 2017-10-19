@@ -1,21 +1,21 @@
 .l-skyscraper {
   position: fixed;
-  top: $height-brand-top;
+  top: 0;
   right: 0;
-  width: $width-side;
-  height: calc(100% - #{$height-brand-top});
+  width: 100%;
+  height: 100%;
   background: url(../img/main.jpg) 50% 0;
   background-size: cover;
   z-index: 10;
 
-  @include tb {
-    width: $width-side-s;
-  }
+  // @include tb {
+  //   width: $width-side-s;
+  // }
 
-  @include sp {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-  }
+  // @include sp {
+  //   position: fixed;
+  //   top: 0;
+  //   width: 100%;
+  //   height: 100%;
+  // }
 }
