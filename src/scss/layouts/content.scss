@@ -1,30 +1,24 @@
 .l-content {
-  width: calc(100% - #{$width-side});
+  width: 100%;
   height: 100%;
-  position: absolute;
-  top:0;
-  left:0;
+  position: relative;
   z-index: 100;
+  margin: auto;
 
-  @include tb {
-    width: calc(100% - #{$width-side-s});
-  }
+  // @include tb {
+  //   width: calc(100% - #{$width-side-s});
+  // }
 
-  @include sp {
-    position: relative;
-    margin: auto;
-    width: 100%;
-  }
+  // @include sp {
+  //   position: relative;
+  //   margin: auto;
+  //   width: 100%;
+  // }
 }
 
 .l-content-inner {
-  width: $width-main;
-  margin: auto;
-
-  @include sp {
-    width: calc(100% - #{$width-gutter});
-    max-width: $width-main-s;
-    background: #FFF;
-    margin-top: 250px;
-  }
+  width: calc(100% - #{$width-gutter});
+  max-width: $width-main-s;
+  background: #FFF;
+  margin: 250px auto;
 }
