@@ -1,5 +1,13 @@
 .l-footer {
   margin-top: 15px;
   padding-top: 15px;
+  padding-bottom: 15px;
   border-top: 1px solid $color-gray;
+  position: relative;
+  z-index: 100;
+}
+
+.l-footer-inner {
+  max-width: $width-main-s;
+  margin: auto;
 }

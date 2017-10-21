@@ -5,20 +5,18 @@
   z-index: 100;
   margin: auto;
 
-  // @include tb {
-  //   width: calc(100% - #{$width-side-s});
-  // }
-
-  // @include sp {
-  //   position: relative;
-  //   margin: auto;
-  //   width: 100%;
-  // }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.2;
+  }
 }
 
 .l-content-inner {
   width: calc(100% - #{$width-gutter});
   max-width: $width-main-s;
-  background: #FFF;
   margin: 250px auto;
 }

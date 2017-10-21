@@ -1,18 +1,22 @@
 .brand {
-  width:100%;
-  height:508px;
-  background: url(../img/tie.png) no-repeat 50% 0;
+  width: calc(100% - #{$width-gutter});
+  max-width: 680px;
+  // height:508px;
+  // background: url(../img/tie.png) no-repeat 50% 0;
   background-size: cover;
-  position: absolute;
-  top: $height-brand-top * -2;
+  // position: absolute;
+  // top: 60px;
+  padding-top: 60px;
+  margin: auto;
 }
 
 .brand-name {
-  top: $height-brand-top * 2 + 30px;
-  right: 0;
-  width: 100px;
-  position: relative;
-  margin: auto;
+  // top: 280px;
+  // left: 0;
+    max-width: 480px;
+    position: relative;
+    width: 100%;
+  // margin: auto;
 
   img {
     width: 100%;
