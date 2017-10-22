@@ -5,9 +5,10 @@ var gulp            = require("gulp"),
     uglify          = require("gulp-uglify"),
     minify          = require('gulp-minify'),
     bulkSass        = require('gulp-sass-bulk-import'),
-    sass            = require("gulp-sass");
-    webpackStream   = require("webpack-stream");
-    webpack         = require("webpack");
+    sass            = require("gulp-sass"),
+    webpackStream   = require("webpack-stream"),
+    webpack         = require("webpack"),
+    // webpack         = require('gulp-webpack'),
     webpackConfig   = require("./webpack.config");
 
 gulp.task("sass", function() {
@@ -20,8 +21,26 @@ gulp.task("sass", function() {
 });
 
 gulp.task('js', () => {
-  return webpackStream(webpackConfig, webpack)
+
+  // return gulp.src('./src/js/*.js')
+  //   // .pipe(plumber({
+  //   //   errorHandler: notify.onError("Error: <%= error.message %>")
+  //   // }))
+  //   // .pipe(eslint({useEslintrc: true}))
+  //   // .pipe(eslint.format())
+  //   // .pipe(eslint.failOnError())
+  //   .pipe(webpack(webpackConfig))
+  //   .pipe(gulp.dest("./www/html/js"));
+
+  return gulp.src('./src/js/*.js')
+    .pipe(webpackStream(webpackConfig, webpack))
+    // .pipe(uglify("app.js"))
     .pipe(gulp.dest("./www/html/js"));
+
+  // return gulp.src(`${ PATH.src.js }/main.js`)
+  //     .pipe($.plumber())
+  //     .pipe(webpackStream(webpackConfig, webpack))
+  //     .pipe(gulp.dest(`${ PATH.dist }/${ PATH.js }/`))
 })
 
 // gulp.task("js", function() {
