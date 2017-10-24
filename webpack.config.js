@@ -17,11 +17,20 @@ module.exports = [{
     }
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin(),
+    // new webpack.optimize.UglifyJsPlugin(),
     new WriteFilePlugin()
   ],
   module: {
     loaders: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            js: 'babel-loader'
+          }
+        }
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
