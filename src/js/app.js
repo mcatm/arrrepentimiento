@@ -2,8 +2,8 @@
 
 // import Vue from 'vue';
 
-// var demo = new Vue({
-//   el: '#demo',
+// var app = new Vue({
+//   el: '#app',
 //   data: {
 //     message: 'Hello Vue.js!'
 //   }

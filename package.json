@@ -39,7 +39,8 @@
     "vue-loader": "^13.3.0",
     "vue-template-compiler": "^2.4.4",
     "webpack": "^3.7.1",
-    "webpack-stream": "^4.0.0"
+    "webpack-stream": "^4.0.0",
+    "write-file-webpack-plugin": "^4.2.0"
   },
   "dependencies": {}
 }
