@@ -1,0 +1,11 @@
+.l-columns {
+  display: flex;
+
+  @include sp {
+    display: block;
+  }
+
+  > * {
+    width: 50%;
+  }
+}

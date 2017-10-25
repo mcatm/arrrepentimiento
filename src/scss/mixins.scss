@@ -1,24 +1,42 @@
 /* ----------------------------------------------------------
+
   mixins
+
 ---------------------------------------------------------- */
 
 // breakpoint for smartphones
 @mixin sp {
-  @media screen and ( max-width: $width-main-s + $width-side-s + ($width-gutter * 2) ) {
+  @media screen and ( max-width: $width-main-s + ($width-gutter * 2) ) {
     @content;
   }
 }
 
 // breakpoint for tablets
 @mixin tb {
-  @media screen and ( max-width: $width-main + $width-side + ($width-gutter * 2) ) {
+  @media screen and ( max-width: $width-main + ($width-gutter * 2) ) {
     @content;
   }
 }
 
 // x-large breakpoint
 @mixin xl {
-  @media screen and ( min-width: $width-main + $width-side + ($width-gutter * 2) ) {
+  @media screen and ( min-width: $width-main + ($width-gutter * 2) ) {
     @content;
+  }
+}
+
+// wysiwyg
+@mixin wysiwyg {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 30px;
+  }
+
+  p {
+    margin: 0 0 30px;
   }
 }
