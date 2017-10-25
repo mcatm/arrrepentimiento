@@ -14594,7 +14594,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14637,6 +14637,7 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
 //
 //
 //
@@ -14750,6 +14751,12 @@ var staticRenderFns = [
       _c("h3", [
         _vm._v("The Depth of Meanings"),
         _c("small", [_vm._v("意味の深度")])
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "img img-right" }, [
+        _c("img", {
+          attrs: { src: "/img/releases/the-depth-of-meanings/large.jpg" }
+        })
       ]),
       _vm._v(" "),
       _c("p", [
