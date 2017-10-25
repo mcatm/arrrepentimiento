@@ -67,223 +67,6 @@
 /* 0 */
 /***/ (function(module, exports) {
 
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
 /*
 	MIT License http://www.opensource.org/licenses/mit-license.php
 	Author Tobias Koppers @sokra
@@ -363,7 +146,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 3 */
+/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -584,7 +367,7 @@ function applyToTag (styleElement, obj) {
 
 
 /***/ }),
-/* 4 */
+/* 2 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -693,6 +476,223 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
+/* 3 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) { return [] }
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -719,7 +719,15 @@ var _about = __webpack_require__(17);
 
 var _about2 = _interopRequireDefault(_about);
 
-var _vueAnalytics = __webpack_require__(22);
+var _inspirations = __webpack_require__(22);
+
+var _inspirations2 = _interopRequireDefault(_inspirations);
+
+var _notFound = __webpack_require__(27);
+
+var _notFound2 = _interopRequireDefault(_notFound);
+
+var _vueAnalytics = __webpack_require__(32);
 
 var _vueAnalytics2 = _interopRequireDefault(_vueAnalytics);
 
@@ -738,7 +746,7 @@ _vue2.default.use(_vueHead2.default, {
 var router = new _vueRouter2.default({
   mode: 'history',
   base: '/',
-  routes: [{ path: '/', component: _top2.default, props: {} }, { path: '/about', component: _about2.default, props: {} }, { path: '*', component: _top2.default, props: {} }],
+  routes: [{ path: '/', component: _top2.default, props: {} }, { path: '/about', component: _about2.default, props: {} }, { path: '/inspiration/:slug', component: _about2.default, props: {} }, { path: '/inspirations', component: _inspirations2.default, props: {} }, { path: '*', component: _notFound2.default, props: {} }],
   scrollBehavior: function scrollBehavior(to, from, savedPosition) {
     return { x: 0, y: 0 };
   }
@@ -11342,7 +11350,7 @@ Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(1), __webpack_require__(7).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3), __webpack_require__(4), __webpack_require__(7).setImmediate))
 
 /***/ }),
 /* 7 */
@@ -11594,7 +11602,7 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(3)))
 
 /***/ }),
 /* 9 */
@@ -14226,7 +14234,7 @@ if (inBrowser && window.Vue) {
 
 /* harmony default export */ __webpack_exports__["default"] = (VueRouter);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
 /* 10 */
@@ -14508,7 +14516,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(12)
 }
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 
 /* template */
@@ -14562,7 +14570,7 @@ var content = __webpack_require__(13);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("743a7cc9", content, false);
+var update = __webpack_require__(1)("743a7cc9", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -14581,7 +14589,7 @@ if(false) {
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(0)(undefined);
 // imports
 
 
@@ -14752,9 +14760,44 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "ja" }, [
         _c("strong", [_vm._v("「意味の深度」")]),
+        _vm._v("という楽曲を"),
+        _c(
+          "a",
+          {
+            attrs: {
+              href:
+                "http://arrepentimiento.bandcamp.com/album/the-depth-of-meanings",
+              target: "_blank"
+            }
+          },
+          [_vm._v("Bandcamp")]
+        ),
         _vm._v(
-          "という楽曲をBandcampで発表しました。僕なりのHome Tapingの実践として、自宅でハンモックに揺られながら爪弾いたギターのコラージュ、PCでパッチングしたシンセによる習作、叩けないドラムをどつんどつんと叩いた結果の切り貼り、つたないボーカルなどがミックスされています。Apple MusicやSpotifyでも配信中"
-        )
+          "で発表しました。僕なりのHome Tapingの実践として、自宅でハンモックに揺られながら爪弾いたギターのコラージュ、PCでパッチングしたシンセによる習作、叩けないドラムをどつんどつんと叩いた結果の切り貼り、つたないボーカルなどがミックスされています。"
+        ),
+        _c(
+          "a",
+          {
+            attrs: {
+              href:
+                "https://itunes.apple.com/jp/album/the-depth-of-meanings-single/id1296961757",
+              target: "_blank"
+            }
+          },
+          [_vm._v("Apple Music")]
+        ),
+        _vm._v("や"),
+        _c(
+          "a",
+          {
+            attrs: {
+              href: "https://open.spotify.com/album/1DAopqWeJHZFPIqQl8f6X7",
+              target: "_blank"
+            }
+          },
+          [_vm._v("Spotify")]
+        ),
+        _vm._v("でも配信中")
       ]),
       _vm._v(" "),
       _c("ul", { staticClass: "links" }, [
@@ -14918,7 +14961,7 @@ function injectStyle (ssrContext) {
   if (disposed) return
   __webpack_require__(18)
 }
-var normalizeComponent = __webpack_require__(4)
+var normalizeComponent = __webpack_require__(2)
 /* script */
 
 /* template */
@@ -14972,7 +15015,7 @@ var content = __webpack_require__(19);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(3)("f9a97484", content, false);
+var update = __webpack_require__(1)("f9a97484", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -14991,7 +15034,7 @@ if(false) {
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(2)(undefined);
+exports = module.exports = __webpack_require__(0)(undefined);
 // imports
 
 
@@ -15116,6 +15159,622 @@ if (false) {
 
 /***/ }),
 /* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_inspirations_vue__ = __webpack_require__(25);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4a5840a2_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_inspirations_vue__ = __webpack_require__(26);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(23)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+
+/* template */
+
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-4a5840a2"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_inspirations_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4a5840a2_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_inspirations_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/js/views/inspirations.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4a5840a2", Component.options)
+  } else {
+    hotAPI.reload("data-v-4a5840a2", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(24);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("20542b87", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4a5840a2\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./inspirations.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4a5840a2\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./inspirations.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function () {
+    return {
+      page: 'Inspirations'
+    };
+  },
+  head: {
+    title: {
+      inner: 'Inspirations'
+    }
+  }
+});
+
+/***/ }),
+/* 26 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "l-content" }, [
+      _c("div", { staticClass: "l-content-inner" }, [
+        _c("ul", { staticClass: "list" }, [
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [
+              _vm._v("The Position of Insanity"),
+              _c("small", [_vm._v("狂気の所在")])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("figure", { staticClass: "quote quote-weird" }, [
+              _c("blockquote", [
+                _c("p", [_vm._v("哀悼の意を表しますが、自分の住む場所で殺害され、大変迷惑しています！")])
+              ]),
+              _vm._v(" "),
+              _c("footer", [_vm._v("北九州連続監禁殺人事件主犯 松永太、最終弁論最後の言葉")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [
+              _vm._v("Strangeness and Chaos"),
+              _c("small", [_vm._v("奇妙さ／混沌")])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" })
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [_vm._v("Amateurism"), _c("small", [_vm._v("アマチュアリズム")])]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" })
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-border" }),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [_vm._v("Structure"), _c("small", [_vm._v("構造")])]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("figure", { staticClass: "quote quote-weird" }, [
+              _c("blockquote", [
+                _c("p", [
+                  _vm._v(
+                    "言語はセマンティクス、強いては具体性に直結するコミュニケーションツールである。対して、音楽に代表される非言語的メディアは、コミュニケーションの手段とはなりにくい性質を持つが、これは偏に、その抽象性が故である。本論文では、言語は人間の複製・流通を促していることを確認し、最終的に、言語を媒介としない人間流通のあり方を模索する。"
+                  ),
+                  _c("br"),
+                  _vm._v("\nまた、その過程において、芸術（音楽）が人間の意図を伝達するツールとなりうるか否かを明確にする。")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("footer", [_vm._v("『音楽の文法』")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [
+              _vm._v("About Improvisation"),
+              _c("small", [_vm._v("即興主義について")])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" })
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [
+              _vm._v("Fearness and Violence"),
+              _c("small", [_vm._v("恐怖／暴力")])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" })
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [
+              _vm._v("Humor with Poison"),
+              _c("small", [_vm._v("毒とユーモア")])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" })
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-border" }),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [
+              _vm._v("Cultural Anthropologically"),
+              _c("small", [_vm._v("文化人類学的に")])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" })
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [_vm._v("The Machinism"), _c("small", [_vm._v("機械主義")])]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" })
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [
+              _vm._v("Art Under The Death"),
+              _c("small", [_vm._v("死と芸術")])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" })
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-item" }, [
+            _c("h3", [
+              _vm._v("The Motifs of Sex"),
+              _c("small", [_vm._v("性のモティーフ")])
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "ja" })
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4a5840a2", esExports)
+  }
+}
+
+/***/ }),
+/* 27 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_not_found_vue__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_c5c41b02_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_not_found_vue__ = __webpack_require__(31);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(28)
+}
+var normalizeComponent = __webpack_require__(2)
+/* script */
+
+/* template */
+
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-c5c41b02"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_not_found_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_c5c41b02_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_not_found_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/js/views/not-found.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-c5c41b02", Component.options)
+  } else {
+    hotAPI.reload("data-v-c5c41b02", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(29);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("7432aa7a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5c41b02\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./not-found.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-c5c41b02\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./not-found.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function () {
+    return {
+      page: 'Page Not Found'
+    };
+  },
+  head: {
+    title: {
+      inner: 'Page Not Found'
+    }
+  }
+});
+
+/***/ }),
+/* 31 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "l-content" }, [
+    _c("div", { staticClass: "l-content-inner" }, [
+      _c("div", { staticClass: "page" }, [
+        _c("h1", [_vm._v("Page Not Found")]),
+        _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
+        _c("div", { staticClass: "l-columns" }, [
+          _c("ul", { staticClass: "links" }, [
+            _c(
+              "li",
+              [_c("router-link", { attrs: { to: "/" } }, [_vm._v("Top")])],
+              1
+            ),
+            _vm._v(" "),
+            _vm._m(0),
+            _vm._v(" "),
+            _vm._m(1)
+          ]),
+          _vm._v(" "),
+          _vm._m(2)
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          attrs: {
+            href: "https://soundcloud.com/arrepentimiento",
+            target: "_blank"
+          }
+        },
+        [_vm._v("Soundcloud")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c(
+        "a",
+        {
+          attrs: {
+            href: "https://arrepentimiento.bandcamp.com/",
+            target: "_blank"
+          }
+        },
+        [_vm._v("Bandcamp")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "links" }, [
+      _c("li", [
+        _c(
+          "a",
+          {
+            attrs: {
+              href:
+                "https://itunes.apple.com/jp/artist/arrepentimiento/id1296962169",
+              target: "_blank"
+            }
+          },
+          [_vm._v("iTunes")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c(
+          "a",
+          {
+            attrs: {
+              href: "https://open.spotify.com/artist/7v2cd2Ai9FvjIAxVkbcIiL",
+              target: "_blank"
+            }
+          },
+          [_vm._v("Spotify")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c(
+          "a",
+          { attrs: { href: "https://twitter.com/timient0", target: "_blank" } },
+          [_vm._v("Twitter")]
+        )
+      ]),
+      _vm._v(" "),
+      _c("li", [
+        _c(
+          "a",
+          {
+            attrs: {
+              href: "https://www.facebook.com/arrepentimiento.music/",
+              target: "_blank"
+            }
+          },
+          [_vm._v("Facebook")]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-c5c41b02", esExports)
+  }
+}
+
+/***/ }),
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 !function(e,n){if(true)module.exports=n();else if("function"==typeof define&&define.amd)define([],n);else{var t=n();for(var r in t)("object"==typeof exports?exports:e)[r]=t[r]}}(this,function(){return function(e){function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}var t={};return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:r})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},n.p="",n(n.s=0)}([function(e,n,t){"use strict";function r(e){a(S,e)}function o(){return S.id?[].concat(S.id):[]}function i(){}function a(e,n){return Object.keys(n).forEach(function(t){if(e[t]&&"object"==typeof e[t])return void a(e[t],n[t]);e[t]=n[t]}),e}function c(){return Array.prototype.slice.call(document.getElementsByTagName("script")).filter(function(e){return-1!==e.src.indexOf("analytics")}).length>0}function u(e){return e.replace(/-/gi,"")}function l(){return new Promise(function(e,n){var t=setInterval(function(){"undefined"!=typeof window&&window.ga&&(e(),clearInterval(t))},10)})}function f(e,n){if(o().length>1){return u(n)+"."+e}return e}function s(e){var n=Object.keys(e).reduce(function(n,t,r,o){var i=r===o.length-1;return n+=t+"="+e[t]+(i?"":"&")},"");return""!==n?"?"+n:""}function d(e){return-1!==_.ignoreRoutes.indexOf(e)}function p(e){for(var n=arguments.length,t=Array(n>1?n-1:0),r=1;r<n;r++)t[r-1]=arguments[r];o().forEach(function(n){var r;if(void 0===window.ga)return void _.untracked.push({method:f(e,n),arguments:[].concat(t)});(r=window).ga.apply(r,[f(e,n)].concat(t))})}function g(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];if("object"==typeof n[0]&&n[0].constructor===Object)return void p("set",n[0]);p("set",n[0],n[1])}function v(){var e=o();_.debug.enabled&&(window.ga_debug={trace:_.debug.trace}),e.forEach(function(n){var t=u(n),r=e.length>1?H({},_.fields,{name:t}):_.fields;window.ga("create",n,"auto",r)}),_.beforeFirstHit(),_.linkers.length>0&&(p("require","linker"),p("linker:autoLink",_.linkers)),_.debug.sendHitTask||g("sendHitTask",null)}function y(e){if(Array.isArray(e)){for(var n=0,t=Array(e.length);n<e.length;n++)t[n]=e[n];return t}return Array.from(e)}function h(){var e=_.untracked,n=_.autoTracking,t=e.length;if(t&&n.untracked)for(;t--;){var r=e[t];p.apply(void 0,[r.method].concat(y(r.arguments))),e.splice(t,1)}}function b(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];if("string"!=typeof n[0]&&"currentRoute"in n[0]){var r=n[0].currentRoute,o=s(r.query),i=r.path+o;return g("page",i),void p("send","pageview",D({page:i,title:r.name,location:window.location.href},"function"==typeof n[1]&&{hitCallback:n[1]}))}p.apply(void 0,["send","pageview"].concat(n))}function w(e,n){var t=n.currentRoute;d(t.name)||b(e?e(t):n)}function m(){var e=_.router,n=_.autoTracking;n.page&&e&&(n.pageviewOnLoad&&w(n.pageviewTemplate,e),_.router.afterEach(function(){setTimeout(function(){w(n.pageviewTemplate,e)},0)}))}function k(e){p("send","exception",{exDescription:e,exFatal:arguments.length>1&&void 0!==arguments[1]&&arguments[1]})}function x(){_.autoTracking.exception&&window.addEventListener("error",function(e){k(e.message||e)})}function O(){if("undefined"!=typeof document){var e=_.id,n=_.ready,t=_.debug,r=_.checkDuplicatedScript,o=_.disableScriptLoader,i=t.enabled?"analytics_debug":"analytics",a="https://www.google-analytics.com/"+i+".js";if(!e)throw new Error("[vue-analytics] Please enter a Google Analytics tracking ID");return new Promise(function(e,n){if(r&&c(a)||o)return e();q()(a,function(t){return t?n("[vue-analytics] It's not possible to load Google Analytics script"):e()})}).then(function(){return l()}).then(function(){v(),n(),x(),m(),h()}).catch(function(e){console.error(e)})}}function j(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];p.apply(void 0,["send","event"].concat(n))}function A(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];p.apply(void 0,["send","social"].concat(n))}function T(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];p.apply(void 0,["send","timing"].concat(n))}function E(e){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};e.prototype.$ga=e.$ga={event:j,exception:k,page:b,query:p,require:F,set:g,social:A,time:T,untracked:h},r(n),O()}Object.defineProperty(n,"__esModule",{value:!0});var P=t(1),q=t.n(P),L=Object.assign||function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},R={id:null,router:null,fields:{},ignoreRoutes:[],linkers:[],autoTracking:{exception:!1,page:!0,pageviewOnLoad:!0,pageviewTemplate:null,untracked:!0},debug:{enabled:!1,trace:!1,sendHitTask:!0},checkDuplicatedScript:!1,disableScriptLoader:!1,beforeFirstHit:i,ready:i,untracked:[]},S=L({},R),_=S,H=Object.assign||function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},D=Object.assign||function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},F=function(){if(2==arguments.length)return void p("require",arguments.length<=0?void 0:arguments[0],arguments.length<=1?void 0:arguments[1]);p("require",arguments.length<=0?void 0:arguments[0])};n.default=E,t.d(n,"onAnalyticsReady",function(){return l})},function(e,n){function t(e,n){for(var t in n)e.setAttribute(t,n[t])}function r(e,n){e.onload=function(){this.onerror=this.onload=null,n(null,e)},e.onerror=function(){this.onerror=this.onload=null,n(new Error("Failed to load "+this.src),e)}}function o(e,n){e.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,n(null,e))}}e.exports=function(e,n,i){var a=document.head||document.getElementsByTagName("head")[0],c=document.createElement("script");"function"==typeof n&&(i=n,n={}),n=n||{},i=i||function(){},c.type=n.type||"text/javascript",c.charset=n.charset||"utf8",c.async=!("async"in n)||!!n.async,c.src=e,n.attrs&&t(c,n.attrs),n.text&&(c.text=""+n.text),("onload"in c?r:o)(c,i),c.onload||r(c,i),a.appendChild(c)}}])});
