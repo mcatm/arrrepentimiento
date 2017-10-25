@@ -738,7 +738,6 @@ var _vueAnalytics2 = _interopRequireDefault(_vueAnalytics);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueRouter2.default);
-// Vue.use(VueScrollTo)
 _vue2.default.use(_vueHead2.default, {
   separator: '-',
   complement: 'Arrepentimiento'
@@ -760,9 +759,7 @@ _vue2.default.use(_vueAnalytics2.default, {
 
 var app = new _vue2.default({
   router: router,
-  created: function created() {
-    var ga = new Ga();
-  }
+  created: function created() {}
 }).$mount('#app');
 
 /**

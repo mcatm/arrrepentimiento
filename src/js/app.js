@@ -13,7 +13,6 @@ import NotFound from './views/not-found.vue'
 import VueAnalytics from 'vue-analytics'
 
 vue.use(VueRouter)
-// Vue.use(VueScrollTo)
 vue.use(VueHead, {
   separator: '-',
   complement: 'Arrepentimiento'
@@ -44,7 +43,7 @@ vue.use(VueAnalytics, {
 var app = new vue({
   router,
   created: () => {
-    var ga = new Ga()
+    
   }
 }).$mount('#app');
 
