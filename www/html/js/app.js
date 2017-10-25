@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -282,108 +282,502 @@ module.exports = g;
 
 /***/ }),
 /* 2 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(14)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction) {
+  isProduction = _isProduction
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _vue = __webpack_require__(3);
+var _vue = __webpack_require__(6);
 
 var _vue2 = _interopRequireDefault(_vue);
 
-var _vueRouter = __webpack_require__(6);
+var _vueRouter = __webpack_require__(9);
 
 var _vueRouter2 = _interopRequireDefault(_vueRouter);
 
-var _top = __webpack_require__(7);
+var _vueHead = __webpack_require__(10);
+
+var _vueHead2 = _interopRequireDefault(_vueHead);
+
+var _top = __webpack_require__(11);
 
 var _top2 = _interopRequireDefault(_top);
+
+var _about = __webpack_require__(17);
+
+var _about2 = _interopRequireDefault(_about);
+
+var _vueAnalytics = __webpack_require__(22);
+
+var _vueAnalytics2 = _interopRequireDefault(_vueAnalytics);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 _vue2.default.use(_vueRouter2.default);
+// Vue.use(VueScrollTo)
+
+
+// import VueScrollTo from 'vue-scrollto'
+_vue2.default.use(_vueHead2.default, {
+  separator: '-',
+  complement: 'Arrepentimiento'
+});
 
 var router = new _vueRouter2.default({
   mode: 'history',
   base: '/',
-  routes: [{ path: '/', component: _top2.default, props: {} }, { path: '*', component: _top2.default, props: {} }]
-});
-
-var app = new _vue2.default({
-  el: '#app',
-  components: { Top: _top2.default },
-  template: '<Top/>',
-  data: {
-    message: 'Hello Vue.js!'
+  routes: [{ path: '/', component: _top2.default, props: {} }, { path: '/about', component: _about2.default, props: {} }, { path: '*', component: _top2.default, props: {} }],
+  scrollBehavior: function scrollBehavior(to, from, savedPosition) {
+    return { x: 0, y: 0 };
   }
 });
 
-// const app = new Vue({
-//   data: () => {
-//     return {
-//       // 'wp': wp,
-//       // 'api': {
-//       //   'endpoint': window.WP_API_Settings.root.replace(/\/$/,''),
-//       //   'nonce': {
-//       //     'wp_rest': window.WP_API_Settings.nonce,
-//       //     'postman': window.WP_API_Settings.nonce_postman
-//       //   }
-//       // },
-//       // 'url': {
-//       //   'origin': location.origin
-//       // }
-//     }
-//   },
-//   methods: {
-//   },
-//   router,
-//   render: a => a(App)
-// }).$mount('#app');
+_vue2.default.use(_vueAnalytics2.default, {
+  id: 'UA-104252-10',
+  router: router
+});
+
+var app = new _vue2.default({
+  router: router,
+  created: function created() {
+    var ga = new Ga();
+  }
+}).$mount('#app');
 
 /**
  * Init FB
  */
 
-window.fbAsyncInit = function () {
-  FB.init({
-    appId: '1769721059976622',
-    xfbml: true,
-    version: 'v2.7'
-  });
-};
+// window.fbAsyncInit = function() {
+//   FB.init({
+//     appId      : '1769721059976622',
+//     xfbml      : true,
+//     version    : 'v2.7'
+//   });
+// };
 
-(function (d, s, id) {
-  var js,
-      fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {
-    return;
-  }
-  js = d.createElement(s);js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js";
-  fjs.parentNode.insertBefore(js, fjs);
-})(document, 'script', 'facebook-jssdk');
-
-/**
- * Init GA
- */
-
-window.dataLayer = window.dataLayer || [];
-function gtag() {
-  dataLayer.push(arguments);
-}
-gtag('js', new Date());
-gtag('config', 'UA-104252-10');
-// ga('send', 'pageview', location.pathname)
-
-
-/**
- * Soundcloud
- *
- * https://developers.soundcloud.com/docs/api/html5-widget#resources
- */
+// (function(d, s, id){
+//    var js, fjs = d.getElementsByTagName(s)[0];
+//    if (d.getElementById(id)) {return;}
+//    js = d.createElement(s); js.id = id;
+//    js.src = "//connect.facebook.net/en_US/sdk.js";
+//    fjs.parentNode.insertBefore(js, fjs);
+//  }(document, 'script', 'facebook-jssdk'));
 
 /***/ }),
-/* 3 */
+/* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -10948,10 +11342,10 @@ Vue$3.compile = compileToFunctions;
 
 /* harmony default export */ __webpack_exports__["default"] = (Vue$3);
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(1), __webpack_require__(4).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0), __webpack_require__(1), __webpack_require__(7).setImmediate))
 
 /***/ }),
-/* 4 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -11004,13 +11398,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(5);
+__webpack_require__(8);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -11203,7 +11597,7 @@ exports.clearImmediate = clearImmediate;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13835,19 +14229,286 @@ if (inBrowser && window.Vue) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 7 */
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* eslint-disable */
+;(function() {
+
+  'use strict'
+
+  var opt = {
+    complement: window.document.title,
+    separator: '|'
+  }
+
+  var diffTitle = {}
+  var els = []
+  var diffEls = []
+  var installed = false
+
+  var util = {
+    /**
+     * Shorthand
+     * @type {Object}
+     */
+    shorthand: {
+      ch: 'charset',
+      tg: 'target',
+      n: 'name',
+      he: 'http-equiv',
+      ip: 'itemprop',
+      c: 'content',
+      p: 'property',
+      sc: 'scheme',
+      r: 'rel',
+      h: 'href',
+      sz: 'sizes',
+      t: 'type',
+      s: 'src',
+      a: 'async',
+      d: 'defer',
+      i: 'inner'
+    },
+
+    /**
+     * This function return the element <head>
+     * @type {Function}
+     * @return {Object}
+     */
+    getPlace: function (place) {
+      return window.document.getElementsByTagName(place)[0]
+    },
+
+    /**
+     * Undo the window.document title for previous state
+     * @type {Function}
+     * @param  {Object} state 
+     */
+    undoTitle: function (state) {
+      if (!state.before) return
+      window.document.title = state.before
+    },
+
+    /**
+     * Undo elements to its previous state
+     * @type {Function}
+     */
+    undo: function () {
+      if (!els.length) return
+      els.map(function (el) {
+        el.parentElement.removeChild(el)
+      })
+      els = []
+    },
+
+    /**
+     * Set attributes in element
+     * @type {Function}
+     * @param  {Object} obj
+     * @param  {HTMLElement} el
+     * @return {HTMLElement} with defined attributes
+     */
+    prepareElement: function (obj, el) {
+      var self = this
+      Object.keys(obj).map(function (prop) {
+        var sh = self.shorthand[prop] || prop
+        if (sh.match(/(body|undo|replace)/g)) return
+        if (sh === 'inner') {
+          el.textContent = obj[prop]
+          return
+        }
+        el.setAttribute(sh, obj[prop])
+      })
+      return el
+    },
+
+    /**
+     * Change window.document title
+     * @type {Function}
+     * @param  {Object} obj
+     */
+    title: function (obj) {
+      if (!obj) return
+      diffTitle.before = opt.complement
+      var title = obj.inner + ' ' + (obj.separator || opt.separator) +
+        ' ' +  (obj.complement || opt.complement)
+      window.document.title = title.trim()
+    },
+
+    /**
+     * Update Element
+     */
+    update: function () {
+      if (!els.length) return
+      els.forEach(function(el, key) {
+        if (diffEls[key] && !diffEls[key].isEqualNode(el)) {
+          el.parentElement.replaceChild(diffEls[key], els[key])
+          els.splice(key, 1, diffEls[key])
+          return
+        }
+      })
+      diffEls = []
+    },
+
+    /**
+     * Add Elements
+     * @param {Object} obj
+     * @param {HTMLElement} el
+     * @param {HTMLElement} parent
+     */
+    add: function (obj, el, parent) {
+      parent.appendChild(el)
+      // Fixed elements that do not suffer removal
+      if (obj.undo !== undefined && !obj.undo) return
+      // Elements which are removed
+      els.push(el)
+    },
+
+    /**
+     * Handle of create elements
+     * @type {Function}
+     * @param  {Array} arr
+     * @param  {String} tag   - style, link, meta, script, base
+     * @param  {String} place - Default 'head'
+     * @param  {Boolean} update
+     */
+    handle: function (arr, tag, place, update) {
+      var self = this
+      if (!arr) return
+      arr.map(function (obj) {
+        var parent = (obj.body) ? self.getPlace('body') : self.getPlace(place)
+        var el = window.document.getElementById(obj.id) || window.document.createElement(tag)
+        // Elements that will substitute data
+        if (el.hasAttribute('id') || obj.id) {
+          self.prepareElement(obj, el)
+          return
+        }
+        // Other elements
+        el = self.prepareElement(obj, el)
+        // Updated elements
+        if (update) {
+          diffEls.push(el)
+          return
+        }
+        // Append Elements
+        self.add(obj, el, parent)
+      })
+    }
+  }
+
+  /**
+   * Plugin | vue-head
+   * @param  {Function} Vue
+   * @param  {Object} options
+   */
+  function VueHead (Vue, options) {
+    if (installed) return
+
+    installed = true
+
+    if (options) {
+      Vue.util.extend(opt, options)
+    }
+
+    /**
+     * Initializes and updates the elements in the head
+     * @param  {Boolean} update
+     */
+    function init (update) {
+      var self = this
+      var head = self.$options.head
+      if (!head) return
+      Object.keys(head).map(function (key) {
+        var prop = head[key]
+        if (!prop) return
+        var obj = (typeof prop === 'function') ? head[key].bind(self)() : head[key]
+        if (key === 'title') {
+          util[key](obj)
+          return
+        }
+        util.handle(obj, key, 'head', update)
+      })
+      self.$emit('okHead')
+    }
+
+    /**
+     * Remove the meta tags elements in the head
+     */
+    function destroy () {
+      if (!this.$options.head) return
+      util.undoTitle(diffTitle)
+      util.undo()
+    }
+
+    // v1
+    if (Vue.version.match(/[1].(.)+/g)) {
+      Vue.mixin({
+        ready: function () {
+          init.bind(this)()
+        },
+        destroyed: function () {
+          destroy.bind(this)()
+        },
+        events: {
+          updateHead: function () {
+            init.bind(this)(true)
+            util.update()
+          }
+        }   
+      })
+    }
+    // v2
+    if (Vue.version.match(/[2].(.)+/g)) {
+      Vue.mixin({
+        created: function () {
+          var self = this
+          self.$on('updateHead', function () {
+            init.bind(self)(true)
+            util.update()
+          })
+        },
+        mounted: function () {
+          init.bind(this)()
+        },
+        beforeDestroy: function () {
+          destroy.bind(this)()
+        }
+      })
+    }
+  }
+
+  VueHead.version = '2.0.11'
+
+  // auto install
+  if (typeof Vue !== 'undefined') {
+    Vue.use(VueHead)
+  }
+
+  if(true) {
+    module.exports = VueHead
+  } else if(typeof define === 'function' && define.amd) {
+    define(function () { return VueHead })
+  } else if (typeof window !== 'undefined') {
+    window.VueHead = VueHead
+  }
+
+})()
+
+/***/ }),
+/* 11 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_top_vue__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_140cac8c_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_top_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_top_vue__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_140cac8c_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_top_vue__ = __webpack_require__(16);
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(8)
+  __webpack_require__(12)
 }
-var normalizeComponent = __webpack_require__(13)
+var normalizeComponent = __webpack_require__(4)
 /* script */
 
 /* template */
@@ -13891,17 +14552,17 @@ if (false) {(function () {
 
 
 /***/ }),
-/* 8 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(9);
+var content = __webpack_require__(13);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("743a7cc9", content, false);
+var update = __webpack_require__(3)("743a7cc9", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -13917,324 +14578,21 @@ if(false) {
 }
 
 /***/ }),
-/* 9 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(10)(undefined);
+exports = module.exports = __webpack_require__(2)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-  MIT License http://www.opensource.org/licenses/mit-license.php
-  Author Tobias Koppers @sokra
-  Modified by Evan You @yyx990803
-*/
-
-var hasDocument = typeof document !== 'undefined'
-
-if (typeof DEBUG !== 'undefined' && DEBUG) {
-  if (!hasDocument) {
-    throw new Error(
-    'vue-style-loader cannot be used in a non-browser environment. ' +
-    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
-  ) }
-}
-
-var listToStyles = __webpack_require__(12)
-
-/*
-type StyleObject = {
-  id: number;
-  parts: Array<StyleObjectPart>
-}
-
-type StyleObjectPart = {
-  css: string;
-  media: string;
-  sourceMap: ?string
-}
-*/
-
-var stylesInDom = {/*
-  [id: number]: {
-    id: number,
-    refs: number,
-    parts: Array<(obj?: StyleObjectPart) => void>
-  }
-*/}
-
-var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
-var singletonElement = null
-var singletonCounter = 0
-var isProduction = false
-var noop = function () {}
-
-// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-// tags it will allow on a page
-var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
-
-module.exports = function (parentId, list, _isProduction) {
-  isProduction = _isProduction
-
-  var styles = listToStyles(parentId, list)
-  addStylesToDom(styles)
-
-  return function update (newList) {
-    var mayRemove = []
-    for (var i = 0; i < styles.length; i++) {
-      var item = styles[i]
-      var domStyle = stylesInDom[item.id]
-      domStyle.refs--
-      mayRemove.push(domStyle)
-    }
-    if (newList) {
-      styles = listToStyles(parentId, newList)
-      addStylesToDom(styles)
-    } else {
-      styles = []
-    }
-    for (var i = 0; i < mayRemove.length; i++) {
-      var domStyle = mayRemove[i]
-      if (domStyle.refs === 0) {
-        for (var j = 0; j < domStyle.parts.length; j++) {
-          domStyle.parts[j]()
-        }
-        delete stylesInDom[domStyle.id]
-      }
-    }
-  }
-}
-
-function addStylesToDom (styles /* Array<StyleObject> */) {
-  for (var i = 0; i < styles.length; i++) {
-    var item = styles[i]
-    var domStyle = stylesInDom[item.id]
-    if (domStyle) {
-      domStyle.refs++
-      for (var j = 0; j < domStyle.parts.length; j++) {
-        domStyle.parts[j](item.parts[j])
-      }
-      for (; j < item.parts.length; j++) {
-        domStyle.parts.push(addStyle(item.parts[j]))
-      }
-      if (domStyle.parts.length > item.parts.length) {
-        domStyle.parts.length = item.parts.length
-      }
-    } else {
-      var parts = []
-      for (var j = 0; j < item.parts.length; j++) {
-        parts.push(addStyle(item.parts[j]))
-      }
-      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
-    }
-  }
-}
-
-function createStyleElement () {
-  var styleElement = document.createElement('style')
-  styleElement.type = 'text/css'
-  head.appendChild(styleElement)
-  return styleElement
-}
-
-function addStyle (obj /* StyleObjectPart */) {
-  var update, remove
-  var styleElement = document.querySelector('style[data-vue-ssr-id~="' + obj.id + '"]')
-
-  if (styleElement) {
-    if (isProduction) {
-      // has SSR styles and in production mode.
-      // simply do nothing.
-      return noop
-    } else {
-      // has SSR styles but in dev mode.
-      // for some reason Chrome can't handle source map in server-rendered
-      // style tags - source maps in <style> only works if the style tag is
-      // created and inserted dynamically. So we remove the server rendered
-      // styles and inject new ones.
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  if (isOldIE) {
-    // use singleton mode for IE9.
-    var styleIndex = singletonCounter++
-    styleElement = singletonElement || (singletonElement = createStyleElement())
-    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
-    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
-  } else {
-    // use multi-style-tag mode in all other cases
-    styleElement = createStyleElement()
-    update = applyToTag.bind(null, styleElement)
-    remove = function () {
-      styleElement.parentNode.removeChild(styleElement)
-    }
-  }
-
-  update(obj)
-
-  return function updateStyle (newObj /* StyleObjectPart */) {
-    if (newObj) {
-      if (newObj.css === obj.css &&
-          newObj.media === obj.media &&
-          newObj.sourceMap === obj.sourceMap) {
-        return
-      }
-      update(obj = newObj)
-    } else {
-      remove()
-    }
-  }
-}
-
-var replaceText = (function () {
-  var textStore = []
-
-  return function (index, replacement) {
-    textStore[index] = replacement
-    return textStore.filter(Boolean).join('\n')
-  }
-})()
-
-function applyToSingletonTag (styleElement, index, remove, obj) {
-  var css = remove ? '' : obj.css
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = replaceText(index, css)
-  } else {
-    var cssNode = document.createTextNode(css)
-    var childNodes = styleElement.childNodes
-    if (childNodes[index]) styleElement.removeChild(childNodes[index])
-    if (childNodes.length) {
-      styleElement.insertBefore(cssNode, childNodes[index])
-    } else {
-      styleElement.appendChild(cssNode)
-    }
-  }
-}
-
-function applyToTag (styleElement, obj) {
-  var css = obj.css
-  var media = obj.media
-  var sourceMap = obj.sourceMap
-
-  if (media) {
-    styleElement.setAttribute('media', media)
-  }
-
-  if (sourceMap) {
-    // https://developer.chrome.com/devtools/docs/javascript-debugging
-    // this makes source maps inside style tags work properly in Chrome
-    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
-    // http://stackoverflow.com/a/26603875
-    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
-  }
-
-  if (styleElement.styleSheet) {
-    styleElement.styleSheet.cssText = css
-  } else {
-    while (styleElement.firstChild) {
-      styleElement.removeChild(styleElement.firstChild)
-    }
-    styleElement.appendChild(document.createTextNode(css))
-  }
-}
-
-
-/***/ }),
-/* 12 */
+/* 14 */
 /***/ (function(module, exports) {
 
 /**
@@ -14267,119 +14625,11 @@ module.exports = function listToStyles (parentId, list) {
 
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file.
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-module.exports = function normalizeComponent (
-  rawScriptExports,
-  compiledTemplate,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier /* server only */
-) {
-  var esModule
-  var scriptExports = rawScriptExports = rawScriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof rawScriptExports.default
-  if (type === 'object' || type === 'function') {
-    esModule = rawScriptExports
-    scriptExports = rawScriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (compiledTemplate) {
-    options.render = compiledTemplate.render
-    options.staticRenderFns = compiledTemplate.staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = injectStyles
-  }
-
-  if (hook) {
-    var functional = options.functional
-    var existing = functional
-      ? options.render
-      : options.beforeCreate
-
-    if (!functional) {
-      // inject component registration as beforeCreate hook
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    } else {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return existing(h, context)
-      }
-    }
-  }
-
-  return {
-    esModule: esModule,
-    exports: scriptExports,
-    options: options
-  }
-}
-
-
-/***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
 //
 //
 //
@@ -14429,15 +14679,372 @@ module.exports = function normalizeComponent (
 //
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  data() {
+  data: function () {
     return {
       message: 'Top'
     };
+  },
+  head: {
+    title: {
+      inner: 'Arrepentimiento',
+      complement: 'the Music Collective'
+    }
   }
 });
 
 /***/ }),
-/* 15 */
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "l-content" }, [
+    _c("div", { staticClass: "l-content-inner" }, [
+      _c("ul", { staticClass: "list" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c("li", { staticClass: "list-border" }),
+        _vm._v(" "),
+        _c("li", { staticClass: "list-item" }, [
+          _c("h3", [_vm._v("Introduce ourselves")]),
+          _vm._v(" "),
+          _vm._m(3),
+          _vm._v(" "),
+          _vm._m(4),
+          _vm._v(" "),
+          _c(
+            "p",
+            [
+              _c("router-link", { attrs: { to: "/about" } }, [
+                _vm._v("About Us")
+              ])
+            ],
+            1
+          )
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-item" }, [
+      _c("h3", [
+        _vm._v("The Depth of Meanings"),
+        _c("small", [_vm._v("意味の深度")])
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          'We announced the song "The Depth of Meanings" on Bandcamp. As my practice of Home Taping, I mixed a collage of plucked guitars while shaking by a hammock at home, studies with synths patched at my own PC, cut and paste as a result of hitting a drum that can not beat tightly, and a wacky vocal mix It is. It\'s also delivered on Apple Music or Spotify'
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "ja" }, [
+        _c("strong", [_vm._v("「意味の深度」")]),
+        _vm._v(
+          "という楽曲をBandcampで発表しました。僕なりのHome Tapingの実践として、自宅でハンモックに揺られながら爪弾いたギターのコラージュ、PCでパッチングしたシンセによる習作、叩けないドラムをどつんどつんと叩いた結果の切り貼り、つたないボーカルなどがミックスされています。Apple MusicやSpotifyでも配信中"
+        )
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "links" }, [
+        _c("li", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "http://arrepentimiento.bandcamp.com/album/the-depth-of-meanings",
+                target: "_blank"
+              }
+            },
+            [_vm._v("Bandcamp")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "https://itunes.apple.com/jp/album/the-depth-of-meanings-single/id1296961757",
+                target: "_blank"
+              }
+            },
+            [_vm._v("Apple Music")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href: "https://open.spotify.com/album/1DAopqWeJHZFPIqQl8f6X7",
+                target: "_blank"
+              }
+            },
+            [_vm._v("Spotify")]
+          )
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-item" }, [
+      _c("figure", { staticClass: "quote quote-weird" }, [
+        _c("blockquote", [
+          _c("p", [
+            _vm._v("大音声"),
+            _c("small", [_vm._v("（だいおんじょう）")]),
+            _vm._v(
+              "が構内を満たす。見えないスピーカーが降りてきて、ビラや広告のポスターがべたべた貼られた四方の壁にぶつかり、さらに増幅され、跳ねかえり、大きくなって、すこしずつずれたこだまと響きの連鎖で膨れあがり、最初の言葉は失われる――壮大だが、理解不能で、恐るべき、巨大な信託に変わってしまうのだ。"
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("footer", [_vm._v("ロブ＝グリエ『消しゴム』")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-item" }, [
+      _c("h3", [_vm._v("Soundcloud")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "For more than a year ago, I have added home taping records. A playlist of Home Taping by such moment composing is being released to Soundcloud."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "ja" }, [
+        _vm._v(
+          "かれこれ一年以上前から、Home Tapingの記録を付けています。Soundcloudに、そうした瞬間作曲によるHome Tapingのプレイリストを公開中です。よくわかんねえけど、面白いと思うよ"
+        )
+      ]),
+      _vm._v(" "),
+      _c("iframe", {
+        attrs: {
+          width: "100%",
+          height: "450",
+          scrolling: "no",
+          frameborder: "no",
+          src:
+            "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/190955789&color=ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false"
+        }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [
+      _vm._v(
+        "In the burnt red-black sky, the gospel resonates in capital HELVETICA."
+      ),
+      _c("br"),
+      _vm._v(
+        "\n        At the beach where the sadness ended, preparations for a new party begin."
+      ),
+      _c("br"),
+      _vm._v(
+        "\n        Buildings of sound constructed in fictitious dimensions are now irradiated to the body from completely different angles."
+      ),
+      _c("br"),
+      _vm._v(
+        "\n        A melody is born like breathing, and the rhythm dies as if to breathe out."
+      ),
+      _c("br"),
+      _vm._v(
+        "\n        Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era."
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "ja" }, [
+      _vm._v("焦げた赤黒い空に、大文字のヘルベチカで鳴り響く福音。"),
+      _c("br"),
+      _vm._v("悲しみの終わった浜にて、新しい宴の準備が始まる。"),
+      _c("br"),
+      _vm._v("架空の次元で構築された音の建造物が、今まさに全く別の角度から肉体に照射された。"),
+      _c("br"),
+      _vm._v("息を吸うようにメロディが生まれ、息を吐くようにリズムが死んでいく。"),
+      _c("br"),
+      _vm._v("古ぼけた魔術にさよならを告げよう。芳醇な空洞時代の入り口にて。")
+    ])
+  }
+]
+render._withStripped = true
+var esExports = { render: render, staticRenderFns: staticRenderFns }
+/* harmony default export */ __webpack_exports__["a"] = (esExports);
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-140cac8c", esExports)
+  }
+}
+
+/***/ }),
+/* 17 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_about_vue__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4015e704_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_about_vue__ = __webpack_require__(21);
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(18)
+}
+var normalizeComponent = __webpack_require__(4)
+/* script */
+
+/* template */
+
+/* template functional */
+  var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-4015e704"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_bustCache_about_vue__["a" /* default */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_4015e704_hasScoped_true_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_bustCache_about_vue__["a" /* default */],
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "src/js/views/about.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4015e704", Component.options)
+  } else {
+    hotAPI.reload("data-v-4015e704", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+/* harmony default export */ __webpack_exports__["default"] = (Component.exports);
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(19);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("f9a97484", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4015e704\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./about.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4015e704\",\"scoped\":true,\"hasInlineConfig\":false}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./about.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  data: function () {
+    return {
+      message: 'Top'
+    };
+  },
+  head: {
+    title: {
+      inner: 'About'
+    }
+  }
+});
+
+/***/ }),
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -14454,152 +15061,43 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "l-content" }, [
       _c("div", { staticClass: "l-content-inner" }, [
-        _c("ul", { staticClass: "list" }, [
-          _c("li", { staticClass: "list-item" }, [
-            _c("h3", [
-              _vm._v("The Depth of Meanings"),
-              _c("small", [_vm._v("意味の深度")])
-            ]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                'We announced the song "The Depth of Meanings" on Bandcamp. As my practice of Home Taping, I mixed a collage of plucked guitars while shaking by a hammock at home, studies with synths patched at my own PC, cut and paste as a result of hitting a drum that can not beat tightly, and a wacky vocal mix It is. It\'s also delivered on Apple Music or Spotify'
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "ja" }, [
-              _c("strong", [_vm._v("「意味の深度」")]),
-              _vm._v(
-                "という楽曲をBandcampで発表しました。僕なりのHome Tapingの実践として、自宅でハンモックに揺られながら爪弾いたギターのコラージュ、PCでパッチングしたシンセによる習作、叩けないドラムをどつんどつんと叩いた結果の切り貼り、つたないボーカルなどがミックスされています。Apple MusicやSpotifyでも配信中"
-              )
-            ]),
-            _vm._v(" "),
-            _c("ul", { staticClass: "links" }, [
-              _c("li", [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href:
-                        "http://arrepentimiento.bandcamp.com/album/the-depth-of-meanings",
-                      target: "_blank"
-                    }
-                  },
-                  [_vm._v("Bandcamp")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href:
-                        "https://itunes.apple.com/jp/album/the-depth-of-meanings-single/id1296961757",
-                      target: "_blank"
-                    }
-                  },
-                  [_vm._v("Apple Music")]
-                )
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c(
-                  "a",
-                  {
-                    attrs: {
-                      href:
-                        "https://open.spotify.com/album/1DAopqWeJHZFPIqQl8f6X7",
-                      target: "_blank"
-                    }
-                  },
-                  [_vm._v("Spotify")]
-                )
-              ])
-            ])
+        _c("div", { staticClass: "page" }, [
+          _c("h1", [_vm._v("About Us")]),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c("p", [
+            _vm._v(
+              "In the burnt red-black sky, the gospel resonates in capital HELVETICA."
+            ),
+            _c("br"),
+            _vm._v(
+              "\n      At the beach where the sadness ended, preparations for a new party begin."
+            ),
+            _c("br"),
+            _vm._v(
+              "\n      Buildings of sound constructed in fictitious dimensions are now irradiated to the body from completely different angles."
+            ),
+            _c("br"),
+            _vm._v(
+              "\n      A melody is born like breathing, and the rhythm dies as if to breathe out."
+            ),
+            _c("br"),
+            _vm._v(
+              "\n      Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era."
+            )
           ]),
           _vm._v(" "),
-          _c("li", { staticClass: "list-item" }, [
-            _c("figure", { staticClass: "quote quote-weird" }, [
-              _c("blockquote", [
-                _c("p", [
-                  _vm._v("大音声"),
-                  _c("small", [_vm._v("（だいおんじょう）")]),
-                  _vm._v(
-                    "が構内を満たす。見えないスピーカーが降りてきて、ビラや広告のポスターがべたべた貼られた四方の壁にぶつかり、さらに増幅され、跳ねかえり、大きくなって、すこしずつずれたこだまと響きの連鎖で膨れあがり、最初の言葉は失われる――壮大だが、理解不能で、恐るべき、巨大な信託に変わってしまうのだ。"
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("footer", [_vm._v("ロブ＝グリエ『消しゴム』")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-item" }, [
-            _c("h3", [_vm._v("Soundcloud")]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "For more than a year ago, I have added home taping records. A playlist of Home Taping by such moment composing is being released to Soundcloud."
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "ja" }, [
-              _vm._v(
-                "かれこれ一年以上前から、Home Tapingの記録を付けています。Soundcloudに、そうした瞬間作曲によるHome Tapingのプレイリストを公開中です。よくわかんねえけど、面白いと思うよ"
-              )
-            ]),
-            _vm._v(" "),
-            _c("iframe", {
-              attrs: {
-                width: "100%",
-                height: "450",
-                scrolling: "no",
-                frameborder: "no",
-                src:
-                  "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/190955789&color=ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false"
-              }
-            })
-          ]),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-border" }),
-          _vm._v(" "),
-          _c("li", { staticClass: "list-item" }, [
-            _c("h3", [_vm._v("Introduce ourselves")]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v(
-                "In the burnt red-black sky, the gospel resonates in capital HELVETICA."
-              ),
-              _c("br"),
-              _vm._v(
-                "\n        At the beach where the sadness ended, preparations for a new party begin."
-              ),
-              _c("br"),
-              _vm._v(
-                "\n        Buildings of sound constructed in fictitious dimensions are now irradiated to the body from completely different angles."
-              ),
-              _c("br"),
-              _vm._v(
-                "\n        A melody is born like breathing, and the rhythm dies as if to breathe out."
-              ),
-              _c("br"),
-              _vm._v(
-                "\n        Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era."
-              )
-            ]),
-            _vm._v(" "),
-            _c("p", { staticClass: "ja" }, [
-              _vm._v("焦げた赤黒い空に、大文字のヘルベチカで鳴り響く福音。"),
-              _c("br"),
-              _vm._v("悲しみの終わった浜にて、新しい宴の準備が始まる。"),
-              _c("br"),
-              _vm._v("架空の次元で構築された音の建造物が、今まさに全く別の角度から肉体に照射された。"),
-              _c("br"),
-              _vm._v("息を吸うようにメロディが生まれ、息を吐くようにリズムが死んでいく。"),
-              _c("br"),
-              _vm._v("古ぼけた魔術にさよならを告げよう。芳醇な空洞時代の入り口にて。")
-            ])
+          _c("p", { staticClass: "ja" }, [
+            _vm._v("焦げた赤黒い空に、大文字のヘルベチカで鳴り響く福音。"),
+            _c("br"),
+            _vm._v("悲しみの終わった浜にて、新しい宴の準備が始まる。"),
+            _c("br"),
+            _vm._v("架空の次元で構築された音の建造物が、今まさに全く別の角度から肉体に照射された。"),
+            _c("br"),
+            _vm._v("息を吸うようにメロディが生まれ、息を吐くようにリズムが死んでいく。"),
+            _c("br"),
+            _vm._v("古ぼけた魔術にさよならを告げよう。芳醇な空洞時代の入り口にて。")
           ])
         ])
       ])
@@ -14612,9 +15110,15 @@ var esExports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-140cac8c", esExports)
+    require("vue-hot-reload-api")      .rerender("data-v-4015e704", esExports)
   }
 }
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,n){if(true)module.exports=n();else if("function"==typeof define&&define.amd)define([],n);else{var t=n();for(var r in t)("object"==typeof exports?exports:e)[r]=t[r]}}(this,function(){return function(e){function n(r){if(t[r])return t[r].exports;var o=t[r]={i:r,l:!1,exports:{}};return e[r].call(o.exports,o,o.exports,n),o.l=!0,o.exports}var t={};return n.m=e,n.c=t,n.d=function(e,t,r){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:r})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,n){return Object.prototype.hasOwnProperty.call(e,n)},n.p="",n(n.s=0)}([function(e,n,t){"use strict";function r(e){a(S,e)}function o(){return S.id?[].concat(S.id):[]}function i(){}function a(e,n){return Object.keys(n).forEach(function(t){if(e[t]&&"object"==typeof e[t])return void a(e[t],n[t]);e[t]=n[t]}),e}function c(){return Array.prototype.slice.call(document.getElementsByTagName("script")).filter(function(e){return-1!==e.src.indexOf("analytics")}).length>0}function u(e){return e.replace(/-/gi,"")}function l(){return new Promise(function(e,n){var t=setInterval(function(){"undefined"!=typeof window&&window.ga&&(e(),clearInterval(t))},10)})}function f(e,n){if(o().length>1){return u(n)+"."+e}return e}function s(e){var n=Object.keys(e).reduce(function(n,t,r,o){var i=r===o.length-1;return n+=t+"="+e[t]+(i?"":"&")},"");return""!==n?"?"+n:""}function d(e){return-1!==_.ignoreRoutes.indexOf(e)}function p(e){for(var n=arguments.length,t=Array(n>1?n-1:0),r=1;r<n;r++)t[r-1]=arguments[r];o().forEach(function(n){var r;if(void 0===window.ga)return void _.untracked.push({method:f(e,n),arguments:[].concat(t)});(r=window).ga.apply(r,[f(e,n)].concat(t))})}function g(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];if("object"==typeof n[0]&&n[0].constructor===Object)return void p("set",n[0]);p("set",n[0],n[1])}function v(){var e=o();_.debug.enabled&&(window.ga_debug={trace:_.debug.trace}),e.forEach(function(n){var t=u(n),r=e.length>1?H({},_.fields,{name:t}):_.fields;window.ga("create",n,"auto",r)}),_.beforeFirstHit(),_.linkers.length>0&&(p("require","linker"),p("linker:autoLink",_.linkers)),_.debug.sendHitTask||g("sendHitTask",null)}function y(e){if(Array.isArray(e)){for(var n=0,t=Array(e.length);n<e.length;n++)t[n]=e[n];return t}return Array.from(e)}function h(){var e=_.untracked,n=_.autoTracking,t=e.length;if(t&&n.untracked)for(;t--;){var r=e[t];p.apply(void 0,[r.method].concat(y(r.arguments))),e.splice(t,1)}}function b(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];if("string"!=typeof n[0]&&"currentRoute"in n[0]){var r=n[0].currentRoute,o=s(r.query),i=r.path+o;return g("page",i),void p("send","pageview",D({page:i,title:r.name,location:window.location.href},"function"==typeof n[1]&&{hitCallback:n[1]}))}p.apply(void 0,["send","pageview"].concat(n))}function w(e,n){var t=n.currentRoute;d(t.name)||b(e?e(t):n)}function m(){var e=_.router,n=_.autoTracking;n.page&&e&&(n.pageviewOnLoad&&w(n.pageviewTemplate,e),_.router.afterEach(function(){setTimeout(function(){w(n.pageviewTemplate,e)},0)}))}function k(e){p("send","exception",{exDescription:e,exFatal:arguments.length>1&&void 0!==arguments[1]&&arguments[1]})}function x(){_.autoTracking.exception&&window.addEventListener("error",function(e){k(e.message||e)})}function O(){if("undefined"!=typeof document){var e=_.id,n=_.ready,t=_.debug,r=_.checkDuplicatedScript,o=_.disableScriptLoader,i=t.enabled?"analytics_debug":"analytics",a="https://www.google-analytics.com/"+i+".js";if(!e)throw new Error("[vue-analytics] Please enter a Google Analytics tracking ID");return new Promise(function(e,n){if(r&&c(a)||o)return e();q()(a,function(t){return t?n("[vue-analytics] It's not possible to load Google Analytics script"):e()})}).then(function(){return l()}).then(function(){v(),n(),x(),m(),h()}).catch(function(e){console.error(e)})}}function j(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];p.apply(void 0,["send","event"].concat(n))}function A(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];p.apply(void 0,["send","social"].concat(n))}function T(){for(var e=arguments.length,n=Array(e),t=0;t<e;t++)n[t]=arguments[t];p.apply(void 0,["send","timing"].concat(n))}function E(e){var n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{};e.prototype.$ga=e.$ga={event:j,exception:k,page:b,query:p,require:F,set:g,social:A,time:T,untracked:h},r(n),O()}Object.defineProperty(n,"__esModule",{value:!0});var P=t(1),q=t.n(P),L=Object.assign||function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},R={id:null,router:null,fields:{},ignoreRoutes:[],linkers:[],autoTracking:{exception:!1,page:!0,pageviewOnLoad:!0,pageviewTemplate:null,untracked:!0},debug:{enabled:!1,trace:!1,sendHitTask:!0},checkDuplicatedScript:!1,disableScriptLoader:!1,beforeFirstHit:i,ready:i,untracked:[]},S=L({},R),_=S,H=Object.assign||function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},D=Object.assign||function(e){for(var n=1;n<arguments.length;n++){var t=arguments[n];for(var r in t)Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r])}return e},F=function(){if(2==arguments.length)return void p("require",arguments.length<=0?void 0:arguments[0],arguments.length<=1?void 0:arguments[1]);p("require",arguments.length<=0?void 0:arguments[0])};n.default=E,t.d(n,"onAnalyticsReady",function(){return l})},function(e,n){function t(e,n){for(var t in n)e.setAttribute(t,n[t])}function r(e,n){e.onload=function(){this.onerror=this.onload=null,n(null,e)},e.onerror=function(){this.onerror=this.onload=null,n(new Error("Failed to load "+this.src),e)}}function o(e,n){e.onreadystatechange=function(){"complete"!=this.readyState&&"loaded"!=this.readyState||(this.onreadystatechange=null,n(null,e))}}e.exports=function(e,n,i){var a=document.head||document.getElementsByTagName("head")[0],c=document.createElement("script");"function"==typeof n&&(i=n,n={}),n=n||{},i=i||function(){},c.type=n.type||"text/javascript",c.charset=n.charset||"utf8",c.async=!("async"in n)||!!n.async,c.src=e,n.attrs&&t(c,n.attrs),n.text&&(c.text=""+n.text),("onload"in c?r:o)(c,i),c.onload||r(c,i),a.appendChild(c)}}])});
 
 /***/ })
 /******/ ]);

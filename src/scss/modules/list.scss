@@ -3,25 +3,12 @@
 }
 
 .list-item {
-  // border-bottom: 1px solid $color-gray;
-  // padding: 30px;
   clear: both;
   margin-bottom: 30px;
 
   &:last-child { border: none }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    margin: 0 0 30px;
-  }
-
-  p {
-    margin: 0 0 30px;
-  }
+  @include wysiwyg;
 }
 
 .list-thumbnail {

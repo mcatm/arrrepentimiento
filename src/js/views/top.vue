@@ -35,6 +35,7 @@
         A melody is born like breathing, and the rhythm dies as if to breathe out.<br>
         Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era.</p>
         <p class="ja">焦げた赤黒い空に、大文字のヘルベチカで鳴り響く福音。<br>悲しみの終わった浜にて、新しい宴の準備が始まる。<br>架空の次元で構築された音の建造物が、今まさに全く別の角度から肉体に照射された。<br>息を吸うようにメロディが生まれ、息を吐くようにリズムが死んでいく。<br>古ぼけた魔術にさよならを告げよう。芳醇な空洞時代の入り口にて。</p>
+        <p><router-link to="/about">About Us</router-link></p>
       </li>
     </ul>
 
@@ -47,10 +48,16 @@
 
 <script>
 export default {
-  data () {
+  data: function() {
     return {
       message: 'Top'
     };
+  },
+  head: {
+    title: {
+      inner: 'Arrepentimiento',
+      complement: 'the Music Collective'
+    }
   }
 };
 </script>
