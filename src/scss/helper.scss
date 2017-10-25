@@ -12,3 +12,12 @@
 .is-circle {
   border-radius: 50%;
 }
+
+.router-link-active.router-link-exact-active {
+  opacity: .6;
+  text-decoration: none;
+
+  .brand-name > & {
+    opacity: 1;
+  }
+}

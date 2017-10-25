@@ -3,6 +3,7 @@
 const path = require('path');
 const webpack = require("webpack");
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = [{
   entry: "./src/js/app.js",
@@ -16,10 +17,20 @@ module.exports = [{
     }
   },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin()
+    // new webpack.optimize.UglifyJsPlugin(),
+    new WriteFilePlugin()
   ],
   module: {
     loaders: [
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            js: 'babel-loader'
+          }
+        }
+      },
       {
         test: /\.js$/,
         exclude: /node_modules/,
