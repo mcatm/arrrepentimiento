@@ -9,10 +9,10 @@
       <div class="l-columns">
         <ul class="links">
           <li><router-link to="/">Top</router-link></li>
-          <li><a href="https://soundcloud.com/arrepentimiento" target="_blank">Soundcloud</a></li>
-          <li><a href="https://arrepentimiento.bandcamp.com/" target="_blank">Bandcamp</a></li>
+          <li class="link-external"><a href="https://soundcloud.com/arrepentimiento" target="_blank">Soundcloud</a></li>
+          <li class="link-external"><a href="https://arrepentimiento.bandcamp.com/" target="_blank">Bandcamp</a></li>
         </ul>
-        <ul class="links">
+        <ul class="links links-external">
           <li><a href="https://itunes.apple.com/jp/artist/arrepentimiento/id1296962169" target="_blank">iTunes</a></li>
           <li><a href="https://open.spotify.com/artist/7v2cd2Ai9FvjIAxVkbcIiL" target="_blank">Spotify</a></li>
           <li><a href="https://twitter.com/timient0" target="_blank">Twitter</a></li>

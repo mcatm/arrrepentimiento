@@ -15253,7 +15253,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15263,6 +15263,71 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15374,6 +15439,20 @@ var staticRenderFns = [
               _c("small", [_vm._v("狂気の所在")])
             ]),
             _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("アールブリュット")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("ヒルマ・アフ・クリント")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("まぬけ美")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("シュバルの理想宮")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("ウィーン・アクショニスト")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("ビートニク")])
+            ]),
+            _vm._v(" "),
             _c("p", { staticClass: "ja" }),
             _vm._v(" "),
             _c("figure", { staticClass: "quote quote-weird" }, [
@@ -15382,8 +15461,18 @@ var staticRenderFns = [
               ]),
               _vm._v(" "),
               _c("footer", [_vm._v("北九州連続監禁殺人事件主犯 松永太、最終弁論最後の言葉")])
+            ]),
+            _vm._v(" "),
+            _c("h5", [_vm._v("狂気の不在")]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("ノームコア")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("シャーリイ・ジャクスン『くじ』")])
             ])
           ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-border" }),
           _vm._v(" "),
           _c("li", { staticClass: "list-item" }, [
             _c("h3", [
@@ -15391,11 +15480,25 @@ var staticRenderFns = [
               _c("small", [_vm._v("奇妙さ／混沌")])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "ja" })
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("ノイズ・騒音")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("発想の飛躍")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("サイケデリア")])
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-item" }, [
             _c("h3", [_vm._v("Amateurism"), _c("small", [_vm._v("アマチュアリズム")])]),
+            _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("ローファイの思想")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("失敗／エラー")])
+            ]),
             _vm._v(" "),
             _c("p", { staticClass: "ja" })
           ]),
@@ -15407,6 +15510,20 @@ var staticRenderFns = [
             _vm._v(" "),
             _c("p", { staticClass: "ja" }),
             _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("ヌーヴォー・ロマン")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("ボルヘスの迷宮")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("現代詩")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("コラージュ")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("反復・持続")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("ヌーベルヴァーグ")])
+            ]),
+            _vm._v(" "),
             _c("figure", { staticClass: "quote quote-weird" }, [
               _c("blockquote", [
                 _c("p", [
@@ -15414,7 +15531,9 @@ var staticRenderFns = [
                     "言語はセマンティクス、強いては具体性に直結するコミュニケーションツールである。対して、音楽に代表される非言語的メディアは、コミュニケーションの手段とはなりにくい性質を持つが、これは偏に、その抽象性が故である。本論文では、言語は人間の複製・流通を促していることを確認し、最終的に、言語を媒介としない人間流通のあり方を模索する。"
                   ),
                   _c("br"),
-                  _vm._v("\nまた、その過程において、芸術（音楽）が人間の意図を伝達するツールとなりうるか否かを明確にする。")
+                  _vm._v(
+                    "\n            また、その過程において、芸術（音楽）が人間の意図を伝達するツールとなりうるか否かを明確にする。"
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -15428,7 +15547,15 @@ var staticRenderFns = [
               _c("small", [_vm._v("即興主義について")])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "ja" })
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("デレク・ベイリー『インプロヴィゼーション』")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("「運命」")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("チャンス・オペレーション")])
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-item" }, [
@@ -15437,7 +15564,13 @@ var staticRenderFns = [
               _c("small", [_vm._v("恐怖／暴力")])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "ja" })
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("「行為が美しければ、人間性などどうでもいい」（ローレン・タイラード）")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("恐怖と笑い")])
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-item" }, [
@@ -15446,7 +15579,15 @@ var staticRenderFns = [
               _c("small", [_vm._v("毒とユーモア")])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "ja" })
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("嘲笑主義")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("パタフィジック")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("モンティ・パイソン")])
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-border" }),
@@ -15457,13 +15598,29 @@ var staticRenderFns = [
               _c("small", [_vm._v("文化人類学的に")])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "ja" })
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("『やし酒のみ』")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("ディオニューシア祭")])
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-item" }, [
             _c("h3", [_vm._v("The Machinism"), _c("small", [_vm._v("機械主義")])]),
             _vm._v(" "),
-            _c("p", { staticClass: "ja" })
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("未来派")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("コンピュータ")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("ロボット")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("ラヴァショル・エミール")])
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-item" }, [
@@ -15472,7 +15629,19 @@ var staticRenderFns = [
               _c("small", [_vm._v("死と芸術")])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "ja" })
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("figure", { staticClass: "quote quote-weird" }, [
+              _c("blockquote", [
+                _c("p", [
+                  _vm._v("僕がこれまでに書いた一番いいものは、この、満足して死ねるという天稟"),
+                  _c("small", [_vm._v("（てんぴん）")]),
+                  _vm._v("に基づいているのだ")
+                ])
+              ]),
+              _vm._v(" "),
+              _c("footer", [_vm._v("カフカ")])
+            ])
           ]),
           _vm._v(" "),
           _c("li", { staticClass: "list-item" }, [
@@ -15481,7 +15650,13 @@ var staticRenderFns = [
               _c("small", [_vm._v("性のモティーフ")])
             ]),
             _vm._v(" "),
-            _c("p", { staticClass: "ja" })
+            _c("p", { staticClass: "ja" }),
+            _vm._v(" "),
+            _c("ul", { staticClass: "ja" }, [
+              _c("li", [_vm._v("エロース")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("アガペー")])
+            ])
           ])
         ])
       ])
@@ -15961,7 +16136,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [
+    return _c("li", { staticClass: "link-external" }, [
       _c(
         "a",
         {
@@ -15978,7 +16153,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [
+    return _c("li", { staticClass: "link-external" }, [
       _c(
         "a",
         {
@@ -15995,7 +16170,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("ul", { staticClass: "links" }, [
+    return _c("ul", { staticClass: "links links-external" }, [
       _c("li", [
         _c(
           "a",
