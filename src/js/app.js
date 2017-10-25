@@ -7,6 +7,7 @@ import VueHead from 'vue-head'
 import Top from './views/top.vue'
 import About from './views/about.vue'
 import Inspirations from './views/inspirations.vue'
+import Works from './views/works.vue'
 import NotFound from './views/not-found.vue'
 
 // import VueScrollTo from 'vue-scrollto'
@@ -26,8 +27,8 @@ const router = new VueRouter({
 
     { path: '/', component: Top, props: {} },
     { path: '/about', component: About, props: {} },
-    { path: '/inspiration/:slug', component: About, props: {} },
     { path: '/inspirations', component: Inspirations, props: {} },
+    { path: '/works', component: Works, props: {} },
     { path: '*', component: NotFound, props: {} }
 
   ],
