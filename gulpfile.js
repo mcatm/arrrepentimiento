@@ -3,11 +3,11 @@ var gulp            = require("gulp"),
     concat          = require("gulp-concat"),
     plumber         = require("gulp-plumber"),
     minify          = require('gulp-minify'),
+    uglify          = require('gulp-uglify'),
     bulkSass        = require('gulp-sass-bulk-import'),
     sass            = require("gulp-sass"),
     webpackStream   = require("webpack-stream"),
     webpack         = require("webpack"),
-    // webpack         = require('gulp-webpack'),
     webpackConfig   = require("./webpack.config");
 
 gulp.task("sass", function() {
@@ -22,8 +22,9 @@ gulp.task("sass", function() {
 gulp.task('js', () => {
 
   return gulp.src('./src/js/app.js')
-    .pipe(webpackStream(webpackConfig, webpack))
     .pipe(plumber())
+    .pipe(webpackStream(webpackConfig, webpack))
+    .pipe(uglify())
     .pipe(gulp.dest("./www/html/js"));
 
 });
@@ -31,5 +32,5 @@ gulp.task('js', () => {
 gulp.task("default", function() {
   gulp.watch("src/scss/**/*.scss", ["sass"]);
   gulp.watch("src/js/**/*.js", ["js"]);
-  gulp.watch("src/tag/**/*.tag", ["tag"]);
+  gulp.watch("src/js/**/*.vue", ["js"]);
 });

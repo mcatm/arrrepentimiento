@@ -1,48 +1,65 @@
 "use strict";
 
-// import Vue from 'vue';
+import vue from 'vue';
+import VueRouter from 'vue-router'
+import VueHead from 'vue-head'
 
-// var app = new Vue({
-//   el: '#app',
-//   data: {
-//     message: 'Hello Vue.js!'
-//   }
-// });
+import Top from './views/top.vue'
+import About from './views/about.vue'
+
+// import VueScrollTo from 'vue-scrollto'
+import VueAnalytics from 'vue-analytics'
+
+vue.use(VueRouter)
+// Vue.use(VueScrollTo)
+vue.use(VueHead, {
+  separator: '-',
+  complement: 'Arrepentimiento'
+})
+
+const router = new VueRouter({
+  mode: 'history',
+  base: '/',
+  routes: [
+
+    { path: '/', component: Top, props: {} },
+    { path: '/about', component: About, props: {} },
+    { path: '*', component: Top, props: {} }
+
+  ],
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  },
+});
+
+vue.use(VueAnalytics, {
+  id: 'UA-104252-10',
+  router
+})
+
+var app = new vue({
+  router,
+  created: () => {
+    var ga = new Ga()
+  }
+}).$mount('#app');
 
 /**
  * Init FB
  */
 
-window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '1769721059976622',
-    xfbml      : true,
-    version    : 'v2.7'
-  });
-};
+// window.fbAsyncInit = function() {
+//   FB.init({
+//     appId      : '1769721059976622',
+//     xfbml      : true,
+//     version    : 'v2.7'
+//   });
+// };
 
-(function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "//connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
-
-/**
- * Init GA
- */
-
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'UA-104252-10');
-// ga('send', 'pageview', location.pathname)
-
-
-/**
- * Soundcloud
- *
- * https://developers.soundcloud.com/docs/api/html5-widget#resources
- */
-
+// (function(d, s, id){
+//    var js, fjs = d.getElementsByTagName(s)[0];
+//    if (d.getElementById(id)) {return;}
+//    js = d.createElement(s); js.id = id;
+//    js.src = "//connect.facebook.net/en_US/sdk.js";
+//    fjs.parentNode.insertBefore(js, fjs);
+//  }(document, 'script', 'facebook-jssdk'));

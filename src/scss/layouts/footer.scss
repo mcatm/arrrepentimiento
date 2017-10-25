@@ -10,4 +10,9 @@
 .l-footer-inner {
   max-width: $width-main-s;
   margin: auto;
+  padding: 0;
+
+  @include sp {
+    padding: 0 30px;
+  }
 }
