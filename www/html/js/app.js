@@ -739,9 +739,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 _vue2.default.use(_vueRouter2.default);
 // Vue.use(VueScrollTo)
-
-
-// import VueScrollTo from 'vue-scrollto'
 _vue2.default.use(_vueHead2.default, {
   separator: '-',
   complement: 'Arrepentimiento'

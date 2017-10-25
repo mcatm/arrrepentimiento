@@ -10,7 +10,6 @@ import Inspirations from './views/inspirations.vue'
 import Works from './views/works.vue'
 import NotFound from './views/not-found.vue'
 
-// import VueScrollTo from 'vue-scrollto'
 import VueAnalytics from 'vue-analytics'
 
 vue.use(VueRouter)
