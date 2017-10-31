@@ -13,6 +13,13 @@
   border-radius: 50%;
 }
 
+.sp {
+  display: none;
+  @include sp {
+    display: inherit;
+  }
+}
+
 .router-link-active.router-link-exact-active {
   opacity: .6;
   text-decoration: none;

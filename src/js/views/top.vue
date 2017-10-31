@@ -7,11 +7,11 @@
         <p>It is a genealogy of Velvet Underground, muddy alternative folk music that takes over the spirituality of Child of Microtones and Sound@One. Arrepentimiento is a new group of types that make it progressive. On this day, which will be the first performance, we will create some nursery that can be seen with extremely awakened eyes in the final session.</p>
         <p class="ja">Velvet Undergroundの系譜にあり、Child of MicrotonesやSound@Oneの精神性をズブズブに引き継ぐマッドなオルタナティブ・フォーク・ミュージック。その漸進性を以って前戯と為すタイプの新しいグループがArrepentimientoです。初のパフォーマンスとなるこの日は、現場でのいくつかのゲリラ〜突発的なセッションを記録し、それらをミックス〜再生しながら行う最終セッションで、極めて醒めた眼で見える涅槃を創出させます。</p>
         <dl>
-          <dt>日時：</dt>
-          <dd>2017年11月12日（日）<small>（11月11日（土）にもセッションあり）</small></dd>
-          <dt>会場：</dt>
-          <dd>デジタルハリウッド大学 八王子制作スタジオ<small>（旧三本松小学校）</small></dd>
-          <dt>料金：</dt>
+          <dt>日時</dt>
+          <dd>2017年11月12日（日）<br><small>（11月11日（土）にもセッションあり）</small></dd>
+          <dt>会場</dt>
+          <dd>デジタルハリウッド大学 <br class="sp">八王子制作スタジオ<br><small>（旧三本松小学校）</small></dd>
+          <dt>料金</dt>
           <dd>無料</dd>
         </dl>
         <ul class="links">
@@ -22,6 +22,7 @@
       <li class="list-border"></li>
       <li class="list-item">
         <h3>The Depth of Meanings<small>意味の深度</small></h3>
+        <p class="img img-right"><img src="/img/releases/the-depth-of-meanings/large.jpg"></p>
         <p>We announced the song "The Depth of Meanings" on Bandcamp. As my practice of Home Taping, I mixed a collage of plucked guitars while shaking by a hammock at home, studies with synths patched at my own PC, cut and paste as a result of hitting a drum that can not beat tightly, and a wacky vocal mix It is. It's also delivered on Apple Music or Spotify</p>
         <p class="ja"><strong>「意味の深度」</strong>という楽曲を<a href="http://arrepentimiento.bandcamp.com/album/the-depth-of-meanings" target="_blank">Bandcamp</a>で発表しました。僕なりのHome Tapingの実践として、自宅でハンモックに揺られながら爪弾いたギターのコラージュ、PCでパッチングしたシンセによる習作、叩けないドラムをどつんどつんと叩いた結果の切り貼り、つたないボーカルなどがミックスされています。<a href="https://itunes.apple.com/jp/album/the-depth-of-meanings-single/id1296961757" target="_blank">Apple Music</a>や<a href="https://open.spotify.com/album/1DAopqWeJHZFPIqQl8f6X7" target="_blank">Spotify</a>でも配信中</p>
         <ul class="links">
