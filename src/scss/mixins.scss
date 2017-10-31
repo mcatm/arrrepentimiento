@@ -39,4 +39,22 @@
   p {
     margin: 0 0 30px;
   }
+
+  ol,
+  ul,
+  dl {
+    margin: 0 0 30px;
+  }
+
+  dt {
+    opacity: .8;
+    font-size: .75rem;
+    color: $color-white;
+    background: $color-black;
+    padding:4px;
+  }
+
+  dd {
+    margin-bottom: 10px;
+  }
 }

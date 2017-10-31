@@ -14594,7 +14594,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14685,6 +14685,24 @@ module.exports = function listToStyles (parentId, list) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function () {
@@ -14714,18 +14732,22 @@ var render = function() {
       _c("ul", { staticClass: "list" }, [
         _vm._m(0),
         _vm._v(" "),
+        _c("li", { staticClass: "list-border" }),
+        _vm._v(" "),
         _vm._m(1),
         _vm._v(" "),
         _vm._m(2),
+        _vm._v(" "),
+        _vm._m(3),
         _vm._v(" "),
         _c("li", { staticClass: "list-border" }),
         _vm._v(" "),
         _c("li", { staticClass: "list-item" }, [
           _c("h3", [_vm._v("Introduce ourselves")]),
           _vm._v(" "),
-          _vm._m(3),
-          _vm._v(" "),
           _vm._m(4),
+          _vm._v(" "),
+          _vm._m(5),
           _vm._v(" "),
           _c(
             "p",
@@ -14742,6 +14764,70 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-item" }, [
+      _c("h3", [_vm._v("Arrepentimiento: the First Meeting")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "It is a genealogy of Velvet Underground, muddy alternative folk music that takes over the spirituality of Child of Microtones and Sound@One. Arrepentimiento is a new group of types that make it progressive. On this day, which will be the first performance, we will create some nursery that can be seen with extremely awakened eyes in the final session."
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "ja" }, [
+        _vm._v(
+          "Velvet Undergroundの系譜にあり、Child of MicrotonesやSound@Oneの精神性をズブズブに引き継ぐマッドなオルタナティブ・フォーク・ミュージック。その漸進性を以って前戯と為すタイプの新しいグループがArrepentimientoです。初のパフォーマンスとなるこの日は、現場でのいくつかのゲリラ〜突発的なセッションを記録し、それらをミックス〜再生しながら行う最終セッションで、極めて醒めた眼で見える涅槃を創出させます。"
+        )
+      ]),
+      _vm._v(" "),
+      _c("dl", [
+        _c("dt", [_vm._v("日時：")]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v("2017年11月12日（日）"),
+          _c("small", [_vm._v("（11月11日（土）にもセッションあり）")])
+        ]),
+        _vm._v(" "),
+        _c("dt", [_vm._v("会場：")]),
+        _vm._v(" "),
+        _c("dd", [
+          _vm._v("デジタルハリウッド大学 八王子制作スタジオ"),
+          _c("small", [_vm._v("（旧三本松小学校）")])
+        ]),
+        _vm._v(" "),
+        _c("dt", [_vm._v("料金：")]),
+        _vm._v(" "),
+        _c("dd", [_vm._v("無料")])
+      ]),
+      _vm._v(" "),
+      _c("ul", { staticClass: "links" }, [
+        _c("li", [
+          _c(
+            "a",
+            { attrs: { href: "http://newtown.site/", target: "_blank" } },
+            [_vm._v("New Town")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("li", [
+          _c(
+            "a",
+            {
+              attrs: {
+                href:
+                  "https://www.google.com/maps/place/%E3%80%92192-0354+%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%85%AB%E7%8E%8B%E5%AD%90%E5%B8%82%E6%9D%BE%E3%81%8C%E8%B0%B7%EF%BC%91/@35.630406,139.42166,16z/data=!4m5!3m4!1s0x6018e33740708b01:0x99efbf91e239ae5f!8m2!3d35.6298348!4d139.4214843?hl=ja",
+                target: "_blank"
+              }
+            },
+            [_vm._v("Map")]
+          )
+        ])
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

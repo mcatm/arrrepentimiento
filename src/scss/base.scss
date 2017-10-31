@@ -20,8 +20,11 @@ a {
   &:visited { color: $color-orange; }
 }
 
-p {
-  font-size: 1rem;
+p,
+li,
+dt,
+dd {
+  font-size: 100%;
 }
 
 h1,
@@ -52,6 +55,10 @@ ul {
 
 li {
   list-style: none;
+}
+
+dd {
+  margin: 0;
 }
 
 /* ----------------------------------------------------------
