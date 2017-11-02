@@ -14592,7 +14592,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14635,6 +14635,7 @@ module.exports = function listToStyles (parentId, list) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
 //
 //
 //
@@ -14778,7 +14779,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("p", { staticClass: "ja" }, [
         _vm._v(
-          "Velvet Undergroundの系譜にあり、Child of MicrotonesやSound@Oneの精神性をズブズブに引き継ぐマッドなオルタナティブ・フォーク・ミュージック。その漸進性を以って前戯と為すタイプの新しいグループがArrepentimientoです。初のパフォーマンスとなるこの日は、現場でのいくつかのゲリラ〜突発的なセッションを記録し、それらをミックス〜再生しながら行う最終セッションで、極めて醒めた眼で見える涅槃を創出させます。"
+          "Velvet Undergroundの支流に位置し、Child of MicrotonesやSound@Oneの精神性をズブズブに引き継ぐオルタナティブ・フォーク・ミュージックの泥濘。その漸進性を以って祝祭と為すタイプのグループ＝Arrepentimientoが秘かに誕生しました。初のパフォーマンスとなるこの日は、会場の数カ所で行われるゲリラ〜突発的なセッションを録音、それらの記録を再生しながら行う最終セッションにて「新しい都市」の誕生に周回遅れのJohn Cage的な彩りを添えます。各々楽器を持参の上、突発的な参加も歓迎。"
         )
       ]),
       _vm._v(" "),
@@ -14786,7 +14787,7 @@ var staticRenderFns = [
         _c("dt", [_vm._v("日時")]),
         _vm._v(" "),
         _c("dd", [
-          _vm._v("2017年11月12日（日）"),
+          _vm._v("2017年11月12日[日] 17:30〜18:00"),
           _c("br"),
           _c("small", [_vm._v("（イベント自体は11月11日（土）からスタート。11日にもセッションあり）")])
         ]),
@@ -14798,7 +14799,9 @@ var staticRenderFns = [
           _c("br", { staticClass: "sp" }),
           _vm._v("八王子制作スタジオ"),
           _c("br"),
-          _c("small", [_vm._v("（旧三本松小学校）")])
+          _c("small", [_vm._v("（旧三本松小学校）")]),
+          _c("br"),
+          _vm._v("\n          1F給食室")
         ]),
         _vm._v(" "),
         _c("dt", [_vm._v("料金")]),

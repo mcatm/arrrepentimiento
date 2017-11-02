@@ -5,12 +5,13 @@
       <li class="list-item">
         <h3>Arrepentimiento: the First Meeting</h3>
         <p>It is a genealogy of Velvet Underground, muddy alternative folk music that takes over the spirituality of Child of Microtones and Sound@One. Arrepentimiento is a new group of types that make it progressive. On this day, which will be the first performance, we will create some nursery that can be seen with extremely awakened eyes in the final session.</p>
-        <p class="ja">Velvet Undergroundの系譜にあり、Child of MicrotonesやSound@Oneの精神性をズブズブに引き継ぐマッドなオルタナティブ・フォーク・ミュージック。その漸進性を以って前戯と為すタイプの新しいグループがArrepentimientoです。初のパフォーマンスとなるこの日は、現場でのいくつかのゲリラ〜突発的なセッションを記録し、それらをミックス〜再生しながら行う最終セッションで、極めて醒めた眼で見える涅槃を創出させます。</p>
+        <p class="ja">Velvet Undergroundの支流に位置し、Child of MicrotonesやSound@Oneの精神性をズブズブに引き継ぐオルタナティブ・フォーク・ミュージックの泥濘。その漸進性を以って祝祭と為すタイプのグループ＝Arrepentimientoが秘かに誕生しました。初のパフォーマンスとなるこの日は、会場の数カ所で行われるゲリラ〜突発的なセッションを録音、それらの記録を再生しながら行う最終セッションにて「新しい都市」の誕生に周回遅れのJohn Cage的な彩りを添えます。各々楽器を持参の上、突発的な参加も歓迎。</p>
         <dl>
           <dt>日時</dt>
-          <dd>2017年11月12日（日）<br><small>（イベント自体は11月11日（土）からスタート。11日にもセッションあり）</small></dd>
+          <dd>2017年11月12日[日] 17:30〜18:00<br><small>（イベント自体は11月11日（土）からスタート。11日にもセッションあり）</small></dd>
           <dt>会場</dt>
-          <dd>デジタルハリウッド大学 <br class="sp">八王子制作スタジオ<br><small>（旧三本松小学校）</small></dd>
+          <dd>デジタルハリウッド大学 <br class="sp">八王子制作スタジオ<br><small>（旧三本松小学校）</small><br>
+          1F給食室</dd>
           <dt>料金</dt>
           <dd>無料</dd>
         </dl>
