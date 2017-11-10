@@ -13,6 +13,17 @@
           <li><a href="https://open.spotify.com/album/1DAopqWeJHZFPIqQl8f6X7" target="_blank">Spotify</a></li>
         </ul>
       </li>
+      <li class="list-border"></li>
+      <li class="list-item" id="release-tha02">
+        <h3>THa</h3>
+        <p class="ja">デモやスケッチ、習作まで含んだ3曲入りCD-Rシリーズです。原則、無料配布します。</p>
+        <h4>THa #1</h4>
+        <ol class="songs">
+          <li>The Depth of Meanings</li>
+          <li>Night Life At Tel Aviv</li>
+          <li>Cassandra</li>
+        </ol>
+      </li>
     </ul>
 
   </div>

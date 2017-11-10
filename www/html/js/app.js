@@ -14851,96 +14851,64 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-item" }, [
-      _c("h4", [_vm._v("THa #1")]),
-      _vm._v(" "),
-      _c("p", { staticClass: "img img-right" }, [
-        _c("img", { attrs: { src: "/img/releases/arr-002/news.png" } })
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          'In the "NEW TOWN" event above, CD-R will be distributed! Limited to 50 copies. Forgive me if it\'s out of stock because I give it quite comfortably!'
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "ja" }, [
-        _vm._v("上記「NEW TOWN」イベント内で、CD-Rを配布します！限定50枚。割と気楽にあげちゃいますので、無くなったらご容赦を！")
-      ]),
-      _vm._v(" "),
-      _c("ol", { staticClass: "songs" }, [
-        _c("li", [_vm._v("The Depth of Meanings")]),
+    return _c(
+      "li",
+      { staticClass: "list-item", attrs: { id: "release-tha02" } },
+      [
+        _c("h4", [_vm._v("THa #1")]),
         _vm._v(" "),
-        _c("li", [_vm._v("Night Life At Tel Aviv")]),
+        _c("p", { staticClass: "img img-right" }, [
+          _c("img", { attrs: { src: "/img/releases/arr-002/news.png" } })
+        ]),
         _vm._v(" "),
-        _c("li", [_vm._v("Cassandra")])
-      ])
-    ])
+        _c("p", [
+          _vm._v(
+            'In the "NEW TOWN" event above, CD-R will be distributed! Limited to 50 copies. Forgive me if it\'s out of stock because I give it quite comfortably!'
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "ja" }, [
+          _vm._v(
+            "上記「NEW TOWN」イベント内で、CD-Rを配布します！限定50枚。割と気楽にあげちゃいますので、無くなったらご容赦を！"
+          )
+        ]),
+        _vm._v(" "),
+        _c("ol", { staticClass: "songs" }, [
+          _c("li", [_vm._v("The Depth of Meanings")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("Night Life At Tel Aviv")]),
+          _vm._v(" "),
+          _c("li", [_vm._v("Cassandra")])
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "list-item" }, [
-      _c("h3", [
-        _vm._v("The Depth of Meanings"),
-        _c("small", [_vm._v("意味の深度")])
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "img img-right" }, [
-        _c("img", { attrs: { src: "/img/releases/arr-001/large.jpg" } })
-      ]),
-      _vm._v(" "),
-      _c("p", [
-        _vm._v(
-          'We announced the song "The Depth of Meanings" on Bandcamp. As my practice of Home Taping, I mixed a collage of plucked guitars while shaking by a hammock at home, studies with synths patched at my own PC, cut and paste as a result of hitting a drum that can not beat tightly, and a wacky vocal mix It is. It\'s also delivered on Apple Music or Spotify'
-        )
-      ]),
-      _vm._v(" "),
-      _c("p", { staticClass: "ja" }, [
-        _c("strong", [_vm._v("「意味の深度」")]),
-        _vm._v("という楽曲を"),
-        _c(
-          "a",
-          {
-            attrs: {
-              href:
-                "http://arrepentimiento.bandcamp.com/album/the-depth-of-meanings",
-              target: "_blank"
-            }
-          },
-          [_vm._v("Bandcamp")]
-        ),
-        _vm._v(
-          "で発表しました。僕なりのHome Tapingの実践として、自宅でハンモックに揺られながら爪弾いたギターのコラージュ、PCでパッチングしたシンセによる習作、叩けないドラムをどつんどつんと叩いた結果の切り貼り、つたないボーカルなどがミックスされています。"
-        ),
-        _c(
-          "a",
-          {
-            attrs: {
-              href:
-                "https://itunes.apple.com/jp/album/the-depth-of-meanings-single/id1296961757",
-              target: "_blank"
-            }
-          },
-          [_vm._v("Apple Music")]
-        ),
-        _vm._v("や"),
-        _c(
-          "a",
-          {
-            attrs: {
-              href: "https://open.spotify.com/album/1DAopqWeJHZFPIqQl8f6X7",
-              target: "_blank"
-            }
-          },
-          [_vm._v("Spotify")]
-        ),
-        _vm._v("でも配信中")
-      ]),
-      _vm._v(" "),
-      _c("ul", { staticClass: "links" }, [
-        _c("li", [
+    return _c(
+      "li",
+      { staticClass: "list-item", attrs: { id: "release-tha02" } },
+      [
+        _c("h3", [
+          _vm._v("The Depth of Meanings"),
+          _c("small", [_vm._v("意味の深度")])
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "img img-right" }, [
+          _c("img", { attrs: { src: "/img/releases/arr-001/large.jpg" } })
+        ]),
+        _vm._v(" "),
+        _c("p", [
+          _vm._v(
+            'We announced the song "The Depth of Meanings" on Bandcamp. As my practice of Home Taping, I mixed a collage of plucked guitars while shaking by a hammock at home, studies with synths patched at my own PC, cut and paste as a result of hitting a drum that can not beat tightly, and a wacky vocal mix It is. It\'s also delivered on Apple Music or Spotify'
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "ja" }, [
+          _c("strong", [_vm._v("「意味の深度」")]),
+          _vm._v("という楽曲を"),
           _c(
             "a",
             {
@@ -14951,10 +14919,10 @@ var staticRenderFns = [
               }
             },
             [_vm._v("Bandcamp")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
+          ),
+          _vm._v(
+            "で発表しました。僕なりのHome Tapingの実践として、自宅でハンモックに揺られながら爪弾いたギターのコラージュ、PCでパッチングしたシンセによる習作、叩けないドラムをどつんどつんと叩いた結果の切り貼り、つたないボーカルなどがミックスされています。"
+          ),
           _c(
             "a",
             {
@@ -14965,10 +14933,8 @@ var staticRenderFns = [
               }
             },
             [_vm._v("Apple Music")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", [
+          ),
+          _vm._v("や"),
           _c(
             "a",
             {
@@ -14978,10 +14944,54 @@ var staticRenderFns = [
               }
             },
             [_vm._v("Spotify")]
-          )
+          ),
+          _vm._v("でも配信中")
+        ]),
+        _vm._v(" "),
+        _c("ul", { staticClass: "links" }, [
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href:
+                    "http://arrepentimiento.bandcamp.com/album/the-depth-of-meanings",
+                  target: "_blank"
+                }
+              },
+              [_vm._v("Bandcamp")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href:
+                    "https://itunes.apple.com/jp/album/the-depth-of-meanings-single/id1296961757",
+                  target: "_blank"
+                }
+              },
+              [_vm._v("Apple Music")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: {
+                  href: "https://open.spotify.com/album/1DAopqWeJHZFPIqQl8f6X7",
+                  target: "_blank"
+                }
+              },
+              [_vm._v("Spotify")]
+            )
+          ])
         ])
-      ])
-    ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -15723,7 +15733,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15733,6 +15743,17 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15892,7 +15913,31 @@ var staticRenderFns = [
                 )
               ])
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _c("li", { staticClass: "list-border" }),
+          _vm._v(" "),
+          _c(
+            "li",
+            { staticClass: "list-item", attrs: { id: "release-tha02" } },
+            [
+              _c("h3", [_vm._v("THa")]),
+              _vm._v(" "),
+              _c("p", { staticClass: "ja" }, [
+                _vm._v("デモやスケッチ、習作まで含んだ3曲入りCD-Rシリーズです。原則、無料配布します。")
+              ]),
+              _vm._v(" "),
+              _c("h4", [_vm._v("THa #1")]),
+              _vm._v(" "),
+              _c("ol", { staticClass: "songs" }, [
+                _c("li", [_vm._v("The Depth of Meanings")]),
+                _vm._v(" "),
+                _c("li", [_vm._v("Night Life At Tel Aviv")]),
+                _vm._v(" "),
+                _c("li", [_vm._v("Cassandra")])
+              ])
+            ]
+          )
         ])
       ])
     ])

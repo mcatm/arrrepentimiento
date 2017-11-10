@@ -20,7 +20,7 @@
           <li><a href="https://www.google.com/maps/place/%E3%80%92192-0354+%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%85%AB%E7%8E%8B%E5%AD%90%E5%B8%82%E6%9D%BE%E3%81%8C%E8%B0%B7%EF%BC%91/@35.630406,139.42166,16z/data=!4m5!3m4!1s0x6018e33740708b01:0x99efbf91e239ae5f!8m2!3d35.6298348!4d139.4214843?hl=ja" target="_blank">Map</a></li>
         </ul>
       </li>
-      <li class="list-item">
+      <li class="list-item" id="release-tha02">
         <h4>THa #1</h4>
         <p class="img img-right"><img src="/img/releases/arr-002/news.png"></p>
         <p>In the "NEW TOWN" event above, CD-R will be distributed! Limited to 50 copies. Forgive me if it's out of stock because I give it quite comfortably!</p>
@@ -32,7 +32,7 @@
         </ol>
       </li>
       <li class="list-border"></li>
-      <li class="list-item">
+      <li class="list-item" id="release-tha02">
         <h3>The Depth of Meanings<small>意味の深度</small></h3>
         <p class="img img-right"><img src="/img/releases/arr-001/large.jpg"></p>
         <p>We announced the song "The Depth of Meanings" on Bandcamp. As my practice of Home Taping, I mixed a collage of plucked guitars while shaking by a hammock at home, studies with synths patched at my own PC, cut and paste as a result of hitting a drum that can not beat tightly, and a wacky vocal mix It is. It's also delivered on Apple Music or Spotify</p>
