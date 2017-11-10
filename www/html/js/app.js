@@ -14592,7 +14592,7 @@ exports = module.exports = __webpack_require__(0)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -14703,6 +14703,17 @@ module.exports = function listToStyles (parentId, list) {
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["a"] = ({
   data: function () {
@@ -14732,22 +14743,24 @@ var render = function() {
       _c("ul", { staticClass: "list" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("li", { staticClass: "list-border" }),
-        _vm._v(" "),
         _vm._m(1),
+        _vm._v(" "),
+        _c("li", { staticClass: "list-border" }),
         _vm._v(" "),
         _vm._m(2),
         _vm._v(" "),
         _vm._m(3),
+        _vm._v(" "),
+        _vm._m(4),
         _vm._v(" "),
         _c("li", { staticClass: "list-border" }),
         _vm._v(" "),
         _c("li", { staticClass: "list-item" }, [
           _c("h3", [_vm._v("Introduce ourselves")]),
           _vm._v(" "),
-          _vm._m(4),
-          _vm._v(" "),
           _vm._m(5),
+          _vm._v(" "),
+          _vm._m(6),
           _vm._v(" "),
           _c(
             "p",
@@ -14839,15 +14852,43 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "list-item" }, [
+      _c("h4", [_vm._v("THa #1")]),
+      _vm._v(" "),
+      _c("p", { staticClass: "img img-right" }, [
+        _c("img", { attrs: { src: "/img/releases/arr-002/news.png" } })
+      ]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          'In the "NEW TOWN" event above, CD-R will be distributed! Limited to 50 copies. Forgive me if it\'s out of stock because I give it quite comfortably!'
+        )
+      ]),
+      _vm._v(" "),
+      _c("p", { staticClass: "ja" }, [
+        _vm._v("上記「NEW TOWN」イベント内で、CD-Rを配布します！限定50枚。割と気楽にあげちゃいますので、無くなったらご容赦を！")
+      ]),
+      _vm._v(" "),
+      _c("ol", { staticClass: "songs" }, [
+        _c("li", [_vm._v("The Depth of Meanings")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Night Life At Tel Aviv")]),
+        _vm._v(" "),
+        _c("li", [_vm._v("Cassandra")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-item" }, [
       _c("h3", [
         _vm._v("The Depth of Meanings"),
         _c("small", [_vm._v("意味の深度")])
       ]),
       _vm._v(" "),
       _c("p", { staticClass: "img img-right" }, [
-        _c("img", {
-          attrs: { src: "/img/releases/the-depth-of-meanings/large.jpg" }
-        })
+        _c("img", { attrs: { src: "/img/releases/arr-001/large.jpg" } })
       ]),
       _vm._v(" "),
       _c("p", [
@@ -15756,9 +15797,7 @@ var staticRenderFns = [
             ]),
             _vm._v(" "),
             _c("p", { staticClass: "img img-right" }, [
-              _c("img", {
-                attrs: { src: "/img/releases/the-depth-of-meanings/large.jpg" }
-              })
+              _c("img", { attrs: { src: "/img/releases/arr-001/large.jpg" } })
             ]),
             _vm._v(" "),
             _c("p", [

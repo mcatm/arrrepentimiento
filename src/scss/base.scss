@@ -58,6 +58,12 @@ li {
   list-style: none;
 }
 
+ol {
+  & > li {
+    list-style-type: decimal-leading-zero
+  }
+}
+
 dd {
   margin: 0;
 }

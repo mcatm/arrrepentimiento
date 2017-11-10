@@ -1,9 +1,10 @@
 .list {
-
+  > li {
+    clear: both;
+  }
 }
 
 .list-item {
-  clear: both;
   margin-bottom: 30px;
 
   &:last-child { border: none }
