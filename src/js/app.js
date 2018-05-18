@@ -35,6 +35,12 @@ const router = new VueRouter({
   },
 });
 
+router.beforeEach((to, from, next) => {
+  // this.isLoading = false
+  // console.log(to)
+  return next()
+})
+
 vue.use(VueAnalytics, {
   id: 'UA-104252-10',
   router
@@ -42,8 +48,15 @@ vue.use(VueAnalytics, {
 
 var app = new vue({
   router,
-  created: () => {
-    
+  data:  {
+    isLoading: true,
+    isJapanese: true
+  },
+  created: function() {
+    // this.isLoading = true
+  },
+  mounted: function() {
+    this.isLoading = false
   }
 }).$mount('#app');
 

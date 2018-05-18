@@ -22,7 +22,7 @@
       </li>
       <li class="list-item" id="release-tha02">
         <h4>THa #1</h4>
-        <p class="img img-right"><img src="/img/releases/arr-002/news.png"></p>
+        <p class="img img-right"><img src="/img/releases/demo-001/news.png"></p>
         <p>In the "NEW TOWN" event above, CD-R will be distributed! Limited to 50 copies. Forgive me if it's out of stock because I give it quite comfortably!</p>
         <p class="ja">上記「NEW TOWN」イベント内で、CD-Rを配布します！限定50枚。割と気楽にあげちゃいますので、無くなったらご容赦を！</p>
         <ol class="songs">

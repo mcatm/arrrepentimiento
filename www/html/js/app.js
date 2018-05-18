@@ -752,6 +752,12 @@ var router = new _vueRouter2.default({
   }
 });
 
+router.beforeEach(function (to, from, next) {
+  // this.isLoading = false
+  // console.log(to)
+  return next();
+});
+
 _vue2.default.use(_vueAnalytics2.default, {
   id: 'UA-104252-10',
   router: router
@@ -759,7 +765,16 @@ _vue2.default.use(_vueAnalytics2.default, {
 
 var app = new _vue2.default({
   router: router,
-  created: function created() {}
+  data: {
+    isLoading: true,
+    isJapanese: true
+  },
+  created: function created() {
+    // this.isLoading = true
+  },
+  mounted: function mounted() {
+    this.isLoading = false;
+  }
 }).$mount('#app');
 
 /**
@@ -14858,7 +14873,7 @@ var staticRenderFns = [
         _c("h4", [_vm._v("THa #1")]),
         _vm._v(" "),
         _c("p", { staticClass: "img img-right" }, [
-          _c("img", { attrs: { src: "/img/releases/arr-002/news.png" } })
+          _c("img", { attrs: { src: "/img/releases/demo-001/news.png" } })
         ]),
         _vm._v(" "),
         _c("p", [
