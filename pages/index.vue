@@ -6,6 +6,7 @@
         v-for="(post, i) of posts"
         :key="i"
         :title="post.fields.title"
+        :body="post.fields.body"
       />
       <!-- <li class="list-item">
         <h3>Arrepentimiento: the First Meeting</h3>

@@ -1,11 +1,13 @@
 <template>
   <li class="list-item">
     <h3>{{ title }}</h3>
-    <span v-html="body"></span>
+    <span v-html="renderText(body)"></span>
   </li>
 </template>
 
 <script>
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+
 export default {
   props: {
     post: {
@@ -15,6 +17,15 @@ export default {
     title: {
       type: String,
       default: ''
+    },
+    body: {
+      type: Object,
+      default: {}
+    }
+  },
+  methods: {
+    renderText: (obj) => {
+      return documentToHtmlString(obj)
     }
   }
 }
