@@ -1,7 +1,7 @@
 {
-  "name": "arrrepentimiento",
+  "name": "Arrrepentimiento",
   "version": "1.0.0",
-  "description": "the collective.",
+  "description": "In the burnt red-black sky, the gospel resonates in capital HELVETICA. At the beach where the sadness ended, preparations for a new party begin. Buildings of sound constructed in fictitious dimensions are now irradiated to the body from completely different angles. A melody is born like breathing, and the rhythm dies as if to breathe out. Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era.",
   "author": "mcatm",
   "private": true,
   "scripts": {
@@ -12,18 +12,21 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/pwa": "^2.6.0",
     "cross-env": "^5.2.0",
     "nuxt": "^2.4.0",
-    "nuxt-buefy": "^0.3.2",
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^2.6.0"
+    "nuxt-buefy": "^0.3.2"
   },
   "devDependencies": {
-    "nodemon": "^1.18.9",
     "@vue/test-utils": "^1.0.0-beta.27",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^24.1.0",
     "jest": "^24.1.0",
-    "vue-jest": "^3.0.3"
+    "node-sass": "^4.11.0",
+    "nodemon": "^1.18.9",
+    "sass-loader": "^7.1.0",
+    "vue-jest": "^3.0.3",
+    "webpack": "^4.29.6"
   }
 }
