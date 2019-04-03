@@ -1,0 +1,57 @@
+.wysiwyg {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0 0 30px;
+  }
+
+  p {
+    margin: 0 0 30px;
+    overflow: hidden;
+  }
+
+  img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .img {
+    &.img-right { width: 40%; float: right; margin-left: 30px; }
+    &.img-left { width: 40%; float: left; margin-right: 30px; }
+
+    &.img-right,
+    &.img-left {
+      @include sp {
+        width: 100%;
+        float: none;
+        margin-left: 0;
+        margin-right: 0;
+      }
+    }
+  }
+
+  ol,
+  ul,
+  dl {
+    margin: 0 0 30px;
+  }
+
+  dt {
+    opacity: .8;
+    font-size: .75rem;
+    color: $color-white;
+    background: $color-black;
+    padding: 4px 12px;
+    max-width: 40%;
+    margin-bottom: 8px;
+  }
+
+  dd {
+    margin-bottom: 15px;
+    &:last-child { margin-bottom: 0; }
+  }
+}

@@ -1,5 +1,5 @@
 <template>
-  <li class="list-item">
+  <li class="list-item wysiwyg">
     <h3>{{ title }}</h3>
     <span v-html="renderText(body)"></span>
   </li>
