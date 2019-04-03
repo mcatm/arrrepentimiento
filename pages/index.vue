@@ -91,7 +91,11 @@ export default {
   },
   asyncData({ env, params }) {
     return client
-      .getEntries(env.CTF_POST_TYPE_ID)
+      .getEntries({
+        limit: 20,
+        content_type: 'post',
+        order: '-sys.createdAt'
+      })
       .then(entries => {
         return {
           posts: entries.items

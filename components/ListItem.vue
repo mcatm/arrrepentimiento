@@ -55,19 +55,19 @@ export default {
   }
 }
 
-.list-border {
+/*.list-border {
   width: 100%;
   height: 40px;
   margin-bottom: 30px;
-}
+}*/
 
-.list-border:before {
+.list-item:after {
   content: '';
   display: block;
   width: 100%;
   max-width: 420px;
   height: 40px;
-  /*background: url(~/assets/img/border.png) no-repeat 0 0;*/
+  background: url(~assets/img/border.png) no-repeat 0 0;
   background-size: contain;
 }
 </style>
