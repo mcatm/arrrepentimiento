@@ -45,10 +45,11 @@
       </aside>
 
     </section> -->
+    
+    <Header />
 
     <nuxt />
-
-    <Header />
+    
     <Footer />
 
   </div>

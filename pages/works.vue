@@ -2,7 +2,7 @@
 <div class="l-content">
   <div class="l-content-inner">
     <ul class="list">
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>The Depth of Meanings<small>意味の深度</small></h3>
         <p class="img img-right"><img src="~/assets/img/releases/arr-001/large.jpg"></p>
         <p>We announced the song "The Depth of Meanings" on Bandcamp. As my practice of Home Taping, I mixed a collage of plucked guitars while shaking by a hammock at home, studies with synths patched at my own PC, cut and paste as a result of hitting a drum that can not beat tightly, and a wacky vocal mix It is. It's also delivered on Apple Music or Spotify</p>
