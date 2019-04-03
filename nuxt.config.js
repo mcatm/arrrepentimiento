@@ -1,5 +1,15 @@
 import pkg from './package'
 
+const { getConfigForKeys } = require('./lib/config.js')
+const ctfConfig = getConfigForKeys([
+  'CTF_POST_TYPE_ID',
+  'CTF_SPACE_ID',
+  'CTF_CDA_ACCESS_TOKEN'
+])
+
+const { createClient } = require('./plugins/contentful')
+const cdaClient = createClient(ctfConfig)
+
 export default {
   mode: 'spa',
 
@@ -56,6 +66,22 @@ export default {
   */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+
+  generate: {
+    routes() {
+      return cdaClient
+        .getEntries(ctfConfig.CTF_POST_TYPE_ID)
+        .then(entries => {
+          return [...entries.items.map(entry => `/blog/${entry.fields.slug}`)]
+        })
+    }
+  },
+
+  env: {
+    CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: ctfConfig.CTF_CDA_ACCESS_TOKEN,
+    CTF_POST_TYPE_ID: ctfConfig.CTF_POST_TYPE_ID
   },
 
   /*

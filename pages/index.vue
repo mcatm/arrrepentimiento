@@ -2,7 +2,12 @@
 <div class="l-content">
   <div class="l-content-inner">
     <ul class="list">
-      <li class="list-item">
+      <ListItem
+        v-for="(post, i) of posts"
+        :key="i"
+        :title="post.fields.title"
+      />
+      <!-- <li class="list-item">
         <h3>Arrepentimiento: the First Meeting</h3>
         <p>It is a genealogy of Velvet Underground, muddy alternative folk music that takes over the spirituality of Child of Microtones and Sound@One. Arrepentimiento is a new group of types that make it progressive. On this day, which will be the first performance, we will create some nursery that can be seen with extremely awakened eyes in the final session.</p>
         <p class="ja">Velvet Undergroundの支流に位置し、Child of MicrotonesやSound@Oneの精神性をズブズブに引き継ぐオルタナティブ・フォーク・ミュージックの泥濘。その漸進性を以って祝祭と為すタイプのグループ＝Arrepentimientoが秘かに誕生しました。初のパフォーマンスとなるこの日は、会場の数カ所で行われるゲリラ〜突発的なセッションを録音、それらの記録を再生しながら行う最終セッションにて「新しい都市」の誕生に周回遅れのJohn Cage的な彩りを添えます。各々楽器を持参の上、突発的な参加も歓迎。</p>
@@ -67,14 +72,35 @@
         Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era.</p>
         <p class="ja">焦げた赤黒い空に、大文字のヘルベチカで鳴り響く福音。<br>悲しみの終わった浜にて、新しい宴の準備が始まる。<br>架空の次元で構築された音の建造物が、今まさに全く別の角度から肉体に照射された。<br>息を吸うようにメロディが生まれ、息を吐くようにリズムが死んでいく。<br>古ぼけた魔術にさよならを告げよう。芳醇な空洞時代の入り口にて。</p>
         <p><router-link to="/about">About Us</router-link></p>
-      </li>
+      </li> -->
     </ul>
-
   </div>
 </div>
 </template>
 
 <script>
+import ListItem from '~/components/ListItem'
+import { createClient } from '~/plugins/contentful.js'
+
+const client = createClient()
+
 export default {
+  components: {
+    ListItem
+  },
+  asyncData({ env, params }) {
+    return client
+      .getEntries(env.CTF_POST_TYPE_ID)
+      .then(entries => {
+        return {
+          posts: entries.items
+        }
+      })
+      .catch(console.error)
+  },
+  data() {
+    return {
+    }
+  }
 }
 </script>
