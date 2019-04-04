@@ -20,12 +20,19 @@
   h6 {
     line-height: 1.2;
   }
+
+  @include sp {
+    width: 100%;
+  }
 }
 
 .l-content-inner {
   width: calc(100% - #{$width-gutter});
   max-width: $width-main-s;
   margin: 70px;
+  @include sp {
+    margin: 70px auto;
+  }
 }
 
 /* ----------------------------------------------------------
@@ -62,6 +69,11 @@
   z-index: 10;
   background: #004860;
   position: fixed;
+
+  @include sp {
+    position: relative;
+    width: 100%;
+  }
 }
 
 /* ----------------------------------------------------------
