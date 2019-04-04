@@ -62,18 +62,7 @@
         <p>For more than a year ago, I have added home taping records. A playlist of Home Taping by such moment composing is being released to Soundcloud.</p>
         <p class="ja">かれこれ一年以上前から、Home Tapingの記録を付けています。Soundcloudに、そうした瞬間作曲によるHome Tapingのプレイリストを公開中です。よくわかんねえけど、面白いと思うよ</p>
         <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/190955789&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
-      </li>
-      <li class="list-border"></li>
-      <li class="list-item">
-        <h3>Introduce ourselves</h3>
-        <p>In the burnt red-black sky, the gospel resonates in capital HELVETICA.<br>
-        At the beach where the sadness ended, preparations for a new party begin.<br>
-        Buildings of sound constructed in fictitious dimensions are now irradiated to the body from completely different angles.<br>
-        A melody is born like breathing, and the rhythm dies as if to breathe out.<br>
-        Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era.</p>
-        <p class="ja">焦げた赤黒い空に、大文字のヘルベチカで鳴り響く福音。<br>悲しみの終わった浜にて、新しい宴の準備が始まる。<br>架空の次元で構築された音の建造物が、今まさに全く別の角度から肉体に照射された。<br>息を吸うようにメロディが生まれ、息を吐くようにリズムが死んでいく。<br>古ぼけた魔術にさよならを告げよう。芳醇な空洞時代の入り口にて。</p>
-        <p><router-link to="/about">About Us</router-link></p>
-      </li> -->
+      </li>-->
     </ul>
   </div>
 </div>
