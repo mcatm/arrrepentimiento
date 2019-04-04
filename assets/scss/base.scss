@@ -2,15 +2,16 @@
   // -webkit-appearance: none;
   outline: none;
   box-sizing: border-box;
-  font-size: 20px;
+  font-size: 14px;
 }
 
 body {
-  font-family: 'Buenard', "游明朝", "Yu Mincho", "游明朝体", "YuMincho", "Georgia", serif;
+  font-family: '游ゴシック', YuGothic, Helvetica, Arial, 'Hiragino Kaku Gothic ProN', 'ＭＳ Ｐゴシック', sans-serif;
   line-height: 1.8;
   color: $color-black;
   background-color: #EAEAEA;
   overflow-x: hidden;
+  height: 100%;
 }
 
 a {
@@ -33,6 +34,7 @@ h4,
 h5,
 h6 {
   margin:0;
+  font-family: 'Buenard', "游明朝", "Yu Mincho", "游明朝体", "YuMincho", "Georgia", serif;
   > small {
     font-size: .9rem;
     display: block;

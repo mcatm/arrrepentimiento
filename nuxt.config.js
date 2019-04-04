@@ -60,6 +60,9 @@ export default {
     // Doc: https://buefy.github.io/#/documentation
     // 'nuxt-buefy',
     '@nuxtjs/pwa',
+    ['@nuxtjs/google-analytics', {
+      id: 'UA-104252-10'
+    }]
   ],
   /*
   ** Axios module configuration
