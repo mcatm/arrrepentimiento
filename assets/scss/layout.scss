@@ -6,11 +6,11 @@
 ---------------------------------------------------------- */
 
 .l-content {
-  width: 100%;
+  width: 60%;
   height: 100%;
   position: relative;
   z-index: 100;
-  margin: auto;
+  margin: 0;
 
   h1,
   h2,
@@ -25,7 +25,7 @@
 .l-content-inner {
   width: calc(100% - #{$width-gutter});
   max-width: $width-main-s;
-  margin: 70px auto;
+  margin: 70px;
 }
 
 /* ----------------------------------------------------------
@@ -54,14 +54,14 @@
 
 .l-header {
   // position: fixed;
-  border-top: 2px solid $color-black;
+  // border-top: 2px solid $color-black;
   top: 0;
   right: 0;
-  width: 100%;
+  width: 40%;
   height: 100vh;
   z-index: 10;
   background: #004860;
-  position: relative;
+  position: fixed;
 }
 
 /* ----------------------------------------------------------
@@ -77,6 +77,7 @@
   border-top: 1px solid $color-gray;
   position: relative;
   z-index: 100;
+  width: 60%;
 }
 
 .l-footer-inner {
