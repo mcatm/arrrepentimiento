@@ -2,7 +2,7 @@
 <div class="l-content">
   <div class="l-content-inner">
     <ul class="list">
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>The Position of Insanity<small>狂気の所在</small></h3>
         <p class="ja"></p>
         <figure class="quote quote-weird">
@@ -12,16 +12,16 @@
           <footer>北九州連続監禁殺人事件主犯 松永太、最終弁論最後の言葉</footer>
         </figure>
       </li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>Strangeness and Chaos<small>奇妙さ／混沌</small></h3>
         <p class="ja"></p>
       </li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>Amateurism<small>アマチュアリズム</small></h3>
         <p class="ja"></p>
       </li>
       <li class="list-border"></li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>Structure<small>構造</small></h3>
         <p class="ja"></p>
         <figure class="quote quote-weird">
@@ -32,32 +32,32 @@
           <footer>『音楽の文法』</footer>
         </figure>
       </li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>About Improvisation<small>即興主義について</small></h3>
         <p class="ja"></p>
       </li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>Fearness and Violence<small>恐怖／暴力</small></h3>
         <p class="ja"></p>
       </li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>Humor with Poison<small>毒とユーモア</small></h3>
         <p class="ja"></p>
       </li>
       <li class="list-border"></li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>Cultural Anthropologically<small>文化人類学的に</small></h3>
         <p class="ja"></p>
       </li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>The Machinism<small>機械主義</small></h3>
         <p class="ja"></p>
       </li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>Art Under The Death<small>死と芸術</small></h3>
         <p class="ja"></p>
       </li>
-      <li class="list-item">
+      <li class="list-item wysiwyg">
         <h3>The Motifs of Sex<small>性のモティーフ</small></h3>
         <p class="ja"></p>
       </li>
@@ -66,3 +66,24 @@
   </div>
 </div>
 </template>
+
+<style lang="scss" scoped>
+@import '~assets/scss/variables';
+
+.quote {
+  margin: 0;
+  padding: 30px 0;
+  // border-top: 3px solid $color-black;
+  // border-bottom: 3px solid $color-black;
+  blockquote {
+    margin: 0;
+    font-style: italic;
+    > p {
+      font-size: 1.1rem;
+    }
+  }
+  footer {
+    font-size: .8rem;
+  }
+}
+</style>

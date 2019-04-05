@@ -1,7 +1,7 @@
 <template>
 <div class="l-content">
   <div class="l-content-inner">
-    <div class="page">
+    <div class="page wysiwyg">
       <h1>About Us</h1>
 
       <hr>
