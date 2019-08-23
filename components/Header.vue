@@ -8,24 +8,24 @@
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 
 .l-header {
-  background: url(~assets/img/collages/001.jpg) 50% 50%;
+  background: url(~assets/img/collages/002.jpg) 50% 50%;
   background-size: cover;
 }
 
 .brand {
-  /*width: calc(100% - #{$width-gutter});*/
+  // /*width: calc(100% - #{$width-gutter});*/
   max-width: 680px;
   background-size: cover;
-  /*padding-top: 60px;*/
+  // /*padding-top: 60px;*/
   margin: auto;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateY(-50%) translateX(-50%);
-  /*display: none;*/
+  // /*display: none;*/
 }
 
 .brand-name {

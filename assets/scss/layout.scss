@@ -67,8 +67,9 @@
   width: 40%;
   height: 100vh;
   z-index: 10;
-  background: #004860;
+  // background: #004860;
   position: fixed;
+  border-left: 1px dotted $color-black;
 
   @include sp {
     position: relative;

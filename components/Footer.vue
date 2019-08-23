@@ -9,12 +9,11 @@
           <li><router-link to="/works">Works</router-link></li>
         </ul>
         <ul class="links links-external">
-          <li><a href="https://soundcloud.com/arrepentimiento" target="_blank">Soundcloud</a></li>
-          <li><a href="https://arrepentimiento.bandcamp.com/" target="_blank">Bandcamp</a></li>
+          <li><a href="https://soundcloud.com/arrrepentimiento" target="_blank">Soundcloud</a></li>
+          <li><a href="https://arrrepentimiento.bandcamp.com/" target="_blank">Bandcamp</a></li>
           <li><a href="https://itunes.apple.com/jp/artist/arrepentimiento/id1296962169" target="_blank">iTunes</a></li>
           <li><a href="https://open.spotify.com/artist/7v2cd2Ai9FvjIAxVkbcIiL" target="_blank">Spotify</a></li>
-          <li><a href="https://twitter.com/timient0" target="_blank">Twitter</a></li>
-          <li><a href="https://www.facebook.com/arrepentimiento.music/" target="_blank">Facebook</a></li>
+          <li><a href="https://twitter.com/arrrrps" target="_blank">Twitter</a></li>
         </ul>
       </div>
     </div>
