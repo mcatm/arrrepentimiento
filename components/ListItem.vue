@@ -1,9 +1,10 @@
 <template>
   <li class="list-item wysiwyg">
     <h3>{{ title }}<small v-if="subtitle">{{ subtitle }}</small></h3>
+    <p class="img img-right img-small" v-if="image"><img :src=image.file.url></p>
     <span v-html="renderText(body)" v-if="typeof body === 'object'"></span>
     <span v-html="body" v-if="typeof body === 'string'"></span>
-    <div v-if="image" class="list-image" :style="{ backgroundImage: 'url(' + image.file.url + '?w=200)' }"></div>
+    <!-- <div v-if="image" class="list-image" :style="{ backgroundImage: 'url(' + image.file.url + '?w=200)' }"></div> -->
   </li>
 </template>
 

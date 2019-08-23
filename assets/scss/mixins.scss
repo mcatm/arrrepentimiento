@@ -6,14 +6,14 @@
 
 // breakpoint for smartphones
 @mixin sp {
-  @media screen and ( max-width: $width-main-s + ($width-gutter * 2) ) {
+  @media screen and ( max-width: ($width-main-s + ($width-gutter * 2)) * 100 / 60 ) {
     @content;
   }
 }
 
 // breakpoint for tablets
 @mixin tb {
-  @media screen and ( max-width: $width-main + ($width-gutter * 2) ) {
+  @media screen and ( max-width: ($width-main + ($width-gutter * 2)) * 100 / 60 ) {
     @content;
   }
 }
@@ -27,5 +27,5 @@
 
 // wysiwyg
 @mixin wysiwyg {
-  
+
 }

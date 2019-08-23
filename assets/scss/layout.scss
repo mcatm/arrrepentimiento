@@ -31,7 +31,9 @@
   max-width: $width-main-s;
   margin: 70px auto;
   @include sp {
-    margin: 30px;
+    margin: 0 auto;
+    padding: 30px;
+    box-sizing: border-box;
   }
 }
 
@@ -74,6 +76,8 @@
   @include sp {
     position: relative;
     width: 100%;
+    border-left: 0;
+    border-bottom: 1px dotted $color-black;
   }
 }
 
