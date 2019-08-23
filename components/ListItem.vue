@@ -31,7 +31,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .list {
   > li {
     clear: both;
@@ -44,6 +44,15 @@ export default {
   &:last-child { border: none }
 
   /*@include wysiwyg;*/
+  &:after {
+    content: '';
+    display: block;
+    width: 100%;
+    max-width: 420px;
+    height: 40px;
+    background: url(~assets/img/border.png) no-repeat 0 0;
+    background-size: contain;
+  }
 }
 
 .list-thumbnail {
@@ -61,13 +70,4 @@ export default {
   margin-bottom: 30px;
 }*/
 
-.list-item:after {
-  content: '';
-  display: block;
-  width: 100%;
-  max-width: 420px;
-  height: 40px;
-  background: url(~assets/img/border.png) no-repeat 0 0;
-  background-size: contain;
-}
 </style>
