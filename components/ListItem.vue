@@ -3,6 +3,7 @@
     <h3>{{ title }}<small v-if="subtitle">{{ subtitle }}</small></h3>
     <span v-html="renderText(body)" v-if="typeof body === 'object'"></span>
     <span v-html="body" v-if="typeof body === 'string'"></span>
+    <div v-if="image" class="list-image" :style="{ backgroundImage: 'url(' + image.file.url + '?w=200)' }"></div>
   </li>
 </template>
 
@@ -11,10 +12,10 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 export default {
   props: {
-    post: {
-      type: Object,
-      default: {}
-    },
+    // post: {
+    //   type: Object,
+    //   default: {}
+    // },
     title: {
       type: String,
       default: ''
@@ -26,6 +27,10 @@ export default {
     body: {
       type: Object,
       default: {}
+    },
+    image: {
+      type: Object,
+      default: null
     }
   },
   methods: {
@@ -57,6 +62,17 @@ export default {
     height: 40px;
     background: url(~assets/img/border.png) no-repeat 0 0;
     background-size: contain;
+  }
+
+  .list-image {
+    width: 120px;
+    height: 120px;
+    background-size: cover;
+    background-position: 50% 50%;
+    position: absolute;
+    top: 0;
+    right: -60px;
+    border-radius: 50%;
   }
 }
 

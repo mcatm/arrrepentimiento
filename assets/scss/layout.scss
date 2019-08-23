@@ -29,7 +29,7 @@
 .l-content-inner {
   // width: calc(100% - #{$width-gutter});
   max-width: $width-main-s;
-  margin: 70px;
+  margin: 70px auto;
   @include sp {
     margin: 30px;
   }
