@@ -1,7 +1,8 @@
 <template>
   <li class="list-item wysiwyg">
-    <h3>{{ title }}</h3>
-    <span v-html="renderText(body)"></span>
+    <h3>{{ title }}<small v-if="subtitle">{{ subtitle }}</small></h3>
+    <span v-html="renderText(body)" v-if="typeof body === 'object'"></span>
+    <span v-html="body" v-if="typeof body === 'string'"></span>
   </li>
 </template>
 
@@ -15,6 +16,10 @@ export default {
       default: {}
     },
     title: {
+      type: String,
+      default: ''
+    },
+    subtitle: {
       type: String,
       default: ''
     },

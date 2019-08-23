@@ -2,7 +2,15 @@
 <div class="l-content">
   <div class="l-content-inner">
     <ul class="list">
-      <li class="list-item wysiwyg">
+      <ListItem
+        v-for="(post, i) of posts"
+        :key="i"
+        :title="post.title"
+        :subtitle="post.subtitle"
+        :body="post.body"
+      />
+
+      <!-- <li class="list-item wysiwyg">
         <h3>The Position of Insanity<small>狂気の所在</small></h3>
         <p class="ja"></p>
         <figure class="quote quote-weird">
@@ -11,7 +19,7 @@
           </blockquote>
           <footer>北九州連続監禁殺人事件主犯 松永太、最終弁論最後の言葉</footer>
         </figure>
-      </li>
+      </li> -->
       <li class="list-item wysiwyg">
         <h3>Strangeness and Chaos<small>奇妙さ／混沌</small></h3>
         <p class="ja"></p>
@@ -66,6 +74,43 @@
   </div>
 </div>
 </template>
+
+<script>
+import ListItem from '~/components/ListItem'
+
+export default {
+  components: {
+    ListItem
+  },
+  data () {
+    return {
+      posts: [
+        {
+          title: 'The Position of Insanity',
+          subtitle: '狂気の所在',
+          body: `
+            <figure class="quote quote-weird">
+            <blockquote>
+              <p>哀悼の意を表しますが、自分の住む場所で殺害され、大変迷惑しています！</p>
+            </blockquote>
+            <footer>北九州連続監禁殺人事件主犯 松永太、最終弁論最後の言葉</footer>
+          </figure>
+          `
+        }
+      ]
+    }
+  },
+  head () {
+    return {
+      title: 'Inspirations - Arrepentimiento',
+      meta: [
+        { hid: 'description', name: 'description', content: 'Inspirations' },
+        { hid: 'og:description', name: 'og:description', content: 'Inspirations' }
+      ]
+    }
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @import '~assets/scss/variables';
