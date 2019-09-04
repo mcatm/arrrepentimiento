@@ -35,6 +35,9 @@ h5,
 h6 {
   margin:0;
   font-family: 'Buenard', "游明朝", "Yu Mincho", "游明朝体", "YuMincho", "Georgia", serif;
+  > a {
+    font-size: 1em;
+  }
   > small {
     font-size: .9rem;
     display: block;

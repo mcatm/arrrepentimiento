@@ -5,9 +5,7 @@
       <ListItem
         v-for="(post, i) of posts"
         :key="i"
-        :title="post.fields.title"
-        :body="post.fields.body"
-        :image="post.image"
+        :post="post"
       />
     </ul>
   </div>

@@ -76,7 +76,7 @@ export default {
       return cdaClient
         .getEntries(ctfConfig.CTF_POST_TYPE_ID)
         .then(entries => {
-          return [...entries.items.map(entry => `/blog/${entry.fields.slug}`)]
+          return [...entries.items.map(entry => `/posts/${entry.sys.id}`)]
         })
     }
   },

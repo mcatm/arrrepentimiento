@@ -5,9 +5,7 @@
       <ListItem
         v-for="(post, i) of posts"
         :key="i"
-        :title="post.title"
-        :subtitle="post.subtitle"
-        :body="post.body"
+        :post="post"
       />
 
       <!-- <li class="list-item wysiwyg">
@@ -86,16 +84,21 @@ export default {
     return {
       posts: [
         {
-          title: 'The Position of Insanity',
-          subtitle: '狂気の所在',
-          body: `
-            <figure class="quote quote-weird">
-            <blockquote>
-              <p>哀悼の意を表しますが、自分の住む場所で殺害され、大変迷惑しています！</p>
-            </blockquote>
-            <footer>北九州連続監禁殺人事件主犯 松永太、最終弁論最後の言葉</footer>
-          </figure>
-          `
+          fields: {
+            title: 'The Position of Insanity',
+            subtitle: '狂気の所在',
+            body: `
+              <figure class="quote quote-weird">
+              <blockquote>
+                <p>哀悼の意を表しますが、自分の住む場所で殺害され、大変迷惑しています！</p>
+              </blockquote>
+              <footer>北九州連続監禁殺人事件主犯 松永太、最終弁論最後の言葉</footer>
+            </figure>
+            `
+          },
+          sys: {
+            id: 'xxxxxxx',
+          }
         }
       ]
     }
