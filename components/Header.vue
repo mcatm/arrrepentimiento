@@ -2,7 +2,7 @@
   <header class="l-header">
     <div class="brand">
       <h1 class="brand-name">
-        <router-link to="/"><img src="~/assets/img/brand.png" alt="Arrepentimiento" title="Arrepentimiento - the Music collective"></router-link>
+        <!-- <router-link to="/"><img src="~/assets/img/brand.png" alt="Arrepentimiento" title="Arrepentimiento - the Music collective"></router-link> -->
       </h1>
     </div>
   </header>
@@ -11,7 +11,7 @@
 <style scoped lang="scss">
 
 .l-header {
-  background: url(~assets/img/collages/002.jpg) 50% 50%;
+  background: url(~assets/img/collages/003.jpg) 50% 50%;
   background-size: cover;
 }
 
