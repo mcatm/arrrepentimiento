@@ -1,7 +1,7 @@
 <template>
   <div class="wysiwyg">
     <h3>{{ post.fields.title }}<small v-if="post.fields.subtitle">{{ post.fields.subtitle }}</small></h3>
-    <p class="img img-right img-small" v-if="post.image"><img :src=post.image.file.url></p>
+    <p class="img img-right img-small" v-if="post.fields.media"><img :src=post.fields.media.fields.file.url></p>
     <span v-html="renderText(post.fields.body)" v-if="typeof post.fields.body === 'object'"></span>
     <span v-html="post.fields.body" v-if="typeof post.fields.body === 'string'"></span>
     <!-- <div v-if="image" class="list-image" :style="{ backgroundImage: 'url(' + image.file.url + '?w=200)' }"></div> -->

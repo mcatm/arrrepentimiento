@@ -4,7 +4,7 @@
       <nuxt-link :to="{ name: 'post-id', params: { id: post.sys.id } }">{{ post.fields.title }}</nuxt-link>
       <small v-if="post.fields.subtitle">{{ post.fields.subtitle }}</small>
     </h3>
-    <p class="img img-right img-small" v-if="post.image"><img :src=post.image.file.url></p>
+    <p class="img img-right img-small" v-if="post.fields.media"><img :src=post.fields.media.fields.file.url></p>
     <span v-html="renderText(post.fields.body)" v-if="typeof post.fields.body === 'object'"></span>
     <span v-html="post.fields.body" v-if="typeof post.fields.body === 'string'"></span>
     <!-- <div v-if="image" class="list-image" :style="{ backgroundImage: 'url(' + image.file.url + '?w=200)' }"></div> -->
@@ -19,6 +19,15 @@ export default {
     post: {
       type: Object,
       default: {}
+    }
+  },
+  created() {
+    if( this.post.fields.media ) {
+      console.log( '画像あり', this.post)
+      console.log( '画像あり', this.post.image)
+    } else {
+      console.log( '画像なし？', this.post)
+      console.log( '画像なし', this.post.image)
     }
   },
   methods: {

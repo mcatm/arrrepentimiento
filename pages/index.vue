@@ -45,7 +45,11 @@ export default {
   },
   data() {
     return {
+      posts: []
     }
+  },
+  created() {
+    console.log(this.posts)
   }
 }
 </script>
