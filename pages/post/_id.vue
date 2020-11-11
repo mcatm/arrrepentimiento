@@ -1,42 +1,40 @@
 <template>
-<div class="l-content">
-  <div class="l-content-inner">
-    <PostDetail
-      :post="post"
-    />
+  <div class="l-main">
+    <PostDetail :post="post" />
   </div>
-</div>
 </template>
 
-<script>
-import PostDetail from '~/components/PostDetail'
-import { createClient } from '~/plugins/contentful.js'
+<script lang="ts">
+import { createClient } from '~/plugins/contentful'
+import { Document } from '@contentful/rich-text-types'
 
-const client = createClient()
+import PostDetail from '~/components/molecules/PostDetail'
+
+interface Params {
+  id: string,
+}
+
+interface Response {}
+
+const contentful = createClient()
 
 export default {
-  components: {
-    PostDetail
-  },
-  // props: {
-  //   post: {
-  //     type: Object,
-  //     default: () => ({})
-  //   }
-  // },
-  asyncData({ env, params }) {
-    return client
-      .getEntry(params.id)
-      .then(entry => {
-        return {
-          post: entry
-        }
-      })
-      .catch(console.error)
+  async asyncData({ params }) {
+    
+    const res: Response = await contentful
+      .getEntry(params.id);
+
+    return {
+      post: res
+    }
   },
   data() {
     return {
+      post: {}
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+</style>
