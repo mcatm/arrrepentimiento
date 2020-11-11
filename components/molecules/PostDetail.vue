@@ -10,6 +10,7 @@
   </article>
 </template>
 <script lang="ts">
+import { Document } from '@contentful/rich-text-types'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 export default {
   props: {

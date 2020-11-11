@@ -5,10 +5,9 @@
 </template>
 
 <script lang="ts">
+import Vue from 'vue'
 import { createClient } from '~/plugins/contentful'
-import { Document } from '@contentful/rich-text-types'
-
-import PostDetail from '~/components/molecules/PostDetail'
+// import PostDetail from '~/components/molecules/PostDetail'
 
 interface Params {
   id: string,
@@ -18,7 +17,7 @@ interface Response {}
 
 const contentful = createClient()
 
-export default {
+export default Vue.extend({
   async asyncData({ params }) {
     
     const res: Response = await contentful
@@ -33,7 +32,7 @@ export default {
       post: {}
     }
   }
-}
+});
 </script>
 
 <style lang="scss" scoped>
