@@ -60,6 +60,16 @@ a:hover {
   }
 }
 
+.l-mainimg {
+  width: 100%;
+  > img {
+    max-width: 100%;
+    display: block;
+    line-height: 1;
+    margin: 0 auto;
+  }
+}
+
 .l-article {
 
   h1,
@@ -126,7 +136,7 @@ a:hover {
 }
 
 .l-footer {
-  padding: 120px 0 40px;
+  padding: 120px 0 80px;
   
   > .container {
     // border-top: 1px solid $color-gray;
