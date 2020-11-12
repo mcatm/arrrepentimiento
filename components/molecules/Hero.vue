@@ -9,6 +9,9 @@
         <a :href="link.url" target="_blank">{{ link.label }}</a>
       </li>
     </ul>
+    <p class="img">
+      <img src="~assets/images/collages/001.jpg" />
+    </p>
   </div>
 </template>
 <script lang="ts">
@@ -39,7 +42,7 @@ export default Vue.extend({
 
 .menu {
   padding: 0;
-  margin: 0;
+  margin: 0 0 80px;
   font-family: $font-rich;
   display: flex;
   > li {
@@ -49,6 +52,17 @@ export default Vue.extend({
   }
   @include sp {
     flex-direction: column;
+  }
+}
+
+.img {
+  padding: 0;
+  margin: 0;
+  img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
   }
 }
 
