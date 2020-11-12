@@ -6,7 +6,8 @@
 
 // breakpoint for smartphones
 @mixin sp {
-  @media screen and ( max-width: ($width-main + ($width-gutter * 2)) * 100 / 60 ) {
+  // @media screen and ( max-width: $width-main + ($width-gutter * 2) ) {
+  @media screen and ( max-width: $width-main-l ) {
     @content;
   }
 }

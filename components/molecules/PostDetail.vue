@@ -30,6 +30,8 @@ export default {
   font-family: $font-rich;
   text-align: left;
   line-height: 1.4;
+  margin: 0;
+  padding: 0 0 40px;
   // text-align: justify;
   // text-justify: auto;
   > small {
@@ -42,8 +44,10 @@ export default {
 }
 
 .img {
+  margin: 0 0 20px;
+  padding: 0;
   img {
-    max-width: 40%;
+    max-width: 45%;
   }
 }
 

@@ -1,6 +1,3 @@
-// require('dotenv').config()
-
-// import contentful from 'contentful';
 const contentful = require("contentful");
 
 const defaultConfig = {
@@ -14,10 +11,7 @@ interface Config {
   CTF_CDA_ACCESS_TOKEN?: string
 }
 
-// export default {}
-
 export function createClient(config:Config = defaultConfig) {
-  console.log('config:', config);
   return contentful.createClient({
     space: config.CTF_SPACE_ID || '',
     accessToken: config.CTF_CDA_ACCESS_TOKEN || '',

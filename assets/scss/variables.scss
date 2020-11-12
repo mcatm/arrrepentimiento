@@ -11,11 +11,9 @@ $width-gutter: 40px;
 
 /* ----------------------------------------------------------
 
-  ￼variables > height
+  ￼variables > font
 
 ---------------------------------------------------------- */
-
-$height-brand-top: 100px;
 
 $font-normal: 'Noto Sans JP', sans-serif;
 $font-rich: 'Ultra', serif;
@@ -29,12 +27,12 @@ $font-rich: 'Ultra', serif;
 $color-black: #111111;
 $color-white: #EAEAEA;
 
-$color-gray: #DDD;
+$color-gray: rgba(255, 255, 255, .2);
 
 // http://paletton.com/#uid=70c0k0kw0w0d2FCmnwmBxoeM9hR
 
 $color-red: #e40101;
 $color-orange: #FF7800;
-$color-blue: #028E9B;
+$color-blue: #00ffdd;
 $color-green: #00B358;
 $color-yellow: #d6c031;

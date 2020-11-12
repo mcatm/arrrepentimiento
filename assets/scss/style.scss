@@ -9,6 +9,7 @@ body {
   color: $color-yellow;
   font-size: 16px;
   font-family: $font-normal;
+  line-height: 1.8;
   // word-spacing: 1px;
   // -ms-text-size-adjust: 100%;
   // -webkit-text-size-adjust: 100%;
@@ -35,19 +36,28 @@ a:visited {
   color: $color-red;
 }
 
-.l-container {
+a:hover {
+  color: $color-yellow;
+  text-decoration: none;
 }
 
-.l-main {
-
-  margin: 0 auto;
+.l-container {
+  width: 100%;
   min-height: 100vh;
-  width: 80%;
-  max-width: $width-main-l;
-  margin: auto;
-  padding: 40px;
-  line-height: 1.8;
+  overflow-x: hidden;
+}
 
+.l-main,
+.l-footer {
+  margin: 0 auto;
+  width: 80%;
+  padding: 0;
+  // padding: 0 $width-gutter;
+  max-width: $width-main-l;
+  @include sp {
+    width: 90%;
+    // padding: 0 ($width-gutter / 2);
+  }
 }
 
 .l-article {
@@ -99,4 +109,26 @@ a:visited {
     max-width: 30%;
   }
 
+}
+
+.l-list {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+.l-hero {
+  width: 100%;
+  padding: 80px 0;
+}
+
+.l-footer {
+  padding: 120px 0 40px;
+  
+  > .container {
+    // border-top: 1px solid $color-gray;
+  }
 }

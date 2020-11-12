@@ -1,13 +1,3 @@
-// import { getConfigForKeys, createClient } from './plugins/contentful'
-
-// const ctfConfig = {
-//   CTF_POST_TYPE_ID: process.env.CTF_POST_TYPE_ID,
-//   CTF_SPACE_ID: process.env.CTF_SPACE_ID,
-//   CTF_CDA_ACCESS_TOKEN: process.env.CTF_CDA_ACCESS_TOKEN
-// }
-
-// const cdaClient = createClient(ctfConfig)
-
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
@@ -21,13 +11,19 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'Arrrepentimiento',
+    titleTemplate: (titleChunk) => {
+      return titleChunk && titleChunk !== 'Arrrepentimiento' ? `${titleChunk} - Arrrepentimiento` : 'Arrrepentimiento'
+    },
+    htmlAttrs: {
+      lang: 'en'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: "We build the modern folk songs by home-recording. The miscellaneous members give them special bodies by the experimental methods that ignore any contexts and add strange atmosphere. Between confusion and silence." },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    link: [{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&family=Ultra&display=swap' }],
+    link: [{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;900&family=Ultra&display=swap' }],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
