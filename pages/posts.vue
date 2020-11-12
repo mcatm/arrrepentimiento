@@ -1,8 +1,7 @@
 <template>
   <div class="l-main">
-    <Hero />
     <h2 class="heading">Something New</h2>
-    <ul class="list">
+    <ul class="l-list">
       <li
         v-for="(post, i) of posts"
         :key="i"
@@ -16,9 +15,6 @@
         <!-- <span v-html="post.fields.body" v-if="typeof post.fields.body === 'string'"></span> -->
       </li>
     </ul>
-    <div class="footer">
-      <nuxt-link to="/posts">More</nuxt-link>
-    </div>
   </div>
 </template>
 
@@ -40,7 +36,7 @@ export default {
     
     const res: Response = await contentful
       .getEntries({
-        limit: 5,
+        limit: 999,
         content_type: 'post',
         order: '-sys.createdAt'
       });
@@ -71,28 +67,16 @@ export default {
 
 <style lang="scss" scoped>
 
-// p {
-//   margin-bottom: 20px;
-// }
-
-// img {
-//   max-width: 30%;
-// }
-
 .heading {
   margin: 0;
-  padding: 0 0 10px;
+  padding: 80px 0 10px;
   font-family: $font-rich;
   font-size: 1.1rem;
   color: $color-gray;
 }
 
-.list {
-  padding: 0;
-  margin: 0;
+.l-list {
   > li {
-    list-style: none;
-    padding: 0;
     border-bottom: 1px solid $color-gray;
     &:first-child {
       border-top: 1px solid $color-gray;
@@ -114,29 +98,6 @@ export default {
         font-size: 32px;
         line-height: 1.3;
       }
-    }
-    p {
-      margin-bottom: 0;
-    }
-  }
-}
-
-.footer {
-  padding: 40px 0 0;
-  text-align: left;
-  font-family: $font-rich;
-  font-size: 1.5rem;
-  > a {
-    display: inline-block;
-    background: $color-red;
-    color: $color-black;
-    text-decoration: none;
-    padding: 11px 76px;
-    border: 2px solid $color-red;
-    &:hover {
-      background-color: transparent;
-      border: 2px solid $color-yellow;
-      color: $color-yellow;
     }
   }
 }

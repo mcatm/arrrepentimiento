@@ -1,38 +1,58 @@
 {
-  "name": "Arrrepentimiento",
+  "name": "arrrepentimiento",
   "version": "1.0.0",
-  "description": "In the burnt red-black sky, the gospel resonates in capital HELVETICA. At the beach where the sadness ended, preparations for a new party begin. Buildings of sound constructed in fictitious dimensions are now irradiated to the body from completely different angles. A melody is born like breathing, and the rhythm dies as if to breathe out. Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era.",
-  "author": "mcatm",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint": "yarn lint:js",
     "test": "jest"
   },
+  "lint-staged": {
+    "*.{js,vue}": "eslint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "dependencies": {
-    "@contentful/rich-text-html-renderer": "^13.1.0",
-    "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/google-analytics": "^2.2.0",
-    "@nuxtjs/pwa": "^2.6.0",
-    "contentful": "^7.5.0",
-    "cross-env": "^5.2.0",
-    "dotenv": "^7.0.0",
-    "lodash": "^4.17.15",
-    "nuxt": "^2.4.0",
-    "nuxt-buefy": "^0.3.2",
-    "twitter": "^1.7.1"
+    "@contentful/rich-text-html-renderer": "^14.1.2",
+    "@nuxt/typescript-runtime": "^2.0.0",
+    "@nuxtjs/axios": "^5.12.2",
+    "@nuxtjs/google-analytics": "^2.4.0",
+    "contentful": "^7.14.8",
+    "core-js": "^3.6.5",
+    "dotenv": "^8.2.0",
+    "fs": "^0.0.1-security",
+    "nuxt": "^2.14.6"
   },
   "devDependencies": {
-    "@vue/test-utils": "^1.0.0-beta.27",
+    "@contentful/rich-text-types": "^14.1.2",
+    "@nuxt/types": "^2.14.6",
+    "@nuxt/typescript-build": "^2.0.3",
+    "@nuxtjs/eslint-config": "^3.1.0",
+    "@nuxtjs/eslint-config-typescript": "^3.0.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/style-resources": "^1.0.0",
+    "@vue/test-utils": "^1.1.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^24.1.0",
-    "jest": "^24.1.0",
-    "node-sass": "^4.11.0",
-    "nodemon": "^1.18.9",
-    "sass-loader": "^7.1.0",
-    "vue-jest": "^3.0.3",
-    "webpack": "^4.29.6"
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.5.0",
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.3.0",
+    "jest": "^26.5.0",
+    "lint-staged": "^10.4.0",
+    "node-sass": "^5.0.0",
+    "prettier": "^2.1.2",
+    "sass-loader": "^10.0.5",
+    "ts-jest": "^26.4.1",
+    "vue-jest": "^3.0.4"
   }
 }

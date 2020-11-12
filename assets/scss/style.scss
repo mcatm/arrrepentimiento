@@ -1,15 +1,134 @@
 @charset 'utf-8';
 
 @import 'variables';
-
 @import 'normalize';
-@import 'base';
-
 @import 'mixins';
-@import 'helper';
 
-@import 'layout';
-// @import 'layouts/header';
-// @import 'layouts/footer';
+html,
+body {
+  color: $color-yellow;
+  font-size: 16px;
+  font-family: $font-normal;
+  line-height: 1.8;
+  // word-spacing: 1px;
+  // -ms-text-size-adjust: 100%;
+  // -webkit-text-size-adjust: 100%;
+  // -moz-osx-font-smoothing: grayscale;
+  // -webkit-font-smoothing: antialiased;
+  // box-sizing: border-box;
+}
 
-@import 'modules/wysiwyg';
+body:before {
+  content: "";
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100vh;
+  background: url('~assets/images/bg.gif') 50% 50% no-repeat;
+  background-size: cover;
+}
+
+a,
+a:visited {
+  color: $color-red;
+}
+
+a:hover {
+  color: $color-yellow;
+  text-decoration: none;
+}
+
+.l-container {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.l-main,
+.l-footer {
+  margin: 0 auto;
+  width: 80%;
+  padding: 0;
+  // padding: 0 $width-gutter;
+  max-width: $width-main-l;
+  @include sp {
+    width: 90%;
+    // padding: 0 ($width-gutter / 2);
+  }
+}
+
+.l-article {
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0 0 20px;
+  }
+
+  p {
+    margin: 0;
+    padding: 0 0 20px;
+  }
+
+  ul,
+  ol,
+  dl {
+    margin: 0;
+    padding: 0 0 20px 30px;
+  }
+
+  li {
+    margin-bottom: 5px;
+    &::marker {
+      font-size: .66em;
+    }
+    > p {
+      padding: 0;
+    }
+  }
+  
+  blockquote {
+    padding: 20px 20px 0;
+    font-size: .84rem;
+    border: 1px solid $color-yellow;
+    margin: 0 0 20px;
+    > p {
+      margin: 0;
+      padding-bottom: 20px;
+    }
+  }
+  
+  img {
+    max-width: 30%;
+  }
+
+}
+
+.l-list {
+  padding: 0;
+  margin: 0;
+  li {
+    list-style: none;
+    padding: 0;
+  }
+}
+
+.l-hero {
+  width: 100%;
+  padding: 80px 0;
+}
+
+.l-footer {
+  padding: 120px 0 40px;
+  
+  > .container {
+    // border-top: 1px solid $color-gray;
+  }
+}
