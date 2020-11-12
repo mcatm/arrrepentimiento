@@ -1,61 +1,73 @@
 <template>
-  <div class="l-main">
+  <div>
 
-    <div class="l-hero">
-      <div class="heading">
-        <h1 class="brand">Arrrepentimiento</h1>
-        <p class="subtitle">
-          <span>アレペンティミエント</span>
-        </p>
+    <div class="l-main">
+
+      <div class="l-hero">
+        <div class="heading">
+          <h1 class="brand">Arrrepentimiento</h1>
+          <p class="subtitle">
+            <span>アレペンティミエント</span>
+          </p>
+        </div>
       </div>
-
-      <div class="copy">
-        <p>
-          <em>In the burnt red-black sky, the gospel resonates in capital HELVETICA.</em><br>
-          焦げた赤黒い空に、大文字のヘルベチカで鳴り響く福音。
-        </p>
-
-        <p>
-          <em>At the beach where the sadness ended, preparations for a new party begin.</em><br>
-          悲しみの終わった浜にて、新しい宴の準備が始まる。
-        </p>
-
-        <p>
-          <em>Buildings of sound constructed in fictitious dimensions are now irradiated to the body from completely different angles.</em><br>
-          架空の次元で構築された音の建造物が、今まさに全く別の角度から肉体に照射された。
-        </p>
-        
-        <p>
-          <em>A melody is born like breathing, and rhythm dies as if to breathe out.</em><br>
-          息を吸うようにメロディが生まれ、息を吐くようにリズムが死んでいく。
-        </p>
-
-        <p>
-          <em>Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era.</em><br>
-          古ぼけた魔術にさよならを告げよう。芳醇な空洞時代の入り口にて。
-        </p>
-      </div>
-
+    
     </div>
 
+    <div class="l-mainimg">
+      <img src="~assets/images/about01.jpg" />
+    </div>
 
-    <h2 class="heading">Something New</h2>
-    <ul class="list">
-      <li
-        v-for="(post, i) of posts"
-        :key="i"
-      >
-        <h3>
-          <nuxt-link :to="{ name: 'post-id', params: { id: post.sys.id } }">{{ post.fields.title }}</nuxt-link>
-          <!-- <small v-if="post.fields.subtitle">{{ post.fields.subtitle }}</small> -->
-        </h3>
-        <!-- <p class="img img-right img-small" v-if="post.fields.media"><img :src=post.fields.media.fields.file.url></p>
-        <span v-html="renderText(post.fields.body)" v-if="typeof post.fields.body === 'object'"></span> -->
-        <!-- <span v-html="post.fields.body" v-if="typeof post.fields.body === 'string'"></span> -->
-      </li>
-    </ul>
-    <div class="footer">
-      <nuxt-link to="/posts">More</nuxt-link>
+    <div class="l-main">
+      <div class="l-hero">
+        <div class="copy">
+          <p>
+            <em>In the burnt red-black sky, the gospel resonates in capital HELVETICA.</em><br>
+            焦げた赤黒い空に、大文字のヘルベチカで鳴り響く福音。
+          </p>
+
+          <p>
+            <em>At the beach where the sadness ended, preparations for a new party begin.</em><br>
+            悲しみの終わった浜にて、新しい宴の準備が始まる。
+          </p>
+
+          <p>
+            <em>Buildings of sound constructed in fictitious dimensions are now irradiated to the body from completely different angles.</em><br>
+            架空の次元で構築された音の建造物が、今まさに全く別の角度から肉体に照射された。
+          </p>
+          
+          <p>
+            <em>A melody is born like breathing, and rhythm dies as if to breathe out.</em><br>
+            息を吸うようにメロディが生まれ、息を吐くようにリズムが死んでいく。
+          </p>
+
+          <p>
+            <em>Let's say goodbye to old-fashioned magic. At the entrance of the mellow cavity era.</em><br>
+            古ぼけた魔術にさよならを告げよう。芳醇な空洞時代の入り口にて。
+          </p>
+        </div>
+
+      </div>
+
+
+      <h2 class="heading">Something New</h2>
+      <ul class="list">
+        <li
+          v-for="(post, i) of posts"
+          :key="i"
+        >
+          <h3>
+            <nuxt-link :to="{ name: 'post-id', params: { id: post.sys.id } }">{{ post.fields.title }}</nuxt-link>
+            <!-- <small v-if="post.fields.subtitle">{{ post.fields.subtitle }}</small> -->
+          </h3>
+          <!-- <p class="img img-right img-small" v-if="post.fields.media"><img :src=post.fields.media.fields.file.url></p>
+          <span v-html="renderText(post.fields.body)" v-if="typeof post.fields.body === 'object'"></span> -->
+          <!-- <span v-html="post.fields.body" v-if="typeof post.fields.body === 'string'"></span> -->
+        </li>
+      </ul>
+      <div class="footer">
+        <nuxt-link to="/posts">More</nuxt-link>
+      </div>
     </div>
   </div>
 </template>
@@ -117,7 +129,7 @@ export default {
 .l-hero {
 
   .heading {
-    margin: 0 0 80px;
+    margin: 0;
     color: $color-yellow;
     .brand {
       font-family: $font-rich;
