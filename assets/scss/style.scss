@@ -130,6 +130,16 @@ a:hover {
   }
 }
 
+.l-columns {
+  display: flex;
+  @include sp {
+    flex-direction: column;
+    &.reverse {
+      flex-direction: column-reverse;
+    }
+  }
+}
+
 .l-hero {
   width: 100%;
   padding: 80px 0;
