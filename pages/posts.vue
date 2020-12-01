@@ -15,6 +15,7 @@
         <!-- <span v-html="post.fields.body" v-if="typeof post.fields.body === 'string'"></span> -->
       </li>
     </ul>
+    <Notification />
   </div>
 </template>
 

@@ -56,6 +56,7 @@
         </div>
       </div>
 
+      <Notification />
 
       <h2 class="heading">Something New</h2>
       <ul class="list">

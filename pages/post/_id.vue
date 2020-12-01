@@ -4,6 +4,7 @@
       <p class="brand"><nuxt-link to="/">Arrrepentimiento</nuxt-link></p>
     </header>
     <PostDetail :post="post" />
+    <Notification />
   </div>
 </template>
 
