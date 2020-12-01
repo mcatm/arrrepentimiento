@@ -2,6 +2,7 @@
   <div>
     <div class="l-main">
       <Hero />
+      <Notification />
       <h2 class="heading">Something New</h2>
       <ul class="list">
         <li

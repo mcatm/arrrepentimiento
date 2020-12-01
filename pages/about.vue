@@ -5,7 +5,9 @@
 
       <div class="l-hero">
         <div class="heading">
-          <h1 class="brand">Arrrepentimiento</h1>
+          <h1 class="brand">
+            <nuxt-link to="/">Arrrepentimiento</nuxt-link>
+          </h1>
           <p class="subtitle">
             <span>アレペンティミエント</span>
           </p>
@@ -141,6 +143,13 @@ export default {
       font-size: 3.2rem;
       margin: 0;
       line-height: 1;
+      a {
+        text-decoration: none;
+        color: $color-yellow;
+        &:hover {
+          color: $color-red;
+        }
+      }
     }
     .subtitle {
       font-family: $font-normal;
