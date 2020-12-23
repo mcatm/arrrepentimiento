@@ -7,8 +7,8 @@
       <h1 class="title"><a href="https://artist.landr.com/music/672985604100" target="_blank">Birth of Significance</a><small>Available Now</small></h1>
       <ul class="links">
         <li><a href="https://arrrepentimiento.bandcamp.com/album/birth-of-significance" target="_blank">Bandcamp</a></li>
-        <li><a href="https://open.spotify.com/album/7F3Vw6iiexO7RuNMvovVGF">Spotify</a></li>
-        <li><a href="https://music.apple.com/us/album/birth-of-significance-ep/1539766727?uo=4&app=music">Apple Music</a></li>
+        <li><a href="https://open.spotify.com/album/7F3Vw6iiexO7RuNMvovVGF" target="_blank">Spotify</a></li>
+        <li><a href="https://music.apple.com/us/album/birth-of-significance-ep/1539766727?uo=4&app=music" target="_blank">Apple Music</a></li>
         <li><a href="https://artist.landr.com/music/672985604100" target="_blank">Other Platforms</a></li>
       </ul>
     </div>
