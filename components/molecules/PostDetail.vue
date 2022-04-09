@@ -4,27 +4,33 @@
       {{ post.fields.title }}
       <small v-if="post.fields.subtitle">{{ post.fields.subtitle }}</small>
     </h3>
-    <p class="img img-right img-small" v-if="post.fields.media"><img :src=post.fields.media.fields.file.url></p>
-    <div v-html="renderText(post.fields.body)" v-if="typeof post.fields.body === 'object'" class="l-article"></div>
-    <!-- <span v-html="post.fields.body" v-if="typeof post.fields.body === 'string'"></span> -->
+    <p v-if="post.fields.media" class="img img-right img-small">
+      <img :src="post.fields.media.fields.file.url" />
+    </p>
+    <div
+      v-if="typeof post.fields.body === 'object'"
+      class="l-article"
+      v-html="content"
+    />
   </article>
 </template>
 <script lang="ts">
-import { Document } from '@contentful/rich-text-types'
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { buildHTML } from '~/plugins/typography'
 export default {
   props: {
-    post: Object,
+    post: {
+      type: Object,
+      default: () => {},
+    },
   },
-  methods: {
-    renderText(contents: Document) {
-      return documentToHtmlString(contents);
-    }
-  }
+  computed: {
+    content(): string {
+      return buildHTML(this.post.fields.body)
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
-
 .title {
   font-size: 40px;
   font-family: $font-rich;
@@ -36,7 +42,7 @@ export default {
   // text-justify: auto;
   > small {
     display: block;
-    font-size: .72em;
+    font-size: 0.72em;
   }
   @include sp {
     line-height: 1.3;
@@ -50,5 +56,4 @@ export default {
     max-width: 45%;
   }
 }
-
 </style>

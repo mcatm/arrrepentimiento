@@ -10,12 +10,6 @@ body {
   font-size: 16px;
   font-family: $font-normal;
   line-height: 1.8;
-  // word-spacing: 1px;
-  // -ms-text-size-adjust: 100%;
-  // -webkit-text-size-adjust: 100%;
-  // -moz-osx-font-smoothing: grayscale;
-  // -webkit-font-smoothing: antialiased;
-  // box-sizing: border-box;
 }
 
 body:before {
@@ -54,6 +48,7 @@ a:hover {
   padding: 0;
   // padding: 0 $width-gutter;
   max-width: $width-main-l;
+
   @include sp {
     width: 90%;
     // padding: 0 ($width-gutter / 2);
@@ -62,7 +57,8 @@ a:hover {
 
 .l-mainimg {
   width: 100%;
-  > img {
+
+  >img {
     max-width: 100%;
     display: block;
     line-height: 1;
@@ -71,6 +67,7 @@ a:hover {
 }
 
 .l-article {
+  margin-bottom: 30px;
 
   h1,
   h2,
@@ -87,6 +84,15 @@ a:hover {
     padding: 0 0 20px;
   }
 
+  hr {
+    border: none;
+    width: 5vw;
+    margin: 0 0 20px 0;
+    background-color: $color-yellow;
+    height: 1px;
+    text-align: left;
+  }
+
   ul,
   ol,
   dl {
@@ -96,25 +102,28 @@ a:hover {
 
   li {
     margin-bottom: 5px;
+
     &::marker {
       font-size: .66em;
     }
-    > p {
+
+    >p {
       padding: 0;
     }
   }
-  
+
   blockquote {
     padding: 20px 20px 0;
     font-size: .84rem;
     border: 1px solid $color-yellow;
     margin: 0 0 20px;
-    > p {
+
+    >p {
       margin: 0;
       padding-bottom: 20px;
     }
   }
-  
+
   img {
     max-width: 30%;
   }
@@ -124,6 +133,7 @@ a:hover {
 .l-list {
   padding: 0;
   margin: 0;
+
   li {
     list-style: none;
     padding: 0;
@@ -132,8 +142,10 @@ a:hover {
 
 .l-columns {
   display: flex;
+
   @include sp {
     flex-direction: column;
+
     &.reverse {
       flex-direction: column-reverse;
     }
@@ -147,8 +159,4 @@ a:hover {
 
 .l-footer {
   padding: 120px 0 80px;
-  
-  > .container {
-    // border-top: 1px solid $color-gray;
-  }
 }

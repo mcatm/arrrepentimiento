@@ -1,27 +1,59 @@
 <template>
   <section class="notification">
     <p class="image">
-     <a href="https://arrrepentimiento.bandcamp.com/album/birth-of-significance" target="_blank"><img src="~/assets/images/releases/arr007/tape.png"/></a>
+      <a
+        href="https://arrrepentimiento.bandcamp.com/album/birth-of-significance"
+        target="_blank"
+      >
+        <img src="~/assets/images/releases/arr007/tape.png" />
+      </a>
     </p>
     <div class="text">
-      <h1 class="title"><a href="https://artist.landr.com/music/672985604100" target="_blank">Birth of Significance</a><small>Available Now</small></h1>
+      <h1 class="title">
+        <a href="https://artist.landr.com/music/672985604100" target="_blank">
+          Birth of Significance
+        </a>
+        <small>Available Now</small>
+      </h1>
       <ul class="links">
-        <li><a href="https://arrrepentimiento.bandcamp.com/album/birth-of-significance" target="_blank">Bandcamp</a></li>
-        <li><a href="https://open.spotify.com/album/7F3Vw6iiexO7RuNMvovVGF" target="_blank">Spotify</a></li>
-        <li><a href="https://music.apple.com/us/album/birth-of-significance-ep/1539766727?uo=4&app=music" target="_blank">Apple Music</a></li>
-        <li><a href="https://artist.landr.com/music/672985604100" target="_blank">Other Platforms</a></li>
+        <li>
+          <a
+            href="https://arrrepentimiento.bandcamp.com/album/birth-of-significance"
+            target="_blank"
+          >
+            Bandcamp
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://open.spotify.com/album/7F3Vw6iiexO7RuNMvovVGF"
+            target="_blank"
+          >
+            Spotify
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://music.apple.com/us/album/birth-of-significance-ep/1539766727?uo=4&app=music"
+            target="_blank"
+          >
+            Apple Music
+          </a>
+        </li>
+        <li>
+          <a href="https://artist.landr.com/music/672985604100" target="_blank">
+            Other Platforms
+          </a>
+        </li>
       </ul>
     </div>
   </section>
 </template>
 <script lang="ts">
 import Vue from 'vue'
-export default Vue.extend({
-  
-})
+export default Vue.extend({})
 </script>
 <style lang="scss" scoped>
-
 .notification {
   margin-bottom: 80px;
   border: 3px solid $color-yellow;
@@ -63,7 +95,7 @@ export default Vue.extend({
   }
   > small {
     display: block;
-    font-size: .6em;
+    font-size: 0.6em;
   }
 }
 
@@ -76,5 +108,4 @@ export default Vue.extend({
     margin-right: 10px;
   }
 }
-
 </style>

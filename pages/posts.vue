@@ -2,12 +2,11 @@
   <div class="l-main">
     <h2 class="heading">Something New</h2>
     <ul class="l-list">
-      <li
-        v-for="(post, i) of posts"
-        :key="i"
-      >
+      <li v-for="(post, i) of posts" :key="i">
         <h3>
-          <nuxt-link :to="{ name: 'post-id', params: { id: post.sys.id } }">{{ post.fields.title }}</nuxt-link>
+          <nuxt-link :to="{ name: 'post-id', params: { id: post.sys.id } }">{{
+            post.fields.title
+          }}</nuxt-link>
           <!-- <small v-if="post.fields.subtitle">{{ post.fields.subtitle }}</small> -->
         </h3>
         <!-- <p class="img img-right img-small" v-if="post.fields.media"><img :src=post.fields.media.fields.file.url></p>
@@ -20,9 +19,9 @@
 </template>
 
 <script lang="ts">
-import { createClient } from '~/plugins/contentful'
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { Document } from '@contentful/rich-text-types'
+import { createClient } from '~/plugins/contentful'
 
 interface Entry {}
 
@@ -34,40 +33,37 @@ const contentful = createClient()
 
 export default {
   async asyncData() {
-    
-    const res: Response = await contentful
-      .getEntries({
-        limit: 999,
-        content_type: 'post',
-        order: '-sys.createdAt'
-      });
+    const res: Response = await contentful.getEntries({
+      limit: 999,
+      content_type: 'post',
+      order: '-sys.createdAt',
+    })
 
     return {
-      posts: res.items.map( item => {
+      posts: res.items.map((item) => {
         // if( item.fields.media ) {
         //   contentful.getAsset(item.fields.media.sys.id)
         //     .then( asset => item.image = asset.fields )
         //     .catch(console.error)
         // }
         return item
-      })
+      }),
     }
   },
   data() {
     return {
-      posts: []
+      posts: [],
     }
   },
   methods: {
     renderText(contents: Document) {
-      return documentToHtmlString(contents);
-    }
-  }
+      return documentToHtmlString(contents)
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
-
 .heading {
   margin: 0;
   padding: 80px 0 10px;

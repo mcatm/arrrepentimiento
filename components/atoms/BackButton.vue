@@ -8,13 +8,12 @@ import Vue from 'vue'
 export default Vue.extend({
   methods: {
     back() {
-      this.$router.back();
+      this.$router.back()
     },
   },
 })
 </script>
 <style lang="scss" scoped>
-
 .container {
   position: fixed;
   top: 0;
@@ -35,5 +34,4 @@ export default Vue.extend({
     }
   }
 }
-
 </style>

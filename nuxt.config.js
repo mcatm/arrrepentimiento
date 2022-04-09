@@ -22,8 +22,10 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: "We build the modern folk songs by home-recording. The miscellaneous members give them special bodies by the experimental methods that ignore any contexts and add strange atmosphere. Between confusion and silence." },
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-    link: [{ rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;900&family=Ultra&display=swap' }],
+    link: [
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;900&family=Ultra&display=swap' }
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -64,9 +66,9 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-    extend (config, ctx) {
+    extend(config) {
       config.node = {
-        fs: "empty" 
+        fs: "empty"
       }
     }
   },

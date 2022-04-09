@@ -11,41 +11,51 @@
 <script lang="ts">
 import Vue from 'vue'
 import { createClient } from '~/plugins/contentful'
+import PostDetail from '~/components/molecules/PostDetail.vue'
+import Notification from '~/components/molecules/Notification.vue'
+
+type DataType = {
+  post: Response
+}
 
 interface Params {
-  id: string,
+  id: string
 }
 
 interface Response {
-  fields: PostFields,
+  fields: PostFields
 }
 
-interface PostFields {}
+interface PostFields {
+  title: string
+}
 
 const contentful = createClient()
 
 export default Vue.extend({
-  async asyncData({ params }) {
-    
-    const res: Response = await contentful
-      .getEntry(params.id);
+  components: {
+    PostDetail,
+    Notification,
+  },
+  async asyncData({ params }): Promise<DataType> {
+    const res: Response = await contentful.getEntry(params.id)
 
     return {
-      post: res
+      post: res,
     }
   },
-  data() {
+  data(): DataType {
     return {
       post: {
         fields: {
           title: '',
-        }
-      }
+        },
+      },
     }
   },
-  head() {
+  head(): any {
     return {
-      title: this.$data.post.fields.title,// $data挟まないと、変数がセットされていないことになるので、TypeScriptがエラーを吐く
+      title: this.post.fields.title,
       meta: [
         // { hid: 'og:title', property: 'og:title', content: this.post.fields.title },
         // { hid: 'twitter:title', name: 'twitter:title', content: this.post.fields.title },
@@ -54,17 +64,16 @@ export default Vue.extend({
         // { hid: 'twitter:description', name: 'twitter:description', content: getSummary( this.post.fields.title ) },
         // { hid: 'og:url', property: 'og:url', content: this.post.sociallink },
         // { hid: 'twitter:url', name: 'twitter:url', content: this.post.sociallink },
-      ]
+      ],
     }
   },
-});
+})
 </script>
 
 <style lang="scss" scoped>
-
 .heading {
   font-family: $font-rich;
-  font-size: .9rem;
+  font-size: 0.9rem;
   padding: 120px 0 0 0;
   .brand {
     margin: 0;
@@ -79,5 +88,4 @@ export default Vue.extend({
     }
   }
 }
-
 </style>
