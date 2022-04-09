@@ -25,7 +25,7 @@ export default {
   },
   computed: {
     content(): string {
-      return buildHTML(this.$data.post.fields.body)
+      return buildHTML((this as any).post.fields.body)
     },
   },
 }
