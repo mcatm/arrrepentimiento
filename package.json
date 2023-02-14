@@ -1,58 +1,25 @@
 {
-  "name": "arrrepentimiento",
-  "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": "16"
+  },
   "scripts": {
-    "dev": "nuxt",
     "build": "nuxt build",
-    "start": "nuxt start",
+    "dev": "nuxt dev --port=3555",
     "generate": "nuxt generate",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
-    "lint": "yarn lint:js",
-    "test": "jest"
-  },
-  "lint-staged": {
-    "*.{js,vue}": "eslint"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "dependencies": {
-    "@contentful/rich-text-html-renderer": "^14.1.2",
-    "@nuxt/typescript-runtime": "^2.0.0",
-    "@nuxtjs/axios": "^5.12.2",
-    "@nuxtjs/google-analytics": "^2.4.0",
-    "contentful": "^7.14.8",
-    "core-js": "^3.6.5",
-    "dotenv": "^8.2.0",
-    "fs": "^0.0.1-security",
-    "nuxt": "^2.14.6"
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@contentful/rich-text-types": "^14.1.2",
-    "@nuxt/types": "^2.14.6",
-    "@nuxt/typescript-build": "^2.0.3",
-    "@nuxtjs/eslint-config": "^3.1.0",
-    "@nuxtjs/eslint-config-typescript": "^3.0.0",
-    "@nuxtjs/eslint-module": "^2.0.0",
-    "@nuxtjs/style-resources": "^1.0.0",
-    "@vue/test-utils": "^1.1.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
-    "babel-jest": "^26.5.0",
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
-    "eslint-plugin-nuxt": "^1.0.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "husky": "^4.3.0",
-    "jest": "^26.5.0",
-    "lint-staged": "^10.4.0",
-    "node-sass": "^5.0.0",
-    "prettier": "^2.1.2",
-    "sass-loader": "^10.0.5",
-    "ts-jest": "^26.4.1",
-    "vue-jest": "^3.0.4"
+    "@nuxtjs/style-resources": "^1.2.1",
+    "node-sass": "^8.0.0",
+    "nuxt": "3.0.0-rc.12",
+    "sass": "^1.57.1",
+    "sass-loader": "^13.2.0"
+  },
+  "dependencies": {
+    "@vueuse/core": "^9.11.1",
+    "dayjs": "^1.11.7",
+    "vue-gtag": "^2.0.1"
   }
 }

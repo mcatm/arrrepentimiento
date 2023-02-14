@@ -21,7 +21,7 @@ body:before {
   z-index: -1;
   width: 100%;
   height: 100vh;
-  background: url('~assets/images/bg.gif') 50% 50% no-repeat;
+  background: url('~/assets/images/bg.gif') 50% 50% no-repeat;
   background-size: cover;
 }
 
@@ -33,37 +33,6 @@ a:visited {
 a:hover {
   color: $color-yellow;
   text-decoration: none;
-}
-
-.l-container {
-  width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-}
-
-.l-main,
-.l-footer {
-  margin: 0 auto;
-  width: 80%;
-  padding: 0;
-  // padding: 0 $width-gutter;
-  max-width: $width-main-l;
-
-  @include sp {
-    width: 90%;
-    // padding: 0 ($width-gutter / 2);
-  }
-}
-
-.l-mainimg {
-  width: 100%;
-
-  >img {
-    max-width: 100%;
-    display: block;
-    line-height: 1;
-    margin: 0 auto;
-  }
 }
 
 .l-article {
@@ -130,16 +99,6 @@ a:hover {
 
 }
 
-.l-list {
-  padding: 0;
-  margin: 0;
-
-  li {
-    list-style: none;
-    padding: 0;
-  }
-}
-
 .l-columns {
   display: flex;
 
@@ -152,11 +111,8 @@ a:hover {
   }
 }
 
-.l-hero {
-  width: 100%;
-  padding: 80px 0;
-}
-
-.l-footer {
-  padding: 120px 0 80px;
+.icon {
+  height: 1em;
+  display: inline;
+  vertical-align: -.125em;
 }
