@@ -19,7 +19,7 @@ export type Work = {
   tracks?: Track[];
   streamings?: Link[];
   stores?: Link[];
-  releasedAt: Dayjs;
+  releasedAt?: Dayjs;
   isDrafted?: boolean;
   isPicked?: boolean;
 }

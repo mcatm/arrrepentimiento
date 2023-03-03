@@ -6,7 +6,7 @@
         <div v-if="thumbnail" class="thumbnail">
           <img :src="thumbnail" />
         </div>
-        <div v-if="work.stores" class="links">
+        <div v-if="work.stores && work.stores.length > 0" class="links">
           <h4 class="label">Stores</h4>
           <ul>
             <li v-for="link of work.stores.filter(store => !store.notAvailable)">
@@ -14,7 +14,7 @@
             </li>
           </ul>
         </div>
-        <div v-if="work.streamings" class="links">
+        <div v-if="work.streamings && work.streamings.length > 0" class="links">
           <h4 class="label">Streaming</h4>
           <ul>
             <li v-for="link of work.streamings">
@@ -30,8 +30,10 @@
         </div>
         <OrganismTrackList v-if="work.tracks" :tracks="work.tracks" class="tracks" />
         <dl class="data">
-          <dt>Released</dt>
-          <dd>{{ work.releasedAt.format('YYYY-MM-DD') || 'Not Available' }}</dd>
+          <template v-if="work?.releasedAt">
+            <dt>Released</dt>
+            <dd>{{ work.releasedAt.format('YYYY-MM-DD') || 'Not Available' }}</dd>
+          </template>
           <template v-if="work.length">
             <dt>Total Length</dt>
             <dd>{{ work.length || 'Not Available' }}</dd>
