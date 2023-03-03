@@ -1,6 +1,7 @@
 ﻿<template>
   <div v-if="work" class="work">
     <div v-if="work.thumbnail" class="thumbnail"><img :src="thumbnail" /></div>
+    <div v-else class="thumbnail noimage" />
     <div class="content">
       <small>{{ work.number }}</small>
       <h3 class="title">{{ work.title }}</h3>
@@ -36,6 +37,10 @@ const thumbnail = computed(() => {
   >img {
     width: 100%;
     height: auto;
+  }
+
+  &.noimage {
+    background-color: $color-red;
   }
 
   @include sp {
