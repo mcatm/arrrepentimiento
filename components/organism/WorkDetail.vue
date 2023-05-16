@@ -26,13 +26,13 @@
       <div class="stats">
         <p class="number">{{ work.number }}</p>
         <div v-if="description" class="description">
-          <p v-for="paragraph, i of description" :key="`${work.id}-description-${i}`">{{ paragraph }}</p>
+          <BlockText :lines="description" />
         </div>
         <OrganismTrackList v-if="work.tracks" :tracks="work.tracks" class="tracks" />
         <dl class="data">
           <template v-if="work?.releasedAt">
             <dt>Released</dt>
-            <dd>{{ work.releasedAt.format('YYYY-MM-DD') || 'Not Available' }}</dd>
+            <dd>{{ work.releasedAt.format(work.releaseDateFormat || 'YYYY-MM-DD') || 'Not Available' }}</dd>
           </template>
           <template v-if="work.length">
             <dt>Total Length</dt>

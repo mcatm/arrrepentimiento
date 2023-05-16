@@ -10,10 +10,10 @@ import { arr008 } from "./arr008";
 import { arr009 } from "./arr009";
 import { arr010 } from "./arr010";
 import { arr011 } from "./arr011";
-// import { arr012 } from "./arr012";
+import { arr012 } from "./arr012";
 
 export const works: Work[] = [
-  // arr012,
+  arr012,
   arr011,
   arr010,
   arr009,

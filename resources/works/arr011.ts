@@ -1,5 +1,5 @@
 ﻿import { Work } from "~~/types/work";
-// import thumbnail from '~/assets/images/works/arr008/cover.jpg';
+import thumbnail from '~/assets/images/works/arr011/cover.jpg';
 import { useWorkLink } from "~~/composables/utils/useWorkLink";
 
 const id = 'syllable-3';
@@ -9,6 +9,7 @@ export const arr011: Work = {
   number: 'arr011',
   title: 'Syllable #3',
   type: 'single',
+  thumbnail,
   formats: ['streaming'],
   status: 'pre-release',
   to: useWorkLink(id),
@@ -34,7 +35,7 @@ export const arr011: Work = {
   // releasedAt: dayjs('2022-01-27'),
   tracks: [
     'Climb on a Bough',
-    '(Untitled)',
-    '(Untitled)',
+    'Confession',
+    'Toit Vert',
   ],
 }
