@@ -21,4 +21,10 @@ export const arr006: Work = {
     'Caught You, Caught Me',
     'Aims Against Me',
   ],
+  videos: [
+    {
+      title: 'Caught You, Caught Me',
+      id: 'gyEci7b38oM',
+    }
+  ]
 }

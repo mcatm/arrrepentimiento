@@ -29,6 +29,12 @@ export const arr007: Work = {
     'Sequence Is Ready',
     'Pollen',
   ],
+  videos: [
+    {
+      title: 'Birds on the Moon',
+      id: 'zv_cCaVGiug',
+    },
+  ],
   stores: [
     {
       label: 'のら珈琲',
