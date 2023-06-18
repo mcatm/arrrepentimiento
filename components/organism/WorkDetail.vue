@@ -41,6 +41,13 @@
         </dl>
       </div>
     </div>
+    <div v-if="work.videos" class="video">
+      <ul>
+        <li v-for="video in work.videos">
+          <OrganismVideo :video="video" />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -68,6 +75,7 @@ const description = computed(() => {
 .content {
   font-family: $font-rich;
   display: flex;
+  margin-bottom: 25px;
 
   .side {
     width: 360px;
@@ -153,6 +161,18 @@ const description = computed(() => {
 
     >li {
       padding-bottom: 10px;
+    }
+  }
+}
+
+.video {
+  >ul {
+    list-style: none;
+    margin: 0 0 15px 0;
+    padding: 0;
+
+    >li {
+      margin-bottom: 10px;
     }
   }
 }

@@ -41,15 +41,40 @@ export const arr012: Work = {
   ],
   videos: [
     {
+      title: 'The Wave',
+      id: '638hw8jwe5E',
+    },
+    {
       title: 'Your Property',
-      url: '',
+      id: 'LRDvt_Lshvw',
     }
   ],
   stores: [
     // {
-    //   type: 'bandcamp',
-    //   to: 'https://arrrepentimiento.bandcamp.com/album/birth-of-significance',
+    //   label: 'のら珈琲',
+    //   caption: '（秋田）',
+    //   type: 'store',
+    //   to: 'https://shop.nora-coffee.com/items/37502706',
+    //   notAvailable: true,
     // },
+    {
+      label: 'Reconquista',
+      type: 'store',
+      to: 'https://www.reconquista.biz/SHOP/arr012.html',
+      // notAvailable: true,
+    },
+    {
+      label: 'Marking Records',
+      caption: '（松本）',
+      type: 'store',
+      to: 'https://shop.markingrecords.com/items/75654328',
+      // notAvailable: true,
+    },
+    {
+      type: 'bandcamp',
+      to: 'https://arrrepentimiento.bandcamp.com/',
+      notAvailable: true,
+    },
   ],
   // streamings: [
   //   {
