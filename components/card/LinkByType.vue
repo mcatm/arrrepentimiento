@@ -56,6 +56,10 @@ const icon = computed(() => {
 a {
   text-decoration: none;
   color: $color-yellow;
+
+  &:hover {
+    color: $color-red;
+  }
 }
 
 .caption {

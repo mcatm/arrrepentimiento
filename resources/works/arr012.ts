@@ -72,26 +72,26 @@ export const arr012: Work = {
     },
     {
       type: 'bandcamp',
-      to: 'https://arrrepentimiento.bandcamp.com/',
-      notAvailable: true,
+      to: 'https://arrrepentimiento.bandcamp.com/album/hesitation-in-syllables',
+      notAvailable: false,
     },
   ],
-  // streamings: [
-  //   {
-  //     type: 'bandcamp',
-  //     to: 'https://arrrepentimiento.bandcamp.com/album/birth-of-significance',
-  //   },
-  //   {
-  //     type: 'spotify',
-  //     to: 'https://open.spotify.com/album/7F3Vw6iiexO7RuNMvovVGF',
-  //   },
-  //   {
-  //     type: 'itunes',
-  //     to: 'https://music.apple.com/us/album/birth-of-significance-ep/1539766727?uo=4&app=music',
-  //   },
-  //   {
-  //     type: 'other',
-  //     to: 'https://artists.landr.com/672985604100',
-  //   }
-  // ],
+  streamings: [
+    {
+      type: 'bandcamp',
+      to: 'https://arrrepentimiento.bandcamp.com/album/hesitation-in-syllables',
+    },
+    //   {
+    //     type: 'spotify',
+    //     to: 'https://open.spotify.com/album/7F3Vw6iiexO7RuNMvovVGF',
+    //   },
+    //   {
+    //     type: 'itunes',
+    //     to: 'https://music.apple.com/us/album/birth-of-significance-ep/1539766727?uo=4&app=music',
+    //   },
+    //   {
+    //     type: 'other',
+    //     to: 'https://artists.landr.com/672985604100',
+    //   }
+  ],
 }
