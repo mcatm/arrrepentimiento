@@ -1,6 +1,5 @@
 ﻿<template>
   <BlockFooter>
-    <OrganismTweets />
     <div class="container">
       <ul class="column internal">
         <li v-for="link of internalLinks" :key="link.url">
