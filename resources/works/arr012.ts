@@ -81,23 +81,23 @@ export const arr012: Work = {
       type: 'bandcamp',
       to: 'https://arrrepentimiento.bandcamp.com/album/hesitation-in-syllables',
     },
-    //   {
-    //     type: 'spotify',
-    //     to: 'https://open.spotify.com/album/7F3Vw6iiexO7RuNMvovVGF',
-    //   },
-    //   {
-    //     type: 'itunes',
-    //     to: 'https://music.apple.com/us/album/birth-of-significance-ep/1539766727?uo=4&app=music',
-    //   },
-    //   {
-    //     type: 'other',
-    //     to: 'https://artists.landr.com/672985604100',
-    //   }
+    {
+      type: 'spotify',
+      to: 'https://open.spotify.com/album/3tE4LTivzwRPlmPZuawQPc',
+    },
+    {
+      type: 'itunes',
+      to: 'https://music.apple.com/jp/album/hesitation-in-syllables/1697496742?at=1l3vpUI&ct=LFV_c5df2cc4de343cf24186d5927dd12be1&itsct=catchall_p2&itscg=30440&ls=1',
+    },
+    {
+      type: 'other',
+      to: 'https://artists.landr.com/055120855146',
+    }
   ],
   articles: [
     {
       type: 'other',
-      to: 'https://musicmagazine.jp/mm',
+      to: 'http://musicmagazine.jp/mm',
       label: 'ミュージック・マガジン2023年8月号',
     },
     {
