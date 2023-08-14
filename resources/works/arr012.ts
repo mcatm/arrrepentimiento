@@ -94,4 +94,29 @@ export const arr012: Work = {
     //     to: 'https://artists.landr.com/672985604100',
     //   }
   ],
+  articles: [
+    {
+      type: 'other',
+      to: 'https://musicmagazine.jp/mm',
+      label: 'ミュージック・マガジン2023年8月号',
+    },
+    {
+      type: 'other',
+      to: 'https://inmemoryofjohnpeel.com/2023/08/12/in-memory-of-john-peel-show-230811-podcast-playlist/',
+      sitename: 'In Memory of John Peel',
+      label: 'Episode 908: What’s the next big thing?',
+    },
+    {
+      type: 'other',
+      to: 'https://inmemoryofjohnpeel.com/2023/07/08/in-memory-of-john-peel-show-230707-podcast-playlist/',
+      sitename: 'In Memory of John Peel',
+      label: 'Episode 902: That’s not the way to handle an LP!',
+    },
+    {
+      type: 'other',
+      to: 'https://kpiss.fm/episode/clean-nice-quiet-07-29-2023/',
+      sitename: 'CLEAN NICE QUIET',
+      caption: '(07.29.2023)'
+    },
+  ],
 }

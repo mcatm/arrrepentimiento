@@ -92,4 +92,12 @@ export const arr007: Work = {
       to: 'https://artists.landr.com/672985604100',
     }
   ],
+  articles: [
+    {
+      type: 'other',
+      sitename: 'Tokyo Dross',
+      label: 'Notable Japanese releases from 2020, in brief',
+      to: 'http://tokyodross.blogspot.com/2020/12/new-music-from-japan-winter-edition.html',
+    }
+  ],
 }

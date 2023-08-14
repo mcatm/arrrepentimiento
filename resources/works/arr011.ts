@@ -31,7 +31,7 @@ export const arr011: Work = {
     //   to: 'https://artists.landr.com/692531292926',
     // },
   ],
-  isPicked: true,
+  isPicked: false,
   // releasedAt: dayjs('2022-01-27'),
   tracks: [
     'Climb on a Bough',
