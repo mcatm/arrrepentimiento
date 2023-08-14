@@ -5,5 +5,6 @@ export type Link = {
   type: LinkType;
   label?: string;
   caption?: string;
+  sitename?: string;
   notAvailable?: boolean;
 }

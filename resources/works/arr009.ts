@@ -14,7 +14,7 @@ export const arr009: Work = {
   status: 'released',
   to: useWorkLink(id),
   thumbnail,
-  isPicked: true,
+  isPicked: false,
   streamings: [
     {
       type: 'bandcamp',

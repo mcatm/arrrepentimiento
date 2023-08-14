@@ -48,6 +48,14 @@
         </li>
       </ul>
     </div>
+    <div v-if="work.articles" class="article">
+      <BlockHeading>Reviews & Articles</BlockHeading>
+      <ul>
+        <li v-for="article in work.articles">
+          <CardLink :link="article" />
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 <script lang="ts" setup>
