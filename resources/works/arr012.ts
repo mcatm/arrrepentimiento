@@ -97,7 +97,12 @@ export const arr012: Work = {
   articles: [
     {
       type: 'other',
-      to: 'http://musicmagazine.jp/mm',
+      to: 'http://musicmagazine.jp/mm/mm202309.html',
+      label: 'ミュージック・マガジン2023年9月号',
+    },
+    {
+      type: 'other',
+      to: 'http://musicmagazine.jp/mm/mm202308.html',
       label: 'ミュージック・マガジン2023年8月号',
     },
     {
@@ -117,6 +122,12 @@ export const arr012: Work = {
       to: 'https://kpiss.fm/episode/clean-nice-quiet-07-29-2023/',
       sitename: 'CLEAN NICE QUIET',
       caption: '(07.29.2023)'
+    },
+    {
+      type: 'other',
+      to: 'https://kpiss.fm/episode/clean-nice-quiet-09-23-2023/',
+      sitename: 'CLEAN NICE QUIET',
+      caption: '(09.23.2023)'
     },
   ],
 }
