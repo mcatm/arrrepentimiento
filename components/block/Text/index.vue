@@ -1,33 +1,24 @@
 ﻿<template>
-  <template v-for="line of lines">
-    <p v-if="isParagraph(line)" v-html="line" />
-    <h2 v-if="typeof line !== 'string' && isHeading(line)" v-html="line?.value" />
+  <template v-for="(line, i) in lines">
+    <BlockTextParagraph v-if="textType(line) === 'paragraph'" :line="line" />
+    <BlockTextDelimiter v-if="textType(line) === 'delimiter'" :line="line" />
+    <BlockTextImage v-if="textType(line) === 'image'" :line="line" />
+    <BlockTextLink v-if="textType(line) === 'link'" :line="line" />
+    <BlockTextList v-if="textType(line) === 'list'" :line="line" />
+    <BlockTextWork v-if="textType(line) === 'work'" :line="line" />
+    <p v-if="textType(line)=== 'youtube'"><OrganismVideo :video="line" /></p>
   </template>
 </template>
 <script setup lang="ts">
 import { TextLine } from '~~/types/text';
 
 const props = defineProps<{
-  // id: string;
   lines: TextLine[];
 }>();
 
 const lines = computed(() => props.lines || []);
-// const id = computed(() => props.id || '');
-
-const isParagraph = (line: TextLine) => typeof line === 'string' || line.type === 'paragraph';
-const isHeading = (line: TextLine) => typeof line !== 'string' && (line) && line?.type === 'heading';
-
-const paragraph = (line: TextLine) => {
-  if (typeof line === 'string') return `<p>${line}</p>`;
-
-  switch (line.type) {
-    case 'heading':
-      return `<h2>${line}</h2>`;
-    case 'paragraph':
-    default:
-      return `<p>${line}</p>`;
-  }
-}
-
+const textType = (line: TextLine) => {
+  if (typeof line === 'string' || ['paragraph', 'heading', 'subheading'].includes(line.type)) return 'paragraph';
+  return line.type;
+};
 </script>
