@@ -44,6 +44,13 @@ export const arr007: Work = {
       notAvailable: true,
     },
     {
+      label: 'Reconquista',
+      caption: '（On Sale）',
+      type: 'store',
+      to: 'https://www.reconquista.biz/SHOP/arr07_12.html',
+      // notAvailable: true,
+    },
+    {
       label: 'Record Shop Reconquista',
       type: 'store',
       to: 'https://www.reconquista.biz/SHOP/arr007.html',
@@ -61,6 +68,7 @@ export const arr007: Work = {
       caption: '（浜松）',
       type: 'store',
       to: 'https://www.sonerecords.com/?pid=156191920',
+      notAvailable: true,
     },
     {
       label: 'MarQ Coffee',
