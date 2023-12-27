@@ -1,7 +1,7 @@
 ﻿<template>
-  <a v-if="link" :href="link.to" target="_blank">
+  <nuxt-link v-if="link" :to="link.to" :target="target">
     {{ label }}<small v-if="caption" class="caption">{{ caption }}</small>
-  </a>
+  </nuxt-link>
 </template>
 <script lang="ts" setup>
 import { Link } from '~~/types/link';
@@ -31,7 +31,7 @@ const label = computed(() => {
 
   return string;
 });
-const caption = computed(() => props.link?.caption || undefined);
+const caption = computed(() => link.value?.caption || undefined);
 const icon = computed(() => {
   if (!props.link || !props.link?.type) return undefined;
   switch (props.link?.type) {
@@ -45,7 +45,9 @@ const icon = computed(() => {
       return IconStore;
   }
   return IconExternalLink;
-})
+});
+const isExternal = computed(() => link.value?.to.match(/^http/));
+const target = computed(() => isExternal.value ? '_blank' : '_self');
 
 </script>
 <style lang="scss" scoped>

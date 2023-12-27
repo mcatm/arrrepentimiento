@@ -59,16 +59,23 @@ export const arr012: Work = {
     // },
     {
       label: 'Reconquista',
+      caption: '（On Sale）',
+      type: 'store',
+      to: 'https://www.reconquista.biz/SHOP/arr07_12.html',
+      // notAvailable: true,
+    },
+    {
+      label: 'Reconquista',
       type: 'store',
       to: 'https://www.reconquista.biz/SHOP/arr012.html',
-      // notAvailable: true,
+      notAvailable: true,
     },
     {
       label: 'Marking Records',
       caption: '（松本）',
       type: 'store',
       to: 'https://shop.markingrecords.com/items/75654328',
-      // notAvailable: true,
+      notAvailable: true,
     },
     {
       type: 'bandcamp',
@@ -95,6 +102,11 @@ export const arr012: Work = {
     }
   ],
   articles: [
+    {
+      type: 'other',
+      to: '/note/production-note-for-hesitation-in-syllables',
+      label: 'プロダクションノート',
+    },
     {
       type: 'other',
       to: 'http://musicmagazine.jp/mm/mm202309.html',

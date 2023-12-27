@@ -35,8 +35,9 @@ a:hover {
   text-decoration: none;
 }
 
-.l-article {
-  margin-bottom: 30px;
+.article {
+  // margin-bottom: 30px;
+  font-family: $font-normal;
 
   h1,
   h2,
@@ -46,6 +47,28 @@ a:hover {
   h6 {
     margin: 0;
     padding: 0 0 20px;
+  }
+
+  h1 {
+    font-family: $font-rich;
+    font-size: 4rem;
+  }
+
+  h2 {
+    font-family: $font-rich;
+    font-size: 2.2rem;
+  }
+
+  h3 {
+    font-size: 1.8rem;
+  }
+
+  h4 {
+    font-size: 1.4rem;
+  }
+
+  h5, h6 {
+    font-size: 1.2rem;
   }
 
   p {
@@ -94,7 +117,8 @@ a:hover {
   }
 
   img {
-    max-width: 30%;
+    // max-width: 30%;
+    max-width: 100%;
   }
 
 }
