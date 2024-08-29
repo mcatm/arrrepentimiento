@@ -1,5 +1,7 @@
 ﻿<template>
   <BlockFooter>
+    <OrganismPostList :isPickedOnly="false" />
+    <BannerBirthOfSignificance />
     <div class="container">
       <ul class="column internal">
         <li v-for="link of internalLinks" :key="link.url">
@@ -15,7 +17,7 @@
   </BlockFooter>
 </template>
 <script lang="ts" setup>
-import { internalLinks, externalLinks } from '~/resources/links';
+import { internalLinks, externalLinks } from "~/resources/links";
 </script>
 <style lang="scss" scoped>
 .container {
@@ -27,7 +29,7 @@ import { internalLinks, externalLinks } from '~/resources/links';
   padding: 0 50px 0 0;
   margin: 0;
 
-  >li {
+  > li {
     font-family: $font-rich;
     list-style: none;
   }
@@ -37,7 +39,7 @@ import { internalLinks, externalLinks } from '~/resources/links';
   }
 
   &.external {
-    font-size: .84rem;
+    font-size: 0.84rem;
 
     a,
     a:visited {

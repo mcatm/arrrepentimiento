@@ -26,5 +26,5 @@ export type Work = {
   releaseDateFormat?: string;
   isDrafted?: boolean;
   isPicked?: boolean;
-  articles?: (Link | string)[];
+  articles?: Link[];
 }
