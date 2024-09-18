@@ -44,7 +44,8 @@ export const post001: Post = {
     },
     {
       label: "Act",
-      value: "Arrrepentimiento / Tamuraryo with Human Coda / Ukas",
+      value:
+        "Arrrepentimiento / Tamuraryo with Human Coda / Ukas / HU？KOKORO / Kommune",
     },
   ],
 };
