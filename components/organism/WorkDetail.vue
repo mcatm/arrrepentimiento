@@ -9,7 +9,9 @@
         <div v-if="work.stores && work.stores.length > 0" class="links">
           <h4 class="label">Stores</h4>
           <ul>
-            <li v-for="link of work.stores.filter(store => !store.notAvailable)">
+            <li
+              v-for="link of work.stores.filter((store) => !store.notAvailable)"
+            >
               <CardLinkByType :link="link" />
             </li>
           </ul>
@@ -28,15 +30,25 @@
         <div v-if="description" class="description">
           <BlockText :lines="description" />
         </div>
-        <OrganismTrackList v-if="work.tracks" :tracks="work.tracks" class="tracks" />
+        <OrganismTrackList
+          v-if="work.tracks"
+          :tracks="work.tracks"
+          class="tracks"
+        />
         <dl class="data">
           <template v-if="work?.releasedAt">
             <dt>Released</dt>
-            <dd>{{ work.releasedAt.format(work.releaseDateFormat || 'YYYY-MM-DD') || 'Not Available' }}</dd>
+            <dd>
+              {{
+                work.releasedAt.format(
+                  work.releaseDateFormat || "YYYY-MM-DD"
+                ) || "Not Available"
+              }}
+            </dd>
           </template>
           <template v-if="work.length">
             <dt>Total Length</dt>
-            <dd>{{ work.length || 'Not Available' }}</dd>
+            <dd>{{ work.length || "Not Available" }}</dd>
           </template>
         </dl>
       </div>
@@ -48,7 +60,7 @@
         </li>
       </ul>
     </div>
-    <div v-if="work.articles" class="article">
+    <div v-if="work.articles && work.articles.length > 0" class="article">
       <BlockHeading>Reviews & Articles</BlockHeading>
       <ul>
         <li v-for="article in work.articles">
@@ -59,21 +71,21 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { Work } from '~~/types/work';
+import { Work } from "~~/types/work";
 
 const props = defineProps<{
-  work: Work
+  work: Work;
 }>();
 
 const work = computed(() => props.work || undefined);
 
 const thumbnail = computed(() => {
-  return work && work.value.thumbnail ? work.value.thumbnail : '';
+  return work && work.value.thumbnail ? work.value.thumbnail : "";
 });
 
 const description = computed(() => {
   return work && work.value.description ? work.value.description : undefined;
-})
+});
 </script>
 <style lang="scss" scoped>
 .work {
@@ -105,7 +117,7 @@ const description = computed(() => {
     }
   }
 
-  >small {
+  > small {
     display: block;
     font-size: 0.8rem;
     line-height: 1.2;
@@ -120,7 +132,7 @@ const description = computed(() => {
   line-height: 1;
   width: 360px;
 
-  >img {
+  > img {
     width: 100%;
     height: auto;
     // border: 1px solid $color-yellow;
@@ -154,7 +166,7 @@ const description = computed(() => {
   margin: 0;
   padding-top: 20px;
 
-  >.label {
+  > .label {
     font-size: 12px;
     line-height: 1;
     margin: 0 0 15px;
@@ -167,19 +179,19 @@ const description = computed(() => {
     padding: 0;
     font-size: 18px;
 
-    >li {
+    > li {
       padding-bottom: 10px;
     }
   }
 }
 
 .video {
-  >ul {
+  > ul {
     list-style: none;
     margin: 0 0 15px 0;
     padding: 0;
 
-    >li {
+    > li {
       margin-bottom: 10px;
     }
   }
