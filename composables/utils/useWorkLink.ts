@@ -1,1 +1,0 @@
-﻿export const useWorkLink = (id: string) => `/work/${id}`;

@@ -1,42 +1,58 @@
-# Nuxt 3 Minimal Starter
+# Arrrepentimiento
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A static site for the collective **Arrrepentimiento**, built with React, React Router,
+[vite-react-ssg](https://github.com/daydreamer-riri/vite-react-ssg) for pre-rendering,
+and [vanilla-extract](https://vanilla-extract.style/) for styling.
+
+There is no dynamic content — every route is pre-rendered to static HTML at build time and
+can be deployed to any static host (JamStack).
 
 ## Setup
 
-Make sure to install the dependencies:
-
 ```bash
-# yarn
 yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install
 ```
 
-## Development Server
+## Development
 
-Start the development server on http://localhost:3000
+Start the dev server on http://localhost:3555
 
 ```bash
-npm run dev
+yarn dev
 ```
 
-## Production
+## Build
 
-Build the application for production:
+Generate the static site into `dist/`:
 
 ```bash
-npm run build
+yarn build   # alias: yarn generate
 ```
 
-Locally preview production build:
+Preview the production build locally:
 
 ```bash
-npm run preview
+yarn preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Project structure
+
+```
+src/
+  assets/        images (bg, covers, collages, …)
+  components/    block / card / organism UI + icons, media embeds, text renderer
+  lib/           data access (getWorks/getPosts/getNotes) and link helpers
+  pages/         route components (Home, Works, About, Work/Post/Note detail, …)
+  resources/     static content data (works, posts, notes, links)
+  styles/        vanilla-extract theme tokens + global styles
+  types/         shared TypeScript types
+  routes.tsx     React Router route table (+ getStaticPaths for SSG)
+  main.tsx       vite-react-ssg entry
+```
+
+## Notes
+
+- Routes: `/`, `/about`, `/works`, `/work/:id`, `/post/:id`, `/note/:id`, `/redirect/arr012`.
+- Per-page `<title>` is managed by `PageHead` (react-helmet-async, via vite-react-ssg).
+- Google Analytics (gtag.js) is loaded in `index.html`; page views are sent on route change
+  from `Layout.tsx`.
