@@ -1,7 +1,7 @@
-﻿import { Work } from "~/types/work";
+﻿import dayjs from 'dayjs';
 import thumbnail from '~/assets/images/works/arr007/cover.jpg';
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'birth-of-significance';
 
@@ -16,7 +16,7 @@ export const arr007: Work = {
   thumbnail,
   description: [
     'Modern folk songs through home-recording. Our diverse team members infuse them with unique qualities through experimental methods that disregard traditional contexts and add a surreal atmosphere. They evoke a feeling between confusion and silence.',
-    '自宅録音を基本にした実験音楽とモダンフォークの光輝なる融合。知る人ぞ知るエディットサイケバンドdrawing4-5を母体とするコレクティブ「Arrrepentimiento（アレペンティミエント）」初のフィジカルリリースは、ノイズ、コラージュ、フィールドレコーディングといった劇薬を日用品のように扱った当然の帰結としての事故音楽。混沌と沈黙の狭間を不穏に駆け抜けるモダンで捻れたフォークミュージック。'
+    '自宅録音を基本にした実験音楽とモダンフォークの光輝なる融合。知る人ぞ知るエディットサイケバンドdrawing4-5を母体とするコレクティブ「Arrrepentimiento（アレペンティミエント）」初のフィジカルリリースは、ノイズ、コラージュ、フィールドレコーディングといった劇薬を日用品のように扱った当然の帰結としての事故音楽。混沌と沈黙の狭間を不穏に駆け抜けるモダンで捻れたフォークミュージック。',
   ],
   isPicked: true,
   releasedAt: dayjs('2020-11-30'),
@@ -98,7 +98,7 @@ export const arr007: Work = {
     {
       type: 'other',
       to: 'https://artists.landr.com/672985604100',
-    }
+    },
   ],
   articles: [
     {
@@ -106,6 +106,6 @@ export const arr007: Work = {
       sitename: 'Tokyo Dross',
       label: 'Notable Japanese releases from 2020, in brief',
       to: 'http://tokyodross.blogspot.com/2020/12/new-music-from-japan-winter-edition.html',
-    }
+    },
   ],
-}
+};

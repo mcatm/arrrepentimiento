@@ -1,7 +1,7 @@
-﻿import { Work } from "~/types/work";
+﻿import dayjs from 'dayjs';
 import thumbnail from '~/assets/images/works/arr008/cover.jpg';
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'syllable-1';
 
@@ -34,8 +34,5 @@ export const arr008: Work = {
   ],
   isPicked: false,
   releasedAt: dayjs('2022-01-27'),
-  tracks: [
-    'Your Property',
-    'Sort of Tautology',
-  ],
-}
+  tracks: ['Your Property', 'Sort of Tautology'],
+};

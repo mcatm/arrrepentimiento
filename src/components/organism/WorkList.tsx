@@ -1,6 +1,6 @@
-import { getWorks } from '~/lib/data';
-import SmartLink from '~/components/SmartLink';
 import CardWork from '~/components/card/CardWork';
+import SmartLink from '~/components/SmartLink';
+import { getWorks } from '~/lib/data';
 import * as s from './organism.css';
 
 export default function WorkList({
@@ -11,8 +11,7 @@ export default function WorkList({
   excerptIds?: string[];
 }) {
   const works = getWorks().filter(
-    (work) =>
-      (!excerptIds || !excerptIds.includes(work.id)) && (!isPickedOnly || work.isPicked),
+    (work) => !excerptIds?.includes(work.id) && (!isPickedOnly || work.isPicked),
   );
 
   return (

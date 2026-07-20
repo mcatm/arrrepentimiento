@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import Header from '~/components/organism/Header';
 import Footer from '~/components/organism/Footer';
+import Header from '~/components/organism/Header';
 import { container } from './layout.css';
 
 export default function Layout() {

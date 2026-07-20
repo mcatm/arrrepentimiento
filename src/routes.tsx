@@ -1,14 +1,14 @@
 import type { RouteRecord } from 'vite-react-ssg';
 import Layout from '~/Layout';
-import Home from '~/pages/Home';
-import Works from '~/pages/Works';
+import { getNotes, getPosts, getWorks } from '~/lib/data';
 import About from '~/pages/About';
-import WorkPage from '~/pages/WorkPage';
-import PostPage from '~/pages/PostPage';
+import Home from '~/pages/Home';
 import NotePage from '~/pages/NotePage';
-import RedirectArr012 from '~/pages/RedirectArr012';
 import NotFound from '~/pages/NotFound';
-import { getWorks, getPosts, getNotes } from '~/lib/data';
+import PostPage from '~/pages/PostPage';
+import RedirectArr012 from '~/pages/RedirectArr012';
+import WorkPage from '~/pages/WorkPage';
+import Works from '~/pages/Works';
 
 export const routes: RouteRecord[] = [
   {

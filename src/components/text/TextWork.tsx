@@ -1,8 +1,8 @@
-import type { TextLineWork } from '~/types/text';
-import { getWork } from '~/lib/data';
-import SmartLink from '~/components/SmartLink';
 import LinkByType from '~/components/card/LinkByType';
 import TrackList from '~/components/organism/TrackList';
+import SmartLink from '~/components/SmartLink';
+import { getWork } from '~/lib/data';
+import type { TextLineWork } from '~/types/text';
 import * as s from './text.css';
 
 export default function TextWork({ line }: { line: TextLineWork }) {

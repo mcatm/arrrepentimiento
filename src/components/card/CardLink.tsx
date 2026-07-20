@@ -1,5 +1,5 @@
-import type { Link } from '~/types/link';
 import SmartLink from '~/components/SmartLink';
+import type { Link } from '~/types/link';
 import * as s from './card.css';
 
 export default function CardLink({ link }: { link: Link }) {

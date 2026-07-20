@@ -1,5 +1,5 @@
 import tape from '~/assets/images/works/arr007/tape.png';
-import { notification, image, text, title, linksList } from './birthOfSignificance.css';
+import { image, linksList, notification, text, title } from './birthOfSignificance.css';
 
 const ext = (href: string, label: string) => (
   <li key={href}>
@@ -23,7 +23,11 @@ export default function BirthOfSignificance() {
       </p>
       <div className={text}>
         <h1 className={title}>
-          <a href="https://artist.landr.com/music/672985604100" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://artist.landr.com/music/672985604100"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Birth of Significance
           </a>
           <small>Available Now</small>

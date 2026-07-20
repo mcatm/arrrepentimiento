@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom';
-import { getWork } from '~/lib/data';
 import { BlockMain } from '~/components/block';
 import Heading from '~/components/organism/Heading';
 import WorkDetail from '~/components/organism/WorkDetail';
 import WorkList from '~/components/organism/WorkList';
 import PageHead from '~/components/PageHead';
+import { getWork } from '~/lib/data';
 import NotFound from './NotFound';
 
 export default function WorkPage() {

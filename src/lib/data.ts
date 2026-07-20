@@ -1,6 +1,6 @@
-import { works as allWorks } from '~/resources/works';
-import { posts as allPosts } from '~/resources/posts';
 import { notes as allNotes } from '~/resources/notes';
+import { posts as allPosts } from '~/resources/posts';
+import { works as allWorks } from '~/resources/works';
 
 export const getWorks = () => allWorks.filter((work) => !work.isDrafted);
 export const getPosts = () => allPosts.filter((post) => !post.isDrafted);

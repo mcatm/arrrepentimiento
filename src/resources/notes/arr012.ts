@@ -1,10 +1,9 @@
 ﻿// import { Work } from "~/types/work";
-import thumbnail from '~/assets/images/works/arr012/cover.png';
 // import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
-import { Article } from "~/types/article";
-
+import dayjs from 'dayjs';
 import image001 from '~/assets/images/notes/production-note-for-hesitation-in-syllables/001.jpg';
+import thumbnail from '~/assets/images/works/arr012/cover.png';
+import type { Article } from '~/types/article';
 
 const id = 'production-note-for-hesitation-in-syllables';
 
@@ -68,7 +67,7 @@ export const arr012: Article = {
       type: 'youtube',
       id: 'cYLRRrfPJ1s',
     },
-    'てか、今気づいたけど、俺は『ウィッカーマン』の参照が多い。『ウィッカーマン』を初めて知ったのも、前述の『FADER』同じ号だった。High LlamasのSean O\'Haganオススメ映画として。',
+    "てか、今気づいたけど、俺は『ウィッカーマン』の参照が多い。『ウィッカーマン』を初めて知ったのも、前述の『FADER』同じ号だった。High LlamasのSean O'Haganオススメ映画として。",
     'この曲はProibitaではなく、デイリーのスタディで生まれた古めの曲で、俺のベースが上達したからこうしてレコーディング出来た。上達というより、イメージが湧いた。新宿のナルゲキ近くのカフェで仕事してから、別の場所に移動する途中のヘッドフォンを通して「ベースの効いた曲が好き」という自分の好みを知ったせいだと、明確に記憶している。何の曲を聴いていたのかは忘れてしまった。70年代初頭の雰囲気のマージービート系だったと思う。',
     'MVも作ろうと意気込み、Len Lye『Free Radicals』みたいなのをやりたいと思って色々実験してたんだけど、あんまり上手く行かずボツにした。この実験は後々活かすかも、って思っています。',
     {
@@ -80,8 +79,8 @@ export const arr012: Article = {
       value: 'B-2. Climb on a Bough',
     },
     'この曲をフィニッシュさせようとフォルダを漁っている時に、林くん（drawing4-5 / compuedit / Spangle call Lilli line）と一時期音源のやり取りをしていたことを思い出した。そこにあったギターのフレーズを合わせると、全く別の文脈で鳴らした音のはずなのにしっくり来た。というか、曲が生まれ変わったように感じた。冒頭のダイナミックなアルペジオがそれ。すっかり、楽曲の顔になっているので、ライブとかであのフレーズなしだと違和感あるかもな、と思ってる。林くんはギターを上手に弾くためにいつも爪をきれいに磨いていて、それは立派なことだ。自分にはあんな音鳴らせない。',
-    '歌詞を書いている時は、フォークホラー的な光景が頭にあったんだけど、それが伝わるか、それを伝えようとして作ったかは、漠としている。そもそも「枝に登る」というタイトルが、『The Blood on Satan\'s Claw』の冒頭を想起させるし、終盤は『The Witch』（めちゃつよ女子高生が出てくる韓国映画じゃなくて、アニャ・テイラー・ジョイが出る方）と、フォークホラーというよりは荒廃した農園のイメージなんだろう（「なんだろう」という他人事感、我ながらビビるね）',
-    '『The Blood on Satan\'s Claw』という映画は、終盤のバタバタがなければ本当にミスティックで奇妙な風体の傑作だ。ジェシー・アイゼンバーグの出演する『ビバリウム』という映画の冒頭はそのオマージュを思わせた。',
+    "歌詞を書いている時は、フォークホラー的な光景が頭にあったんだけど、それが伝わるか、それを伝えようとして作ったかは、漠としている。そもそも「枝に登る」というタイトルが、『The Blood on Satan's Claw』の冒頭を想起させるし、終盤は『The Witch』（めちゃつよ女子高生が出てくる韓国映画じゃなくて、アニャ・テイラー・ジョイが出る方）と、フォークホラーというよりは荒廃した農園のイメージなんだろう（「なんだろう」という他人事感、我ながらビビるね）",
+    "『The Blood on Satan's Claw』という映画は、終盤のバタバタがなければ本当にミスティックで奇妙な風体の傑作だ。ジェシー・アイゼンバーグの出演する『ビバリウム』という映画の冒頭はそのオマージュを思わせた。",
     {
       type: 'youtube',
       id: 'NSt2dv1XGV4',
@@ -104,7 +103,7 @@ export const arr012: Article = {
     'さて、この曲にもMVがある。例によって再生回数がすげえです。57回。一年で。もう一回書きますけど、これ、コンセプチュアル・アートじゃないです。そんなアートない。見てくれ、って言ってる。このMVは「57回」よりはちょっと良いはずだよ。',
     {
       type: 'heading',
-      value: 'B-4. Crying Misfits'
+      value: 'B-4. Crying Misfits',
     },
     'Arrrpsの楽曲は基本、ごく普通のループで出来ているんだけど、風呂場鼻歌発信なのが影響して、主旋律がとめどなく動く。この主旋律のとめどない動きを、なるべくキープしようと思い、色々苦労してそのメソッドも我流で開発した。とても大事なこと。その律動が、いつの間にかエモーショナルな瞬間に昇華されることを知っているので。',
     '2分未満の楽曲で、俺たち流の「ファンク」であり「ポジパン」だと思ってるんだけど、伝わるか伝わらないか半々ぐらいの気持ち。伝わらなくても大方問題ないかな。精神世界に対する自分なりの貢献。',
@@ -155,11 +154,11 @@ export const arr012: Article = {
         'Traxman',
         'Silver Apples',
         'High Llamas',
-        'Sean O\'Hagan',
+        "Sean O'Hagan",
         'ナルゲキ',
         'Len Lye『Free Radicals』',
         'フォークホラー',
-        '『The Blood on Satan\'s Claw』',
+        "『The Blood on Satan's Claw』",
         '『The Witch』',
         'アニャ・テイラー・ジョイ',
         'ジェシー・アイゼンバーグ',
@@ -183,6 +182,6 @@ export const arr012: Article = {
     {
       type: 'link',
       src: 'https://twitter.com/mcatm/status/1688169778631127040',
-    }
+    },
   ],
-}
+};

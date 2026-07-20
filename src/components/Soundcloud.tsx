@@ -5,6 +5,7 @@ export default function Soundcloud({ line }: { line: TextLineSoundcloud }) {
   return (
     <div className={s.video}>
       <iframe
+        title="SoundCloud player"
         width="100%"
         height="450"
         scrolling="no"

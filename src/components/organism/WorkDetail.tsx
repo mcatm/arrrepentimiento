@@ -1,12 +1,12 @@
 import dayjs from 'dayjs';
-import type { Work } from '~/types/work';
-import { BlockTitle, BlockHeading } from '~/components/block';
-import TextRenderer from '~/components/text/TextRenderer';
-import TrackList from './TrackList';
-import Video from '~/components/Video';
-import LinkByType from '~/components/card/LinkByType';
+import { BlockHeading, BlockTitle } from '~/components/block';
 import CardLink from '~/components/card/CardLink';
+import LinkByType from '~/components/card/LinkByType';
+import TextRenderer from '~/components/text/TextRenderer';
+import Video from '~/components/Video';
+import type { Work } from '~/types/work';
 import * as s from './organism.css';
+import TrackList from './TrackList';
 
 export default function WorkDetail({ work }: { work: Work }) {
   if (!work) return null;

@@ -1,6 +1,6 @@
-import type { Post } from '~/types/post';
 import CardInfo from '~/components/card/CardInfo';
 import TextRenderer from '~/components/text/TextRenderer';
+import type { Post } from '~/types/post';
 import * as s from './organism.css';
 
 export default function PostDetail({ post }: { post: Post }) {

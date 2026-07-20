@@ -1,4 +1,12 @@
-﻿export type LinkType = 'bandcamp' | 'spotify' | 'itunes' | 'twitter' | 'soundcloud' | 'instagram' | 'store' | 'other';
+﻿export type LinkType =
+  | 'bandcamp'
+  | 'spotify'
+  | 'itunes'
+  | 'twitter'
+  | 'soundcloud'
+  | 'instagram'
+  | 'store'
+  | 'other';
 
 export type Link = {
   to: string;
@@ -7,4 +15,4 @@ export type Link = {
   caption?: string;
   sitename?: string;
   notAvailable?: boolean;
-}
+};

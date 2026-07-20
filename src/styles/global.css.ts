@@ -1,6 +1,6 @@
 import { globalStyle } from '@vanilla-extract/css';
-import { color, font, spQuery } from './theme.css';
 import bg from '~/assets/images/bg.gif';
+import { color, font, spQuery } from './theme.css';
 
 globalStyle('html, body', {
   color: color.yellow,

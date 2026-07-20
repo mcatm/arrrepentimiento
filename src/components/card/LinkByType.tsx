@@ -1,11 +1,11 @@
-import type { Link } from '~/types/link';
 import {
   IconBandcamp,
-  IconSpotify,
-  IconITunes,
-  IconStore,
   IconExternalLink,
+  IconITunes,
+  IconSpotify,
+  IconStore,
 } from '~/components/icons';
+import type { Link } from '~/types/link';
 import * as s from './card.css';
 
 const iconFor = (type: Link['type']) => {

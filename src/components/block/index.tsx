@@ -19,6 +19,4 @@ export const BlockFooter = ({ children }: WithChildren) => (
   <div className={s.footer}>{children}</div>
 );
 
-export const BlockImage = ({ children }: WithChildren) => (
-  <div className={s.image}>{children}</div>
-);
+export const BlockImage = ({ children }: WithChildren) => <div className={s.image}>{children}</div>;

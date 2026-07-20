@@ -1,6 +1,6 @@
-import { externalLinks as links } from '~/resources/links';
-import { BlockHero, BlockImage } from '~/components/block';
 import collage from '~/assets/images/collages/001.jpg';
+import { BlockHero, BlockImage } from '~/components/block';
+import { externalLinks as links } from '~/resources/links';
 import * as s from './organism.css';
 
 export default function Hero() {

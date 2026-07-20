@@ -1,7 +1,7 @@
-﻿import { Work } from "~/types/work";
+﻿import dayjs from 'dayjs';
 import thumbnail from '~/assets/images/works/arr001/cover.jpg';
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'the-depth-of-meanings';
 
@@ -30,11 +30,9 @@ export const arr001: Work = {
     {
       type: 'other',
       to: 'https://artists.landr.com/800739167278',
-    }
+    },
   ],
   // isDrafted: true,
   releasedAt: dayjs('2017-10-16'),
-  tracks: [
-    'The Depth of Meanings',
-  ],
-}
+  tracks: ['The Depth of Meanings'],
+};

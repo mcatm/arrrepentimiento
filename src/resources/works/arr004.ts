@@ -1,7 +1,7 @@
-﻿import { Work } from "~/types/work";
+﻿import dayjs from 'dayjs';
 import thumbnail from '~/assets/images/works/arr004/cover.jpg';
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'hypnotical-hydro-research-1';
 
@@ -29,12 +29,9 @@ export const arr004: Work = {
     },
     {
       type: 'other',
-      to: 'https://artists.landr.com/800739541962'
+      to: 'https://artists.landr.com/800739541962',
     },
   ],
   releasedAt: dayjs('2018-05-28'),
-  tracks: [
-    'Orthogonally Dialog',
-    'Surrendering the Cloud',
-  ],
-}
+  tracks: ['Orthogonally Dialog', 'Surrendering the Cloud'],
+};

@@ -1,29 +1,29 @@
-﻿import { Work } from "~/types/work";
-import thumbnail from "~/assets/images/works/arr013/cover.png";
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+﻿import dayjs from 'dayjs';
+import thumbnail from '~/assets/images/works/arr013/cover.png';
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
-const id = "permanent-vacation";
+const id = 'permanent-vacation';
 
 export const arr013: Work = {
   id,
-  number: "arr013",
-  title: "Permanent Vacation",
-  type: "single",
-  formats: ["streaming"],
-  status: "released",
+  number: 'arr013',
+  title: 'Permanent Vacation',
+  type: 'single',
+  formats: ['streaming'],
+  status: 'released',
   to: workLink(id),
   thumbnail,
   description: [
-    "Two years since their previous work Hesitation in Syllables, this track is slated to be included in their third album In Delirium (working title), which has been in the works since before the last release. More than just an homage to the Jim Jarmusch classic referenced in the title, the song seems to function with relentless pop sensibility—as if trying to shake off an image that acts more like a curse than inspiration.",
-    "前作『Hesitation in Syllables』から2年、それ以前より準備していた三作目『In Delirium（仮）』への収録を予定している一曲。タイトルにも引用されたジム・ジャームッシュの名作へのオマージュを通り越して、もはや呪いのように作用するイマージュを振り払うかのように、ひたすらポップに機能しているはず。",
+    'Two years since their previous work Hesitation in Syllables, this track is slated to be included in their third album In Delirium (working title), which has been in the works since before the last release. More than just an homage to the Jim Jarmusch classic referenced in the title, the song seems to function with relentless pop sensibility—as if trying to shake off an image that acts more like a curse than inspiration.',
+    '前作『Hesitation in Syllables』から2年、それ以前より準備していた三作目『In Delirium（仮）』への収録を予定している一曲。タイトルにも引用されたジム・ジャームッシュの名作へのオマージュを通り越して、もはや呪いのように作用するイマージュを振り払うかのように、ひたすらポップに機能しているはず。',
   ],
   isPicked: true,
   // isDrafted: true,
-  releasedAt: dayjs("2025-07-18"),
-  releaseDateFormat: "YYYY-MM",
+  releasedAt: dayjs('2025-07-18'),
+  releaseDateFormat: 'YYYY-MM',
   // length: '13:00',
-  tracks: ["Permanent Vacation", "A Ghost Story"],
+  tracks: ['Permanent Vacation', 'A Ghost Story'],
   // videos: [
   //   {
   //     title: "The Wave",
@@ -41,16 +41,16 @@ export const arr013: Work = {
     //   to: "https://arrrepentimiento.bandcamp.com/album/hesitation-in-syllables",
     // },
     {
-      type: "spotify",
-      to: "https://open.spotify.com/album/1rlfbIuwhIcR6KK7z0YHtM",
+      type: 'spotify',
+      to: 'https://open.spotify.com/album/1rlfbIuwhIcR6KK7z0YHtM',
     },
     {
-      type: "itunes",
-      to: "https://music.apple.com/jp/album/permanent-vacation-single/1825241486",
+      type: 'itunes',
+      to: 'https://music.apple.com/jp/album/permanent-vacation-single/1825241486',
     },
     {
-      type: "other",
-      to: "https://artists.landr.com/990591890930",
+      type: 'other',
+      to: 'https://artists.landr.com/990591890930',
     },
   ],
   articles: [

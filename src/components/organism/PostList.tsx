@@ -1,7 +1,7 @@
+import CardPost from '~/components/card/CardPost';
+import SmartLink from '~/components/SmartLink';
 import { getPosts } from '~/lib/data';
 import type { PostCategory } from '~/types/post';
-import SmartLink from '~/components/SmartLink';
-import CardPost from '~/components/card/CardPost';
 import * as s from './organism.css';
 
 export default function PostList({
@@ -15,7 +15,7 @@ export default function PostList({
 }) {
   const posts = getPosts().filter(
     (post) =>
-      (!excerptIds || !excerptIds.includes(post.id)) &&
+      !excerptIds?.includes(post.id) &&
       (!isPickedOnly || post.isPicked) &&
       (!filterCategory || post.categories.includes(filterCategory)),
   );

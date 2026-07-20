@@ -1,6 +1,6 @@
-import type { Article } from '~/types/article';
 import { BlockTitle } from '~/components/block';
 import TextRenderer from '~/components/text/TextRenderer';
+import type { Article } from '~/types/article';
 import * as s from './organism.css';
 
 export default function NoteDetail({ note }: { note: Article }) {

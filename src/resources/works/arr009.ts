@@ -1,7 +1,7 @@
-﻿import { Work } from "~/types/work";
+﻿import dayjs from 'dayjs';
 import thumbnail from '~/assets/images/works/arr009/cover.jpg';
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'syllable-2';
 
@@ -35,8 +35,5 @@ export const arr009: Work = {
   ],
   // isDrafted: true,
   releasedAt: dayjs('2022-04-11'),
-  tracks: [
-    'The Wave',
-    'After The Wave',
-  ],
-}
+  tracks: ['The Wave', 'After The Wave'],
+};

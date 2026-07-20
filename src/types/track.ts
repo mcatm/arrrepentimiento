@@ -1,3 +1,3 @@
-﻿import { Song } from "./song";
+﻿import type { Song } from './song';
 
 export type Track = string | Song;

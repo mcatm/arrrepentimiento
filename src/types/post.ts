@@ -1,10 +1,9 @@
-﻿import { Dayjs } from "dayjs";
-import { TextLine } from "./text";
+﻿import type { TextLine } from './text';
 
-export type PostCategory = "show";
+export type PostCategory = 'show';
 
 export type Info = {
-  label: "Date" | "At" | "Act";
+  label: 'Date' | 'At' | 'Act';
   value: string;
   url?: string;
   isBold?: boolean;

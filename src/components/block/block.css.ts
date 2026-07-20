@@ -1,5 +1,5 @@
-import { style, globalStyle } from '@vanilla-extract/css';
-import { color, font, width, spQuery } from '~/styles/theme.css';
+import { globalStyle, style } from '@vanilla-extract/css';
+import { color, font, spQuery, width } from '~/styles/theme.css';
 
 export const main = style({
   margin: '0 auto',

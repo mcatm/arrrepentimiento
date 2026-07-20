@@ -1,6 +1,6 @@
-﻿import { Work } from "~/types/work";
-import thumbnail from '~/assets/images/works/arr011/cover.jpg';
-import { workLink } from "~/lib/links";
+﻿import thumbnail from '~/assets/images/works/arr011/cover.jpg';
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'syllable-3';
 
@@ -33,9 +33,5 @@ export const arr011: Work = {
   ],
   isPicked: false,
   // releasedAt: dayjs('2022-01-27'),
-  tracks: [
-    'Climb on a Bough',
-    'Confession',
-    'Toit Vert',
-  ],
-}
+  tracks: ['Climb on a Bough', 'Confession', 'Toit Vert'],
+};

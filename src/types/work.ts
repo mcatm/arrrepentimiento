@@ -1,8 +1,8 @@
-﻿import { Dayjs } from 'dayjs';
-import { Link } from './link';
-import { Track } from "./track";
-import { TextLine } from './text';
-import { Video } from './video';
+﻿import type { Dayjs } from 'dayjs';
+import type { Link } from './link';
+import type { TextLine } from './text';
+import type { Track } from './track';
+import type { Video } from './video';
 
 type WorkFormat = 'streaming' | 'cassette' | '7inch' | '12inch';
 type WorkStatus = 'released' | 'pre-release' | 'demo';
@@ -27,4 +27,4 @@ export type Work = {
   isDrafted?: boolean;
   isPicked?: boolean;
   articles?: Link[];
-}
+};

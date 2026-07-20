@@ -1,7 +1,7 @@
-﻿import { Work } from "~/types/work";
+﻿import dayjs from 'dayjs';
 import thumbnail from '~/assets/images/works/arr010/cover.png';
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'rewind-the-sun';
 
@@ -21,7 +21,7 @@ export const arr010: Work = {
     },
     {
       type: 'spotify',
-      to: 'https://open.spotify.com/album/6v27zuYnYhsgf5Q4wXHl7T'
+      to: 'https://open.spotify.com/album/6v27zuYnYhsgf5Q4wXHl7T',
     },
     {
       type: 'itunes',
@@ -34,7 +34,5 @@ export const arr010: Work = {
   ],
   isPicked: true,
   releasedAt: dayjs('2022-09-05'),
-  tracks: [
-    'Rewind The Sun',
-  ],
-}
+  tracks: ['Rewind The Sun'],
+};

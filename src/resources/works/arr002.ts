@@ -1,7 +1,7 @@
-﻿import { Work } from "~/types/work";
+﻿import dayjs from 'dayjs';
 import thumbnail from '~/assets/images/works/arr002/cover.jpg';
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'live-at-newtown-2017';
 
@@ -31,4 +31,4 @@ export const arr002: Work = {
     'The Depth of Meanings',
     'Next Morning Calvin Klein',
   ],
-}
+};

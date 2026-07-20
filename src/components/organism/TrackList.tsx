@@ -1,13 +1,7 @@
 import type { Track } from '~/types/track';
 import * as s from './organism.css';
 
-export default function TrackList({
-  tracks,
-  className,
-}: {
-  tracks: Track[];
-  className?: string;
-}) {
+export default function TrackList({ tracks, className }: { tracks: Track[]; className?: string }) {
   if (!tracks) return null;
   return (
     <ol className={className ? `${s.tracks} ${className}` : s.tracks}>

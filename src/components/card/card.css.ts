@@ -1,4 +1,4 @@
-import { style, globalStyle } from '@vanilla-extract/css';
+import { globalStyle, style } from '@vanilla-extract/css';
 import { color, font, spQuery } from '~/styles/theme.css';
 
 /* ---- link (shared by CardLink / CardLinkByType) ---- */

@@ -1,7 +1,7 @@
-﻿import { Work } from "~/types/work";
+﻿import dayjs from 'dayjs';
 import thumbnail from '~/assets/images/works/arr003/cover.jpg';
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'rewind-the-sun-first';
 
@@ -34,8 +34,5 @@ export const arr003: Work = {
     },
   ],
   releasedAt: dayjs('2018-04-23'),
-  tracks: [
-    'Rewind the Sun',
-    'Duty Sleeps Well',
-  ],
-}
+  tracks: ['Rewind the Sun', 'Duty Sleeps Well'],
+};

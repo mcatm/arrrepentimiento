@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
-import type { TextLine } from '~/types/text';
-import Video from '~/components/Video';
 import Soundcloud from '~/components/Soundcloud';
+import Video from '~/components/Video';
+import type { TextLine } from '~/types/text';
 import TextWork from './TextWork';
 
 const paragraphTypes = ['paragraph', 'heading', 'subheading'];

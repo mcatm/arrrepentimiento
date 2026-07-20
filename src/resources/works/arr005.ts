@@ -1,7 +1,7 @@
-﻿import { Work } from "~/types/work";
+﻿import dayjs from 'dayjs';
 import thumbnail from '~/assets/images/works/arr005/cover.jpg';
-import { workLink } from "~/lib/links";
-import dayjs from "dayjs";
+import { workLink } from '~/lib/links';
+import type { Work } from '~/types/work';
 
 const id = 'pollen';
 
@@ -29,11 +29,9 @@ export const arr005: Work = {
     },
     {
       type: 'other',
-      to: 'https://artists.landr.com/628810744442'
+      to: 'https://artists.landr.com/628810744442',
     },
   ],
   releasedAt: dayjs('2019-09-29'),
-  tracks: [
-    'Pollen',
-  ],
-}
+  tracks: ['Pollen'],
+};

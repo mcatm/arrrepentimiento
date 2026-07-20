@@ -1,9 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { internalLinks, externalLinks } from '~/resources/links';
-import { BlockFooter } from '~/components/block';
-import PostList from './PostList';
 import BirthOfSignificance from '~/components/BirthOfSignificance';
+import { BlockFooter } from '~/components/block';
+import { externalLinks, internalLinks } from '~/resources/links';
 import * as s from './organism.css';
+import PostList from './PostList';
 
 export default function Footer() {
   return (
@@ -14,7 +14,11 @@ export default function Footer() {
         <ul className={`${s.footerColumn} ${s.footerInternal}`}>
           {internalLinks.map((link) => (
             <li key={link.url}>
-              <NavLink to={link.url} className={({ isActive }) => (isActive ? 'active' : undefined)} end>
+              <NavLink
+                to={link.url}
+                className={({ isActive }) => (isActive ? 'active' : undefined)}
+                end
+              >
                 {link.label}
               </NavLink>
             </li>

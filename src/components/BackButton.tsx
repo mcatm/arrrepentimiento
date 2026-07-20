@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { wrapper, button } from './backButton.css';
+import { button, wrapper } from './backButton.css';
 
 export default function BackButton() {
   const location = useLocation();

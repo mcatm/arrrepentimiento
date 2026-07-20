@@ -3,7 +3,7 @@
   { url: '/about', label: 'About' },
   { url: '/works', label: 'Works' },
   // { url: '/posts', label: 'Posts' },
-]
+];
 
 export const externalLinks = [
   { url: 'https://arrrepentimiento.bandcamp.com/', label: 'Bandcamp' },
@@ -22,4 +22,4 @@ export const externalLinks = [
   { url: 'https://soundcloud.com/arrrepentimiento', label: 'SoundCloud' },
   { url: 'https://www.instagram.com/arrrepentimiento/', label: 'Instagram' },
   { url: 'https://twitter.com/arrrrps', label: 'Twitter' },
-]
+];

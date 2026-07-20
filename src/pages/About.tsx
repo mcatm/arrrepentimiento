@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { BlockMain, BlockHero, BlockImage } from '~/components/block';
-import PageHead from '~/components/PageHead';
-import collective from '~/assets/images/collective/001.jpg';
 import collage from '~/assets/images/collages/002.jpg';
+import collective from '~/assets/images/collective/001.jpg';
+import { BlockHero, BlockImage, BlockMain } from '~/components/block';
+import PageHead from '~/components/PageHead';
 import * as s from './about.css';
 
 export default function About() {

@@ -1,5 +1,5 @@
-﻿import { Dayjs } from "dayjs";
-import { TextLine } from "./text";
+﻿import type { Dayjs } from 'dayjs';
+import type { TextLine } from './text';
 
 export type Article = {
   id: string;
@@ -9,4 +9,4 @@ export type Article = {
   isDrafted?: boolean;
   isPicked?: boolean;
   contents?: TextLine[];
-}
+};

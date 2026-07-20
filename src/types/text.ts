@@ -1,4 +1,4 @@
-﻿import { Video } from "./video";
+﻿import type { Video } from './video';
 
 export type TextLine =
   | TextLineParagraph
@@ -13,41 +13,41 @@ export type TextLine =
 export type TextLineParagraph =
   | string
   | {
-      type: "paragraph" | "heading" | "subheading";
+      type: 'paragraph' | 'heading' | 'subheading';
       value: string;
     };
 
 export type TextLineImage = {
-  type: "image";
+  type: 'image';
   value: string;
 };
 
 export type TextLineList = {
-  type: "list";
+  type: 'list';
   values: string[];
 };
 
 export type TextLineLink = {
-  type: "link";
+  type: 'link';
   src: string;
   label?: string;
-  target?: "_blank" | "_self";
+  target?: '_blank' | '_self';
 };
 
 export type TextLineWork = {
-  type: "work";
+  type: 'work';
   id: string;
 };
 
 export type TextLineDelimiter = {
-  type: "delimiter";
+  type: 'delimiter';
 };
 
 export type TextLineYoutube = Video & {
-  type: "youtube";
+  type: 'youtube';
 };
 
 export type TextLineSoundcloud = {
-  type: "soundcloud";
+  type: 'soundcloud';
   src: string;
 };
