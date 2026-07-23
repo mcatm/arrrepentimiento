@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { BlockMain } from '~/components/block';
+import { Container } from '~/components/Container';
 import Heading from '~/components/organism/Heading';
 import PostDetail from '~/components/organism/PostDetail';
 import PageHead from '~/components/PageHead';
@@ -13,12 +14,12 @@ export default function PostPage() {
   if (!post) return <NotFound />;
 
   return (
-    <>
+    <Container>
       <PageHead title={post.title} />
       <BlockMain>
         <Heading />
         <PostDetail post={post} />
       </BlockMain>
-    </>
+    </Container>
   );
 }

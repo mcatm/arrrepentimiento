@@ -29,6 +29,8 @@ export const workThumbnail = style({
   lineHeight: 1,
   marginRight: '25px',
   flexShrink: 0,
+  borderLeft: `1px solid ${color.gray}`,
+  borderRight: `1px solid ${color.gray}`,
   '@media': {
     [spQuery]: {
       width: '120px',

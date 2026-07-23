@@ -1,19 +1,24 @@
+import type { FC } from 'react';
 import CardPost from '~/components/card/CardPost';
 import SmartLink from '~/components/SmartLink';
 import { getPosts } from '~/lib/data';
 import type { PostCategory } from '~/types/post';
-import * as s from './organism.css';
+import * as s from './style.css';
 
-export default function PostList({
-  isPickedOnly,
-  filterCategory,
-  excerptIds,
-}: {
+type Props = {
+  posts?: ReturnType<typeof getPosts>;
   isPickedOnly?: boolean;
   filterCategory?: PostCategory;
   excerptIds?: string[];
-}) {
-  const posts = getPosts().filter(
+};
+
+export const PostList: FC<Props> = ({
+  posts: initialPosts,
+  isPickedOnly,
+  filterCategory,
+  excerptIds,
+}) => {
+  const posts = (initialPosts || getPosts()).filter(
     (post) =>
       !excerptIds?.includes(post.id) &&
       (!isPickedOnly || post.isPicked) &&
@@ -21,7 +26,7 @@ export default function PostList({
   );
 
   return (
-    <ul className={s.postList}>
+    <ul className={s.container}>
       {posts.map((post, i) => (
         <li key={`post-${i}-${post.id}`}>
           {post.to && (
@@ -33,4 +38,4 @@ export default function PostList({
       ))}
     </ul>
   );
-}
+};

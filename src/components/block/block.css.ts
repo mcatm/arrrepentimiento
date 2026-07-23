@@ -1,21 +1,27 @@
 import { globalStyle, style } from '@vanilla-extract/css';
+
 import { color, font, spQuery, width } from '~/styles/theme.css';
 
 export const main = style({
   margin: '0 auto',
-  width: '80%',
+  width: '100%',
   padding: 0,
-  maxWidth: width.mainL,
+  // maxWidth: width.mainL,
   '@media': {
     [spQuery]: {
-      width: '90%',
+      width: '100%',
     },
   },
 });
 
 export const hero = style({
   width: '100%',
-  padding: '80px 0',
+  height: '100dvh',
+  // padding: '80px 0',
+  boxSizing: 'border-box',
+  // background: color.orange,
+  overflow: 'hidden',
+  position: 'relative',
 });
 
 export const title = style({

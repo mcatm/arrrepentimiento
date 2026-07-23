@@ -1,19 +1,54 @@
 import { globalStyle, style } from '@vanilla-extract/css';
-import { color, font, spQuery } from '~/styles/theme.css';
+import { color, font, spQuery, width } from '~/styles/theme.css';
+
+export const heroContainer = style({
+  position: 'absolute',
+  zIndex: 100,
+  // left: 0,
+  // bottom: 40,
+  // padding: '120px 0 80px',
+  margin: '0 auto',
+  width: '100dvw',
+  height: 'calc(100dvh - 40px)',
+  maxWidth: width.mainL,
+  bottom: 40,
+  // backgroundColor: color.white,
+  '@media': {
+    [spQuery]: {
+      width: '90%',
+    },
+  },
+});
+
+export const heroImage = style({
+  width: '100%',
+  maxHeight: '100dvh',
+  position: 'absolute',
+  bottom: 0,
+  left: 0,
+});
+
+globalStyle(`${heroImage} > img`, {
+  width: '100%',
+  height: 'auto',
+});
 
 export const heading = style({
   margin: 0,
   color: color.yellow,
+  fontWeight: 800,
+  position: 'absolute',
+  bottom: 20,
 });
 
 export const brand = style({
   fontFamily: font.rich,
-  fontSize: '3.2rem',
+  fontSize: `clamp(1rem, calc(5cqw + 1.5rem), 6.25vw)`,
   margin: 0,
   lineHeight: 1,
 });
 
-globalStyle(`${brand} a`, {
+globalStyle(`${brand} a, ${brand} a:visited`, {
   textDecoration: 'none',
   color: color.yellow,
 });
@@ -24,7 +59,7 @@ globalStyle(`${brand} a:hover`, {
 
 export const subtitle = style({
   fontFamily: font.normal,
-  fontSize: '0.8rem',
+  fontSize: '1rem',
   margin: 0,
 });
 

@@ -1,15 +1,15 @@
 import { globalStyle } from '@vanilla-extract/css';
-import bg from '~/assets/images/bg.gif';
+import bg from '~/assets/images/bg03.gif';
 import { color, font, spQuery } from './theme.css';
 
 globalStyle('html, body', {
-  color: color.yellow,
+  color: color.black,
   fontSize: '16px',
   fontFamily: font.normal,
   lineHeight: 1.8,
 });
 
-globalStyle('body::before', {
+globalStyle('body::after', {
   content: '""',
   display: 'block',
   position: 'fixed',
@@ -23,7 +23,8 @@ globalStyle('body::before', {
 });
 
 globalStyle('a, a:visited', {
-  color: color.red,
+  color: color.black,
+  textDecoration: 'underline',
 });
 
 globalStyle('a:hover', {

@@ -9,7 +9,7 @@ export const post004: Post = {
   id,
   title: '心酔 vol.34',
   categories: ['show'],
-  isPicked: true,
+  isPicked: false,
   contents: [
     {
       type: 'image',

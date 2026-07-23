@@ -19,7 +19,6 @@ export const externalLinks = [
     url: 'https://music.apple.com/jp/artist/arrrepentimiento/1482194663',
     label: 'Apple Music',
   },
-  { url: 'https://soundcloud.com/arrrepentimiento', label: 'SoundCloud' },
   { url: 'https://www.instagram.com/arrrepentimiento/', label: 'Instagram' },
-  { url: 'https://twitter.com/arrrrps', label: 'Twitter' },
+  { url: 'https://soundcloud.com/arrrepentimiento', label: 'SoundCloud' },
 ];

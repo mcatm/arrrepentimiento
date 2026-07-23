@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 import { BlockMain } from '~/components/block';
+import { Container } from '~/components/Container';
 import Heading from '~/components/organism/Heading';
 import WorkDetail from '~/components/organism/WorkDetail';
-import WorkList from '~/components/organism/WorkList';
 import PageHead from '~/components/PageHead';
+import { WorkList } from '~/components/WorkList';
 import { getWork } from '~/lib/data';
 import NotFound from './NotFound';
 
@@ -14,13 +15,13 @@ export default function WorkPage() {
   if (!work) return <NotFound />;
 
   return (
-    <>
+    <Container>
       <PageHead title={work.title} />
       <BlockMain>
         <Heading />
         <WorkDetail work={work} />
         <WorkList excerptIds={[id]} />
       </BlockMain>
-    </>
+    </Container>
   );
 }

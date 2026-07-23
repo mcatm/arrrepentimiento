@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { BlockMain } from '~/components/block';
+import { Container } from '~/components/Container';
 import Heading from '~/components/organism/Heading';
 import NoteDetail from '~/components/organism/NoteDetail';
 import PageHead from '~/components/PageHead';
@@ -13,12 +14,12 @@ export default function NotePage() {
   if (!note) return <NotFound />;
 
   return (
-    <>
+    <Container>
       <PageHead title={note.title} />
       <BlockMain>
         <Heading />
         <NoteDetail note={note} />
       </BlockMain>
-    </>
+    </Container>
   );
 }

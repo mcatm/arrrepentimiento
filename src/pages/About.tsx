@@ -1,16 +1,18 @@
 import { Link } from 'react-router-dom';
+import about from '~/assets/images/about.png';
 import collage from '~/assets/images/collages/002.jpg';
 import collective from '~/assets/images/collective/001.jpg';
 import { BlockHero, BlockImage, BlockMain } from '~/components/block';
+import { Container } from '~/components/Container';
 import PageHead from '~/components/PageHead';
 import * as s from './about.css';
 
 export default function About() {
   return (
-    <div>
+    <Container>
       <PageHead title="About Us" />
-      <BlockMain>
-        <BlockHero>
+      <BlockHero>
+        <div className={s.heroContainer}>
           <div className={s.heading}>
             <h1 className={s.brand}>
               <Link to="/">Arrrepentimiento</Link>
@@ -19,12 +21,11 @@ export default function About() {
               <span>アレペンティミエント</span>
             </p>
           </div>
-        </BlockHero>
-      </BlockMain>
-
-      <BlockImage>
-        <img src={collective} alt="Arrrepentimiento" />
-      </BlockImage>
+        </div>
+        <div className={s.heroImage}>
+          <img src={about} alt="Arrrepentimiento" />
+        </div>
+      </BlockHero>
 
       <BlockMain>
         <div>
@@ -85,6 +86,10 @@ export default function About() {
           </div>
         </div>
       </BlockMain>
-    </div>
+
+      <BlockImage>
+        <img src={collective} alt="Arrrepentimiento" />
+      </BlockImage>
+    </Container>
   );
 }

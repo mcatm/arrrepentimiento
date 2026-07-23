@@ -2,8 +2,8 @@ import { NavLink } from 'react-router-dom';
 import BirthOfSignificance from '~/components/BirthOfSignificance';
 import { BlockFooter } from '~/components/block';
 import { externalLinks, internalLinks } from '~/resources/links';
+import { PostList } from '../PostList';
 import * as s from './organism.css';
-import PostList from './PostList';
 
 export default function Footer() {
   return (

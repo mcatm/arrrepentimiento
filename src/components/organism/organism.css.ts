@@ -6,98 +6,19 @@ import { color, font, spQuery } from '~/styles/theme.css';
 export const tracks = style({
   listStyle: 'none',
   padding: 0,
-  borderRight: `solid 1px ${color.yellow}`,
-  borderLeft: `solid 1px ${color.yellow}`,
-  borderBottom: `solid 1px ${color.yellow}`,
+  borderRight: `solid 1px ${color.gray}`,
+  borderLeft: `solid 1px ${color.gray}`,
+  borderBottom: `solid 1px ${color.gray}`,
 });
 
 globalStyle(`${tracks} > li`, {
   padding: '12px 12px 12px 24px',
-  borderTop: `solid 1px ${color.yellow}`,
+  borderTop: `solid 1px ${color.gray}`,
   fontSize: '20px',
 });
 
 globalStyle(`${tracks} > li small`, {
   fontSize: '0.6em',
-});
-
-/* ---- WorkList / PostList ---- */
-
-export const list = style({
-  padding: 0,
-  margin: '0 0 30px',
-});
-
-globalStyle(`${list} > li`, {
-  borderBottom: `1px solid ${color.gray}`,
-  listStyle: 'none',
-  padding: 0,
-});
-
-globalStyle(`${list} > li:first-child`, {
-  borderTop: `1px solid ${color.gray}`,
-});
-
-globalStyle(`${list} > li > a`, {
-  textDecoration: 'none',
-  display: 'block',
-});
-
-export const postList = style({
-  padding: 0,
-  margin: '0 0 30px',
-});
-
-globalStyle(`${postList} > li`, {
-  borderBottom: `1px solid ${color.gray}`,
-  listStyle: 'none',
-  padding: 0,
-});
-
-globalStyle(`${postList} > li:first-child`, {
-  borderTop: `1px solid ${color.gray}`,
-});
-
-globalStyle(`${postList} > li > a`, {
-  textDecoration: 'none',
-  display: 'block',
-  color: color.yellow,
-});
-
-globalStyle(`${postList} > li > a:hover`, {
-  color: color.red,
-});
-
-/* ---- Hero ---- */
-
-export const heroTitle = style({
-  fontSize: '64px',
-  textAlign: 'left',
-  fontFamily: font.rich,
-  margin: 0,
-  '@media': {
-    [spQuery]: {
-      fontSize: '32px',
-    },
-  },
-});
-
-export const heroMenu = style({
-  padding: 0,
-  margin: '0 0 80px',
-  fontFamily: font.rich,
-  display: 'flex',
-  '@media': {
-    [spQuery]: {
-      flexDirection: 'column',
-    },
-  },
-});
-
-globalStyle(`${heroMenu} > li`, {
-  listStyle: 'none',
-  paddingRight: '20px',
-  fontSize: '1.15rem',
 });
 
 /* ---- Heading (brand) ---- */
@@ -107,13 +28,12 @@ export const brand = style({
 });
 
 globalStyle(`${brand} a, ${brand} a:visited`, {
-  color: color.yellow,
+  color: color.gray,
   textDecoration: 'none',
 });
 
 globalStyle(`${brand} a:hover`, {
-  color: color.red,
-  textDecoration: 'underline',
+  color: color.yellow,
 });
 
 /* ---- Footer ---- */
@@ -199,6 +119,7 @@ globalStyle(`${stats} p`, {
 export const thumbnail = style({
   lineHeight: 1,
   width: '360px',
+  border: `solid 1px ${color.gray}`,
   '@media': {
     [spQuery]: {
       width: 'auto',

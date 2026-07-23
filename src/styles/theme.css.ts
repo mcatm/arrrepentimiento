@@ -15,9 +15,9 @@ export const font = {
 export const color = {
   black: '#111111',
   white: '#EAEAEA',
-  gray: 'rgba(255, 255, 255, .2)',
+  gray: 'rgba(17, 17, 17, .4)',
   red: '#e40101',
-  orange: '#FF7800',
+  orange: '#ce4c18',
   blue: '#00ffdd',
   green: '#00B358',
   yellow: '#d6c031',
