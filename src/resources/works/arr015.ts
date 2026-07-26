@@ -35,25 +35,25 @@ export const arr015: Work = {
   tracks: [
     'In Delirium',
     'Permanent Vacation',
-    'Dance, Signe, Dance',
+    'Torn into the Void',
     '5th Stigma Problem',
     'Moonlight',
     'Twice in the Morning',
     'Porcile',
-    'Fear of Vulnerability',
+    'Pregnant with Pedants',
     'Maelström',
-    'Life as Crackling Firewood',
+    'Stir the World',
     'Storm in My Hat',
-    'Extreme Beams Again',
+    'The Beam of Pure Light',
   ],
   videos: [
     // {
-    //   title: 'Maelström',
-    //   id: '638hw8jwe5E',
-    // },
-    // {
     //   title: 'Permanent Vacation In The Hole',
     //   id: 'LRDvt_Lshvw',
+    // },
+    // {
+    //   title: 'Maelström',
+    //   id: '638hw8jwe5E',
     // },
   ],
   stores: [

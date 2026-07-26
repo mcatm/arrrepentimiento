@@ -16,6 +16,7 @@ globalStyle('body::after', {
   top: 0,
   left: 0,
   zIndex: -1,
+  opacity: 0.9,
   width: '100%',
   height: '100vh',
   background: `url('${bg}') 50% 50% no-repeat`,

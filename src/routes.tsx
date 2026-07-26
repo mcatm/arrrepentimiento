@@ -9,6 +9,7 @@ import PostPage from '~/pages/PostPage';
 import RedirectArr012 from '~/pages/RedirectArr012';
 import WorkPage from '~/pages/WorkPage';
 import Works from '~/pages/Works';
+import RedirectArr015 from './pages/redirect/arr015';
 
 export const routes: RouteRecord[] = [
   {
@@ -34,6 +35,7 @@ export const routes: RouteRecord[] = [
         getStaticPaths: () => getNotes().map((note) => `/note/${note.id}`),
       },
       { path: 'redirect/arr012', Component: RedirectArr012 },
+      { path: 'redirect/L5NVU8Sd', Component: RedirectArr015 },
       { path: '*', Component: NotFound },
     ],
   },
