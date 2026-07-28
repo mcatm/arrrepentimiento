@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import about from '~/assets/images/about.png';
+import about from '~/assets/images/about.gif';
 import collage from '~/assets/images/collages/002.jpg';
 import collective from '~/assets/images/collective/001.jpg';
 import { BlockHero, BlockImage, BlockMain } from '~/components/block';

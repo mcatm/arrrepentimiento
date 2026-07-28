@@ -62,7 +62,7 @@ export const footerExternal = style({
 });
 
 globalStyle(`${footerExternal} a, ${footerExternal} a:visited`, {
-  color: color.blue,
+  color: color.yellow,
 });
 
 globalStyle(`${footerExternal} a:hover`, {
