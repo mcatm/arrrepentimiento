@@ -1,1 +1,0 @@
-﻿export const usePostLink = (id: string) => `/post/${id}`;
