@@ -4,3 +4,4 @@ node_modules
 .env
 dist
 .vite-react-ssg-temp
+.DS_Store

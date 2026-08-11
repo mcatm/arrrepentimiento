@@ -12,10 +12,12 @@ import { arr010 } from './arr010';
 import { arr011 } from './arr011';
 import { arr012 } from './arr012';
 import { arr013 } from './arr013';
+import { arr014 } from './arr014';
 import { arr015 } from './arr015';
 
 export const works: Work[] = [
   arr015,
+  arr014,
   arr013,
   arr012,
   arr011,
