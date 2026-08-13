@@ -15,8 +15,8 @@ export const arr014: Work = {
   to: workLink(id),
   thumbnail,
   description: [
-    'Two years since their previous work Hesitation in Syllables, this track is slated to be included in their third album In Delirium (working title), which has been in the works since before the last release. More than just an homage to the Jim Jarmusch classic referenced in the title, the song seems to function with relentless pop sensibility—as if trying to shake off an image that acts more like a curse than inspiration.',
-    '前作『Hesitation in Syllables』から2年、それ以前より準備していた三作目『In Delirium（仮）』への収録を予定している一曲。タイトルにも引用されたジム・ジャームッシュの名作へのオマージュを通り越して、もはや呪いのように作用するイマージュを振り払うかのように、ひたすらポップに機能しているはず。',
+    'In a world with no escape, yet anger burns quietly. Before the pier, in a barn facing south, we attempt to break the chains again and again, but even this escape is already consumed by the machinery of control. Within such desperate contradiction lies the reason for our turmoil. From the forthcoming "In Delirium," the second track "Maelström." In the ashes, upon a weary stage in tuxedos, may the feeble glimmer of the mirror ball illuminate the song that mourns our captive order.',
+    '逃げ場のないこの世界で、しかし、怒りは静かに燃えている。桟橋前、南の方角の納屋にて、何度も鎖を断ち切ろうとするが、その逃避行もすでに支配の中に取り込まれている。そんな絶望的な矛盾の中で取り乱した理由。来たる「In Delirium」から、2曲目となる「Maelström（渦）」。灰の中、草臥れたステージにタキシードで、ミラーボールの弱々しい煌めきが、囚われの秩序を憂う歌を照らさんことを。',
   ],
   isPicked: true,
   // isDrafted: true,
