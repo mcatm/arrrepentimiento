@@ -20,38 +20,38 @@ export const arr014: Work = {
   ],
   isPicked: true,
   // isDrafted: true,
-  releasedAt: dayjs('2025-08-31'),
+  releasedAt: dayjs('2025-09-16'),
   releaseDateFormat: 'YYYY-MM',
   // length: '13:00',
   tracks: ['Maelström'],
-  // videos: [
-  //   {
-  //     title: "The Wave",
-  //     id: "638hw8jwe5E",
-  //   },
+  videos: [
+    {
+      title: "The Wave",
+      id: "lkVvktP5i0k",
+    },
   //   {
   //     title: "Your Property",
   //     id: "LRDvt_Lshvw",
   //   },
-  // ],
+  ],
   stores: [],
   streamings: [
     // {
     //   type: "bandcamp",
     //   to: "https://arrrepentimiento.bandcamp.com/album/hesitation-in-syllables",
     // },
-    // {
-    //   type: 'spotify',
-    //   to: 'https://open.spotify.com/album/1rlfbIuwhIcR6KK7z0YHtM',
-    // },
-    // {
-    //   type: 'itunes',
-    //   to: 'https://music.apple.com/jp/album/permanent-vacation-single/1825241486',
-    // },
-    // {
-    //   type: 'other',
-    //   to: 'https://artists.landr.com/990591890930',
-    // },
+    {
+      type: 'spotify',
+      to: 'https://open.spotify.com/intl-ja/album/2WlJx93ZtoIoXxRSd39oon',
+    },
+    {
+      type: 'itunes',
+      to: 'https://music.apple.com/jp/album/maelstr%C3%B6m-single/6811613187',
+    },
+    {
+      type: 'other',
+      to: 'https://release.landr.com/991061153272',
+    },
   ],
   articles: [
     // {
