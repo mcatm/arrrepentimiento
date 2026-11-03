@@ -26,7 +26,7 @@ export const arr014: Work = {
   tracks: ['Maelström'],
   videos: [
     {
-      title: "The Wave",
+      title: "Maelström",
       id: "lkVvktP5i0k",
     },
   //   {

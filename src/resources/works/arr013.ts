@@ -24,16 +24,12 @@ export const arr013: Work = {
   releaseDateFormat: 'YYYY-MM',
   // length: '13:00',
   tracks: ['Permanent Vacation', 'A Ghost Story'],
-  // videos: [
-  //   {
-  //     title: "The Wave",
-  //     id: "638hw8jwe5E",
-  //   },
-  //   {
-  //     title: "Your Property",
-  //     id: "LRDvt_Lshvw",
-  //   },
-  // ],
+  videos: [
+    {
+      title: 'Permanent Vacation (In The Hole)',
+      id: 'Vp-SEt50oZk',
+    },
+  ],
   stores: [],
   streamings: [
     // {

@@ -11,7 +11,7 @@ export const arr015: Work = {
   title: 'In Delirium',
   type: 'album',
   formats: ['cassette', 'streaming'],
-  status: 'released',
+  status: 'pre-release',
   to: workLink(id),
   thumbnail,
   description: [
@@ -27,9 +27,9 @@ export const arr015: Work = {
     },
     '世界は壊れていく。ノイズとコラージュに蝕まれながら、それでもメロディは響き続ける。生楽器とエレクトロニクスが衝突すると、予測不可能な形へ変形していく音場。牧歌的でありながら珍妙、深刻さと不条理が同居する空間で、毒とユーモアが混濁している。「宅録三部作」の最終作となる本作でも、Arrrepentimientoは引き続き、インディフォークの枠組からの逸脱と回帰を繰り返しながら、聴き手を未知の領域へ引きずり込まんと挑戦を続ける。迷走する世界、揺らぎ続ける音。その渦中で、意志が歌い続ける。その矛盾の中に、新しい美が立ち上がるのだ。',
   ],
-  isPicked: false,
-  isDrafted: true,
-  releasedAt: dayjs('2026-10-23'),
+  isPicked: true,
+  isDrafted: false,
+  releasedAt: dayjs('2026-11-06'),
   releaseDateFormat: 'YYYY-MM',
   // length: '13:00',
   tracks: [
@@ -47,14 +47,18 @@ export const arr015: Work = {
     'The Beam of Pure Light',
   ],
   videos: [
-    // {
-    //   title: 'Permanent Vacation In The Hole',
-    //   id: 'LRDvt_Lshvw',
-    // },
+    {
+      title: 'Permanent Vacation (In The Hole)',
+      id: 'Vp-SEt50oZk',
+    },
     // {
     //   title: 'Maelström',
     //   id: '638hw8jwe5E',
     // },
+    {
+      title: "Maelström",
+      id: "lkVvktP5i0k",
+    },
   ],
   stores: [
     // {
