@@ -61,13 +61,13 @@ export const arr015: Work = {
     },
   ],
   stores: [
-    // {
-    //   label: 'Reconquista',
-    //   caption: '（On Sale）',
-    //   type: 'store',
-    //   to: 'https://www.reconquista.biz/SHOP/arr07_12.html',
-    //   // notAvailable: true,
-    // },
+    {
+      label: 'Reconquista',
+      caption: '（On Sale）',
+      type: 'store',
+      to: 'https://www.reconquista.biz/SHOP/arr015.html',
+      // notAvailable: true,
+    },
     // {
     //   label: 'Reconquista',
     //   type: 'store',
